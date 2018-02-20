@@ -1,9 +1,5 @@
 package dbk.qacourse.sandbox;
 
-// publiczna klasa o nazwie MyFirstProgram z metodą main()
-// public - modyfikator dostępu
-// static - tzn. metoda jest statyczna
-
 public class MyFirstProgram {
 
 	public static void main(String[] args) {
@@ -11,25 +7,33 @@ public class MyFirstProgram {
 		helloHello("user");
 		helloHello("Dorota");
 		helloHello("everybody");
+		helloHello("women");
 
 		double x = 5;
-        System.out.println("Pole kwadratu o boku " + x + " = " + area(x));
+        System.out.println("Pole kwadratu A o boku " + x + " = " + area(x));
 
         double a = 4;
         double b = 6;
-        System.out.println("Pole prostokąta o bokach " + a + " i " + b + " = " + area(a, b));
-	}
+        System.out.println("Pole prostokąta A o bokach " + a + " i " + b + " = " + area(a, b));
 
-    // zmienna somebody deklarowana wewn. metody; nie potrzebuje argumentów z zewn.
+        // w wersji obiektowej:
+        Square s = new Square(5); // nowy obiekt klasy Square posiadajacej konstruktor
+        System.out.println("Pole kwadratu B o boku " + s.l + " = " + s.area());
+
+        Rectangle r = new Rectangle(6,3);
+        System.out.println("Pole prostokąta B o bokach " + r.a + " i " + r.b + " = " + r.area());
+
+    }
+
+    // zmienna deklarowana wewn. metody -> metoda nie potrzebuje argumentów
 	public static void hello() {
 	    String somebody = "world";
 		System.out.println("Hello, " + somebody + "!");
 	}
 
-    // zmienna somebodyElse jako parametr/argument funkcji, w jej wywołaniu potrzebny parametr
-    // main() zwraca się do helloHello() i przekazuje jej string "world"
+    // zmienna jako parametr/argument metody, w jej wywołaniu potrzebny parametr
 	public static void helloHello(String somebodyElse) {
-        System.out.println("Hello hello, " + somebodyElse + "!");
+	    System.out.println("Hello hello, " + somebodyElse + "!");
     }
 
     public static double area(double x) {
@@ -37,6 +41,6 @@ public class MyFirstProgram {
     }
 
     public static double area(double a, double b) {
-        return a * b;
+	    return a * b;
     }
 }
