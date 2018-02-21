@@ -39,16 +39,11 @@ public class MyFirstProgram {
             public double getY() {
                 return y;
             }
+			
+			distance(){
+				return Math.sqrt(((p1.getX - p2.getX)*(p1.getX - p2.getX)) + ((p1.getY - p2.getY)*(p1.getY - p2.getY)));				
+			}
 
-            public double distanceX(){
-                return (p1.getX() - p2.getX());
-            }
-
-            public double distanceY(){
-                return (p1.getY() - p2.getY());
-            }
-
-            return Math.sqrt(distanceX + distanceY);
         }
 
         System.out.println("Odległość punktu A od punktu B wynosi " + distance());
