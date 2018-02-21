@@ -6,18 +6,18 @@ public class MyHomework1 {
 
         System.out.println("Zadanie 1: Przedstaw w układzie współrzędnych punkty:");
 
-        Point p1 = new Point(1, 2);
+        Point p1 = new Point(7,5);
         System.out.println("A = " + p1.location());
 
-        Point p2 = new Point(5, 4);
+        Point p2 = new Point(3,9);
         System.out.println("B = " + p2.location());
 
-        System.out.println("Zadanie 2: Oblicz odległość punktu A od punktu B:");
+        System.out.println("Zadanie 2:");
 
-        double dx = p2.x - p1.x;
-        double dy = p2.y - p1.y;
+        // metoda distance() na obiektach p1 i p2 zwraca wartość typu double, należy ją przypisać do zmiennej
+        double distPoint = Point.distance(p1, p2);
 
-        double distPoint = Math.sqrt((dx * dx) + (dy * dy));
+        // i dopiero tej zmiennej użyć tutaj (nie metody distance()!!!)
         System.out.println("Odległość punktu A od punktu B wynosi " + distPoint);
     }
 }

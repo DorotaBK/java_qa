@@ -11,15 +11,17 @@ public class Point {
         this.y = y;
     }
 
+    // metoda zwracająca współrzędne punktu (punkt jest obiektem TEJ klasy)
     public String location() {
-        return "(" + this.x + "," + this.y + ")";
+        return "(" + this.x + ", " + this.y + ")";
     }
 
-    /*
-    public static double distance(Point p1, Point p2) {
+    // metoda zwracająca odległość między dwoma punktami (dwoma obiektami TEJ klasy)
+    public static double distance(Point p1, Point p2){
         double dx = p2.x - p1.x;
         double dy = p2.y - p1.y;
+
         return Math.sqrt((dx * dx) + (dy * dy));
     }
-    */
+
 }
