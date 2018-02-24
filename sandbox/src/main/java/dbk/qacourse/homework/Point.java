@@ -2,6 +2,7 @@ package dbk.qacourse.homework;
 
 public class Point {
 
+    // pola
     public double x;
     public double y;
 
@@ -11,17 +12,19 @@ public class Point {
         this.y = y;
     }
 
-    // metoda zwracająca współrzędne punktu (punkt jest obiektem TEJ klasy)
+    // metoda zwracająca współrzędne punktów
     public String location() {
         return "(" + this.x + ", " + this.y + ")";
     }
 
-    // metoda zwracająca odległość między dwoma punktami (dwoma obiektami TEJ klasy)
-    public static double distance(Point p1, Point p2){
-        double dx = p2.x - p1.x;
-        double dy = p2.y - p1.y;
-
-        return Math.sqrt((dx * dx) + (dy * dy));
+    // metoda zwracająca odległość między punktami
+    // argumentem jest obiekt klasy Point
+    // dopiero w wywołaniu funkcji wskażę, który dokładnie obiekt ma być parametrem i podstawię go w miejsce nextPoint
+    public double distance(Point nextPoint){
+        double dx = nextPoint.x - x;
+        double dy = nextPoint.y - y;
+        double distPoint = Math.sqrt((dx * dx) + (dy * dy));
+        return distPoint;
     }
 
 }
