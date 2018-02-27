@@ -18,23 +18,24 @@ public class ContactCreationTest {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
-        login();
+        login("admin", "secret");
     }
 
-    private void login() {
+    private void login(String username, String password) {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+        wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys("secret");
+        wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
 
     @Test
     public void testContactCreation() {
         goToAddNewPage();
-        fillContactForm();
+        fillContactForm(new ContactData("Anna", "Nowak", "aniania",
+                "Nowa 1/2, 10-100 Sopot", "500100111", "aniatest@wp.pl"));
         submitContactCreation();
     }
 
@@ -42,26 +43,26 @@ public class ContactCreationTest {
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
-    private void fillContactForm() {
+    private void fillContactForm(ContactData contactData) {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys("Jan");
+        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
         wd.findElement(By.name("lastname")).click();
         wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys("Testowy");
+        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
         wd.findElement(By.name("nickname")).click();
         wd.findElement(By.name("nickname")).clear();
-        wd.findElement(By.name("nickname")).sendKeys("jantest");
+        wd.findElement(By.name("nickname")).sendKeys(contactData.getNick());
         wd.findElement(By.name("address")).click();
         wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys("Nowa 1/2, 10-100 Opole");
+        wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
         wd.findElement(By.name("theform")).click();
         wd.findElement(By.name("mobile")).click();
         wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys("500600700");
+        wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
         wd.findElement(By.name("email")).click();
         wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys("jan.testowy@wp.pl");
+        wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
     }
 
     private void goToAddNewPage() {
