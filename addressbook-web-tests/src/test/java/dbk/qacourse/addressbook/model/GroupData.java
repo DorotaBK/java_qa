@@ -1,4 +1,4 @@
-package dbk.qacourse.addressbook;
+package dbk.qacourse.addressbook.model;
 
 public class GroupData {
     private final String name;

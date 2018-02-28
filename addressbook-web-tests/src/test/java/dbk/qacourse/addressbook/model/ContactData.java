@@ -1,4 +1,4 @@
-package dbk.qacourse.addressbook;
+package dbk.qacourse.addressbook.model;
 
 public class ContactData {
     private final String firstname;
