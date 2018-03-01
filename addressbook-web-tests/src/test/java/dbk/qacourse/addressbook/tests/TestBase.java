@@ -10,12 +10,12 @@ import org.testng.annotations.BeforeMethod;
 
      @BeforeMethod
     public void setUp() throws Exception {
-        app.init();
+        app.init(); // method from ApplicationManager class
     }
 
      @AfterMethod
     public void tearDown() {
-        app.stop();
+        app.stop(); // method from ApplicationManager class
     }
 
  }
