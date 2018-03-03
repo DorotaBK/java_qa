@@ -3,15 +3,15 @@ package dbk.qacourse.addressbook.tests;
 import dbk.qacourse.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 
-public class GroupCreationTest extends TestBase {
+public class GroupModificationTests extends TestBase {
 
     @Test
-    public void testGroupCreation() {
+    public void testGroupModification() {
         app.getNavigationHelper().goToGroupPage();
-        app.getGroupHelper().initGroupCreation();
+        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().initGroupModification();
         app.getGroupHelper().fillGroupForm(new GroupData("nowa4", "nowa_4", "nowa_4"));
-        app.getGroupHelper().submitGroupCreation();
+        app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
     }
-
 }

@@ -3,7 +3,7 @@ package dbk.qacourse.addressbook.tests;
 import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.annotations.Test;
 
-public class ContactCreationTest extends TestBase {
+public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
