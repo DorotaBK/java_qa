@@ -27,17 +27,26 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void selectContactToEdit() {
+    public void selectContactToModifByEdit() {
         click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[8]/a/img"));
     }
 
+    public void selectContactToModifByDetails() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[8]/td[7]/a/img"));        // default from Selenium Builder
+        // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[8]/td[7]/a/img"));   // optional from Selenium Builder
+    }
+
     public void submitContactModification() {
-        click(By.xpath("//div[@id='content']/form[1]/input[1]"));
-        // click(By.xpath("//div[@id='content']/form[1]/input[22]"));
-        // click(By.name("update"));
+        click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button
+        // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button
+        // click(By.name("update"));                                    // name of both buttons
     }
 
     public void returnToHomePage() {
         click(By.linkText("home page"));
+    }
+
+    public void initModifyOnDetails() {
+        click(By.name("modifiy"));
     }
 }
