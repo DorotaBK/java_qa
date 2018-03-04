@@ -6,12 +6,12 @@ import org.testng.annotations.Test;
 public class ContactModifOnDetailsTests extends TestBase {
 
     @Test
-    public void testContactModifByDetails() {
+    public void testContactModifOnDetails() {
         app.getContactHelper().selectContactToDetails();
-        app.getContactHelper().initModifyOnDetails();
-        app.getContactHelper().fillContactForm(new ContactData(" Nina", "Balerina", "balerina",
-                "Nowa 1/2, 10-100 Piłą","705705705", "balerina@wp.pl"));
+        app.getContactHelper().initModifOnDetailsPage();
+        app.getContactHelper().fillContactForm(new ContactData("Józef", "Tester", "jozek",
+                "Tajemna 1/2, 10-100 Piłą","500000000", "jozek@wp.pl"));
         app.getContactHelper().submitContactModification();
-        app.getContactHelper().returnToHomePage();
+        app.getNavigationHelper().returnToHomePage();
     }
 }

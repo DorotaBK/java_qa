@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class ContactDeletionOnHomeAbortTests extends TestBase {
 
     @Test
-    public void testContactDeletionOnHome() {
+    public void testContactDeletionOnHomeAbort() {
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteOnHome();
         app.getContactHelper().isAlertPresent();

@@ -28,26 +28,22 @@ public class ContactHelper extends HelperBase{
     }
 
     public void selectContactToEdit() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[8]/a/img"));
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));        // default from Selenium Builder
+        //click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img));     // optional from Selenium Builder
     }
 
     public void selectContactToDetails() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[8]/td[7]/a/img"));        // default from Selenium Builder
+        click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[7]/a/img"));        // default from Selenium Builder
         // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[8]/td[7]/a/img"));   // optional from Selenium Builder
     }
 
-    public void initModifyOnDetails() {
+    public void initModifOnDetailsPage() {
         click(By.name("modifiy"));
     }
 
     public void submitContactModification() {
         click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button
         // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button
-        // click(By.name("update"));                                    // name of both buttons
-    }
-
-    public void returnToHomePage() {
-        click(By.linkText("home page"));
     }
 
     public void selectContact() {
@@ -61,5 +57,9 @@ public class ContactHelper extends HelperBase{
     public void deleteOnHome() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));               // default from Selenium Builder
         // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));                    // optional from Selenium Builder
+    }
+
+    public void deleteOnEditPage() {
+        click(By.xpath("//div[@id='content']/form[2]/input[2]"));
     }
 }
