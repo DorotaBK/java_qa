@@ -12,13 +12,18 @@ public class ApplicationManager {
 
     WebDriver wd;
 
-    private ContactHelper contactHelper; // deklaracjia inicjalizacji new ContactHelper();
-    private SessionHelper sessionHelper; // deklaracjia inicjalizacji new SessionHelper();
-    private NavigationHelper navigationHelper; // deklaracjia inicjalizacji new NavigationHelper();
-    private GroupHelper groupHelper; // deklaracjia inicjalizacji new GroupHelper();
+    private ContactHelper contactHelper;        // deklaracjia inicjalizacji new ContactHelper();
+    private SessionHelper sessionHelper;        // deklaracjia inicjalizacji new SessionHelper();
+    private NavigationHelper navigationHelper;  // deklaracjia inicjalizacji new NavigationHelper();
+    private GroupHelper groupHelper;            // deklaracjia inicjalizacji new GroupHelper();
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
     public void init() {
-        String browser = BrowserType.FIREFOX;
+
         if (browser == BrowserType.FIREFOX) {
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         } else if(browser == BrowserType.CHROME){
@@ -35,6 +40,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
     }
+
     public void stop() {
         wd.quit();
     }
