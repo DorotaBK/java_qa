@@ -1,2 +1,2 @@
 # java_qa
-Zadania z kursu Java, podstawy dla testerów
+Tasks from the Java course, basics for testers
