@@ -2,8 +2,9 @@ package dbk.qacourse.addressbook.appmanager;
 
 import dbk.qacourse.addressbook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class ContactHelper extends HelperBase{
 
@@ -11,7 +12,7 @@ public class ContactHelper extends HelperBase{
         super(wd);
     }
 
-    public void goToAddNewContactPage() {
+    public void initContactCreation() {
         click(By.linkText("add new"));
     }
 
@@ -22,20 +23,35 @@ public class ContactHelper extends HelperBase{
         type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
+
+        if (isElementPresent((By.name("new_group")))) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        }
+
+    }
+
+    private boolean isElementPresent(By locator) {
+        try{
+            wd.findElement(locator);
+        } catch (NoSuchElementException exc){
+
+        }
     }
 
     public void submitContactCreation() {
         click(By.xpath("//div[@id='content']/form/input[21]"));
+        //click(By.name("submit"));
     }
 
-    public void selectContactToEdit() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));        // default from Selenium Builder
-        //click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img));     // optional from Selenium Builder
+    public void selectContactEdit() {
+        // click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));     // default from Selenium Builder
+        //click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img));     // optional from -//-
+        click(By.cssSelector("img[alt='Edit']"));                                   // QA-Courses code
     }
 
-    public void selectContactToDetails() {
+    public void selectContactDetails() {
         click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[7]/a/img"));        // default from Selenium Builder
-        // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[8]/td[7]/a/img"));   // optional from Selenium Builder
+        // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[8]/td[7]/a/img"));   // optional from -//-
     }
 
     public void initModifOnDetailsPage() {
@@ -52,12 +68,12 @@ public class ContactHelper extends HelperBase{
             click(By.name("selected[]"));
         }
         // click(By.name("selected[]"));                                            // optional from Selenium Builder
-        // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));   // optional from Selenium Builder
+        // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));   // optional -//-
     }
 
     public void deleteOnHome() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));               // default from Selenium Builder
-        // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));                    // optional from Selenium Builder
+        // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));                    // optional from -//-
     }
 
     public void deleteOnEditPage() {

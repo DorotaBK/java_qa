@@ -6,7 +6,7 @@ public class ContactDeletionOnEditTests extends TestBase {
 
     @Test
     public void testContactDeletionOnEdit() {
-        app.getContactHelper().selectContactToEdit();
+        app.getContactHelper().selectContactEdit();
         app.getContactHelper().deleteOnEditPage();
     }
 }

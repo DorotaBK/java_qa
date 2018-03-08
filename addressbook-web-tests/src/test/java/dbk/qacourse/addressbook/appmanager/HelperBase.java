@@ -15,6 +15,7 @@ public class HelperBase {
         wd.findElement(locator).click();
     }
 
+    // a comparison of the parameter and the default value in the field
     protected void type(By locator, String text) {
         click(locator);
         if (text != null){
@@ -26,11 +27,12 @@ public class HelperBase {
         }
     }
 
+    // capturing exceptions (IF alert...)
     public boolean isAlertPresent() {
         try {
-            wd.switchTo().alert();
+            wd.switchTo().alert();  // ok, alert is present, visible
             return true;
-        } catch (NoAlertPresentException e) {
+        } catch (NoAlertPresentException e) {   // in () is the type of exception
             return false;
         }
     }
