@@ -2,6 +2,7 @@ package dbk.qacourse.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class HelperBase {
@@ -33,6 +34,16 @@ public class HelperBase {
             wd.switchTo().alert();  // ok, alert is present, visible
             return true;
         } catch (NoAlertPresentException e) {   // in () is the type of exception
+            return false;
+        }
+    }
+
+    // a method for checking the presence/absence of an element on the page
+    protected boolean isElementPresent(By locator) {
+        try{
+            wd.findElement(locator);
+            return true;
+        } catch (NoSuchElementException exc){
             return false;
         }
     }

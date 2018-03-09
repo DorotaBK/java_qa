@@ -11,6 +11,7 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void goToGroupPage() {
+        if (isElementPresent(By.tagName("h1")))
         click(By.linkText("groups"));
     }
 

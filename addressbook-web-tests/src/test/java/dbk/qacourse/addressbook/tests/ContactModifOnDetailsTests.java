@@ -9,8 +9,8 @@ public class ContactModifOnDetailsTests extends TestBase {
     public void testContactModifOnDetails() {
         app.getContactHelper().selectContactDetails();
         app.getContactHelper().initModifOnDetailsPage();
-        app.getContactHelper().fillContactForm(new ContactData("Józef", "Tester", "jozek",
-                "Tajemna 1/2, 10-100 Piłą","500000000", "jozek@wp.pl", null));
+        app.getContactHelper().fillContactForm(new ContactData("Janusz", "Cichy", "cichy",
+                "Schowana 1/2, 10-100 Piłą","700000000", "cochy@wp.pl", null), false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().returnToHomePage();
     }

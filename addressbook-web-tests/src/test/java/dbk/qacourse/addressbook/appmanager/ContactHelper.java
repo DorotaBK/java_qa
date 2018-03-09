@@ -2,9 +2,9 @@ package dbk.qacourse.addressbook.appmanager;
 
 import dbk.qacourse.addressbook.model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class ContactHelper extends HelperBase{
 
@@ -16,7 +16,7 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("add new"));
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("nickname"), contactData.getNick());
@@ -24,18 +24,16 @@ public class ContactHelper extends HelperBase{
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
 
-        if (isElementPresent((By.name("new_group")))) {
+        // if there is element - dropdown list named "new_group" - select a value from the list
+        // creation form - there is an element in the drop-down list, so we are on the creation form
+        // else - there is no drop-down list, so we are on the modification form
+        if (creation) {
+            // choose element from drop-down list
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent((By.name("new_group"))));
         }
 
-    }
-
-    private boolean isElementPresent(By locator) {
-        try{
-            wd.findElement(locator);
-        } catch (NoSuchElementException exc){
-
-        }
     }
 
     public void submitContactCreation() {

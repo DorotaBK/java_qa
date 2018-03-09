@@ -45,6 +45,6 @@ public class ContactData {
     }
 
     public String getGroup() {
-        return group;   // after 'Create getter for '...', getting the value
+        return group;   // after "Create getter for 'group'", getting the value
     }
 }
