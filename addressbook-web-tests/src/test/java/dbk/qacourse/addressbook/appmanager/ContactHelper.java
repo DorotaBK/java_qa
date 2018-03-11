@@ -47,7 +47,8 @@ public class ContactHelper extends HelperBase{
     }
 
     public void selectContactToDetails() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[7]/a/img"));        // default from Selenium Builder
+        click(By.cssSelector("img[alt='Details']"));
+        // click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[7]/a/img"));     // default from Selenium Builder
         // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[8]/td[7]/a/img"));   // optional from -//-
     }
 
