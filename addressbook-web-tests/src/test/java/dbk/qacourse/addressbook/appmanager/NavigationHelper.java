@@ -10,6 +10,7 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
+// Before each transition, we check whether we really have to make this transition
     public void goToGroupPage() {
         if (isElementPresent(By.tagName("h1"))      // checking the presence of a header
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")      // checking the header text
@@ -25,5 +26,4 @@ public class NavigationHelper extends HelperBase {
         }
         click(By.linkText("home page"));
     }
-
 }
