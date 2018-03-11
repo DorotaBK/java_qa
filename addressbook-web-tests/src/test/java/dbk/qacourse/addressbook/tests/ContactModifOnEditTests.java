@@ -12,6 +12,6 @@ public class ContactModifOnEditTests extends TestBase {
                 "nina","Nowa Jasna 1/2, 10-100 Opole","600700800", "opole@wp.pl",
                 null), false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().returnToHomePage();
+        app.getNavigationHelper().goToHomePage();
     }
 }

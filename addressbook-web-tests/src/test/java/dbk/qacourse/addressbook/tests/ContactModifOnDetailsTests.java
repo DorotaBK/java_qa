@@ -12,6 +12,6 @@ public class ContactModifOnDetailsTests extends TestBase {
         app.getContactHelper().fillContactForm(new ContactData("Janusz", "Cichy", "cichy",
                 "Schowana 1/2, 10-100 Piłą","700000000", "cochy@wp.pl", null), false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().returnToHomePage();
+        app.getNavigationHelper().goToHomePage();
     }
 }
