@@ -25,8 +25,8 @@ public class ContactHelper extends HelperBase{
         type(By.name("email"), contactData.getEmail());
 
         // if there is element - dropdown list named "new_group" - select a value from the list
-        // creation - there is an element in the drop-down list, so we are on the creation form
-        // else - there is no drop-down list, so we are on the modification form
+        // if creation = there is an element in the drop-down list, so we are on the creation form
+        // else = there is no drop-down list, so we are on the modification form
         if (creation) {
             // choose element from drop-down list
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
