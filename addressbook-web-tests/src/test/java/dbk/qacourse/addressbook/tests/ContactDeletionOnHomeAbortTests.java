@@ -6,7 +6,7 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
 
     @Test
     public void testContactDeletionOnHomeAbort() {
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContactToDelete();
         app.getContactHelper().deleteOnHome();
         app.getContactHelper().isAlertPresent();
     }

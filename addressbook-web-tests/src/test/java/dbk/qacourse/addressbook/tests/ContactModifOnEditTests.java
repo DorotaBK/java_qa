@@ -7,7 +7,7 @@ public class ContactModifOnEditTests extends TestBase {
 
     @Test
     public void testContactModifOnEdit(){
-        app.getContactHelper().selectContactEdit();
+        app.getContactHelper().selectContactToEdit();
         app.getContactHelper().fillContactForm(new ContactData(" Nina", "Nowakowska",
                 "nina","Nowa Jasna 1/2, 10-100 Opole","600700800", "opole@wp.pl",
                 null), false);

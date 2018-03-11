@@ -10,5 +10,4 @@ public class GroupCreationTests extends TestBase {
         app.getNavigationHelper().goToGroupPage();
         app.getGroupHelper().createGroup(new GroupData("nowa6!", null, "nowa_6"));
     }
-
 }
