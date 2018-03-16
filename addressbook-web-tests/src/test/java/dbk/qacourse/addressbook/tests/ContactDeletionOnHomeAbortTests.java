@@ -20,9 +20,11 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
 
         int before = app.getContactHelper().getContactCount();
         System.out.println("number of contacts before test: " + before);
-        app.getContactHelper().selectContactToDelete();
+
+        app.getContactHelper().selectContactToDelete(before - 2);
         app.getContactHelper().deleteOnHome();
         app.getContactHelper().isAlertPresent();
+
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals(after, before );
         System.out.println("number of contacts at the end: " + after);

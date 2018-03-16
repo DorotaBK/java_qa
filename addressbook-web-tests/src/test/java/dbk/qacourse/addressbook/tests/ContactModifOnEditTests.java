@@ -9,6 +9,7 @@ public class ContactModifOnEditTests extends TestBase {
     @Test
     public void testContactModifOnEdit(){
         app.getNavigationHelper().goToHomePage();
+
         int start = app.getContactHelper().getContactCount();
         System.out.println("number of contacts at the beginning: " + start);
 
@@ -20,12 +21,14 @@ public class ContactModifOnEditTests extends TestBase {
 
         int before = app.getContactHelper().getContactCount();
         System.out.println("number of contacts before test: " + before);
-        app.getContactHelper().selectContactToEdit();
+
+        app.getContactHelper().selectContactToEdit(before - 4);
         app.getContactHelper().fillContactForm(new ContactData(" Nina", "Nowakowska",
                 "nina","Nowa Jasna 1/2, 10-100 Opole","600700800", "opole@wp.pl",
                 null), false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().goToHomePage();
+
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals(after, before);
         System.out.println("number of contacts at the end: " + after);

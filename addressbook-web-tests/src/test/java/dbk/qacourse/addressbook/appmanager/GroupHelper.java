@@ -33,15 +33,14 @@ public class GroupHelper extends HelperBase {
     }
 
     public void selectGroup(int index) {
-        // select a specific element on the page:
+        // select a specific element on the page
         if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
             wd.findElements(By.name("selected[]")).get(index).click();
-
-        /* select the first element on the page:
+        }
+        /* select the first element on the page
         if (!wd.findElement(By.name("selected[]")).isSelected()) {
             click(By.name("selected[]"));}
         */
-        }
     }
 
     public void initGroupModification() {

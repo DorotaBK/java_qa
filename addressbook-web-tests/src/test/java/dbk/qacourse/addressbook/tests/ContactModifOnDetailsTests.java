@@ -20,12 +20,14 @@ public class ContactModifOnDetailsTests extends TestBase {
 
         int before = app.getContactHelper().getContactCount();
         System.out.println("number of contacts before test: " + before);
-        app.getContactHelper().selectContactToDetails();
+
+        app.getContactHelper().selectContactToDetails(2);
         app.getContactHelper().initContactModifOnDetailsPage();
         app.getContactHelper().fillContactForm(new ContactData("Janusz", "Cichy", "cichy",
                 "Schowana 1/2, 10-100 Piłą","700000000", "cochy@wp.pl", null), false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().goToHomePage();
+
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals(after, before);
         System.out.println("number of contacts at the end: " + after);

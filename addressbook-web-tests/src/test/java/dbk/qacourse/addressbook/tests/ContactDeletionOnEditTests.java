@@ -9,6 +9,7 @@ public class ContactDeletionOnEditTests extends TestBase {
     @Test
     public void testContactDeletionOnEdit() {
         app.getNavigationHelper().goToHomePage();
+
         int start = app.getContactHelper().getContactCount();
         System.out.println("number of contacts at the beginning: " + start);
 
@@ -20,9 +21,11 @@ public class ContactDeletionOnEditTests extends TestBase {
 
         int before = app.getContactHelper().getContactCount();
         System.out.println("number of contacts before test: " + before);
-        app.getContactHelper().selectContactToEdit();
+
+        app.getContactHelper().selectContactToEdit(before - 3);
         app.getContactHelper().deleteOnEditPage();
         app.getNavigationHelper().goToHomePage();
+
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals(after, before - 1 );
         System.out.println("number of contacts at the end: " + after);

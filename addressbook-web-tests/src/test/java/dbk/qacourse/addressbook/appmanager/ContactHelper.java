@@ -40,22 +40,25 @@ public class ContactHelper extends HelperBase{
         //click(By.name("submit"));
     }
 
-    public void selectContactToEdit() {
-        click(By.cssSelector("img[alt='Edit']"));                                   // QA-Courses code
-        // click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));     // default from Selenium Builder
-        //click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img));     // optional from -//-
+    public void selectContactToEdit(int index) {
+        // click(By.cssSelector("img[alt='Edit']"));                            // select the first element on the page
+        wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();  //select a specific element on the page
     }
 
-    public void selectContactToDetails() {
-        click(By.cssSelector("img[alt='Details']"));
-        // click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[7]/a/img"));     // default from Selenium Builder
-        // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[8]/td[7]/a/img"));   // optional from -//-
+    public void selectContactToDetails(int index) {
+        // click(By.cssSelector("img[alt='Details']"));                         // select the first element on the page
+        wd.findElements(By.cssSelector("img[alt='Details']")).get(index).click(); //select a specific element on the page
     }
 
-    public void selectContactToDelete() {
+    public void selectContactToDelete(int index) {
+        /* select the first element on the page:
         if (!wd.findElement(By.name("selected[]")).isSelected()) {
             click(By.name("selected[]"));
-            // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));   //optional from Selenium Builder
+        }*/
+
+        // select a specific element on the page
+        if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
+            wd.findElements(By.name("selected[]")).get(index).click();
         }
     }
 
@@ -64,13 +67,13 @@ public class ContactHelper extends HelperBase{
     }
 
     public void submitContactModification() {
-        click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button
-        // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button
+        click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button UPDATE
+        // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button UPDATE
     }
 
     public void deleteOnHome() {
         click(By.name("selected[]"));
-        //click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));     // default from Selenium Builder
+        // click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));     // default from Selenium Builder
         // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));            // optional from -//-
     }
 
