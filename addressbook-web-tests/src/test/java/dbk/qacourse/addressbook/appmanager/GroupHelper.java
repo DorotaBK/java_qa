@@ -3,6 +3,10 @@ package dbk.qacourse.addressbook.appmanager;
 import dbk.qacourse.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
@@ -66,5 +70,24 @@ public class GroupHelper extends HelperBase {
 
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<GroupData> getGroupList() {
+        // create the List
+        List<GroupData> groups = new ArrayList<GroupData>();
+        // fill the List with objects - find and add to the List all items with the tag "span" and the name "group"
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+
+        for (WebElement element : elements){
+            // get the group name from 'group page' -> <span class="group">
+            String name = element.getText();
+
+            // create a new object with the name from page; on 'group page' the header and footer are absent!
+            GroupData group = new GroupData(name, null, null);
+
+            // add new element 'group' to the List 'groups'
+            groups.add(group);
+        }
+        return groups;
     }
 }
