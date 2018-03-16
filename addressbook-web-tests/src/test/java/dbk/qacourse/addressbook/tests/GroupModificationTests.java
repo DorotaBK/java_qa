@@ -19,13 +19,13 @@ public class GroupModificationTests extends TestBase {
 
         int before = app.getGroupHelper().getGroupCount();
         System.out.println("number of groups before test: " + before);
-        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().selectGroup(before - 1);
         app.getGroupHelper().initGroupModification();
-        app.getGroupHelper().fillGroupForm(new GroupData("nowa_7", "nowa_7", "nowa_7"));
+        app.getGroupHelper().fillGroupForm(new GroupData("nowa_6", "nowa_6", "nowa_6"));
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
         int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after, before );
+        Assert.assertEquals(after, before);
         System.out.println("number of groups at the end: " + before);
     }
 }
