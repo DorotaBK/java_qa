@@ -69,8 +69,9 @@ public class ContactHelper extends HelperBase{
     }
 
     public void deleteOnHome() {
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));               // default from Selenium Builder
-        // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));                    // optional from -//-
+        click(By.name("selected[]"));
+        //click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));     // default from Selenium Builder
+        // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));            // optional from -//-
     }
 
     public void deleteOnEditPage() {
@@ -89,4 +90,7 @@ public class ContactHelper extends HelperBase{
         submitContactCreation();
     }
 
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }

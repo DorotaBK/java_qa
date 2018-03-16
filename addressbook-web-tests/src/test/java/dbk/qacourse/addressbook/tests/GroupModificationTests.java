@@ -26,5 +26,6 @@ public class GroupModificationTests extends TestBase {
         app.getGroupHelper().returnToGroupPage();
         int after = app.getGroupHelper().getGroupCount();
         Assert.assertEquals(after, before );
+        System.out.println("number of groups at the end: " + before);
     }
 }
