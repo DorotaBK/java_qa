@@ -3,8 +3,12 @@ package dbk.qacourse.addressbook.appmanager;
 import dbk.qacourse.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
 
@@ -95,5 +99,19 @@ public class ContactHelper extends HelperBase{
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']/td[2]"));  //(By.name("selected[]"));
+        for (WebElement element : elements) {
+            String lastName = element.getText();
+            //System.out.println(lastName);
+            ContactData contact = new ContactData(null, lastName, null, null, null,
+                                                    null, null);
+
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }

@@ -4,6 +4,8 @@ import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ContactDeletionOnEditTests extends TestBase {
 
     @Test
@@ -19,15 +21,15 @@ public class ContactDeletionOnEditTests extends TestBase {
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
 
-        int before = app.getContactHelper().getContactCount();
-        System.out.println("number of contacts before test: " + before);
+        List<ContactData> before = app.getContactHelper().getContactList();
+        System.out.println("number of contacts before test: " + before.size());
 
-        app.getContactHelper().selectContactToEdit(before - 3);
+        app.getContactHelper().selectContactToEdit(before.size() - 4);
         app.getContactHelper().deleteOnEditPage();
         app.getNavigationHelper().goToHomePage();
 
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before - 1 );
-        System.out.println("number of contacts at the end: " + after);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1 );
+        System.out.println("number of contacts at the end: " + after.size());
     }
 }

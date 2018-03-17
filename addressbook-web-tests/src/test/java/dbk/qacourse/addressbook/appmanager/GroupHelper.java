@@ -75,7 +75,7 @@ public class GroupHelper extends HelperBase {
     public List<GroupData> getGroupList() {
         // create the List
         List<GroupData> groups = new ArrayList<GroupData>();
-        // fill the List with objects - find and add to the List all items with the tag "span" and the name "group"
+        // fill the List with objects - find and add to the List all items with the tag "span" and class "group"
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
 
         for (WebElement element : elements){

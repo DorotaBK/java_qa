@@ -4,6 +4,8 @@ import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ContactModifOnDetailsTests extends TestBase {
 
     @Test
@@ -18,18 +20,18 @@ public class ContactModifOnDetailsTests extends TestBase {
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
 
-        int before = app.getContactHelper().getContactCount();
-        System.out.println("number of contacts before test: " + before);
+        List<ContactData> before = app.getContactHelper().getContactList();
+        System.out.println("number of contacts before test: " + before.size());
 
         app.getContactHelper().selectContactToDetails(2);
         app.getContactHelper().initContactModifOnDetailsPage();
-        app.getContactHelper().fillContactForm(new ContactData("Janusz", "Cichy", "cichy",
-                "Schowana 1/2, 10-100 Piłą","700000000", "cochy@wp.pl", null), false);
+        app.getContactHelper().fillContactForm(new ContactData("Iza", "Smutna", "smutna",
+                "Uczona 54a, 10-100 Opole","600111222", "smutna@wp.pl", null), false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().goToHomePage();
 
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before);
-        System.out.println("number of contacts at the end: " + after);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size());
+        System.out.println("number of contacts at the end: " + after.size());
     }
 }
