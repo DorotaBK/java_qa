@@ -28,6 +28,9 @@ public class GroupDeletionTests extends TestBase {
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
         app.getNavigationHelper().goToHomePage();
-    }
 
+        before.remove(before.size() - 1);
+        Assert.assertEquals(after, before);
+
+    }
 }
