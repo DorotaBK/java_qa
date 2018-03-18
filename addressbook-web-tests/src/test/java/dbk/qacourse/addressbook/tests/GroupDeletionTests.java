@@ -16,20 +16,25 @@ public class GroupDeletionTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (! app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().createGroup(new GroupData(null, "nowa6!", null, null));
+            app.getGroupHelper().createGroup(new GroupData("nowa6!", null, null));
         }
 
         List<GroupData> before = app.getGroupHelper().getGroupList();
         System.out.println("number of groups before test: " + before.size());
-        app.getGroupHelper().selectGroup(before.size() - 1);
+
+        int modifGroup = before.size() - 1; // tha element I want to delete
+        app.getGroupHelper().selectGroup(modifGroup);
         app.getGroupHelper().deleteSelectedGroups();
         app.getGroupHelper().returnToGroupPage();
+
+        // comparing the size of collections
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
         app.getNavigationHelper().goToHomePage();
 
-        before.remove(before.size() - 1);
+        // comparing of whole collections (requires conversion of the list into a set)
+        before.remove(modifGroup);
         Assert.assertEquals(after, before);
 
     }

@@ -81,7 +81,7 @@ public class GroupHelper extends HelperBase {
         for (WebElement element : elements){
             // get the group name from 'group page' -> <span class="group">
             String name = element.getText();
-            String id = element.findElement(By.tagName("input")).getAttribute("value");
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
 
             // create a new object with the name from page; on 'group page' the header and footer are absent!
             GroupData group = new GroupData(id, name, null, null);
