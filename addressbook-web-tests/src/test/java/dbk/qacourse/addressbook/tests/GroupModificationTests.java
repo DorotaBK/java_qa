@@ -4,6 +4,7 @@ import dbk.qacourse.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTests extends TestBase {
@@ -21,13 +22,22 @@ public class GroupModificationTests extends TestBase {
 
         List<GroupData> before = app.getGroupHelper().getGroupList();
         System.out.println("number of groups before test: " + before.size());
-        app.getGroupHelper().selectGroup(before.size() - 2);
+
+        int modifGroup = before.size() - 2;
+        app.getGroupHelper().selectGroup(modifGroup);
         app.getGroupHelper().initGroupModification();
-        app.getGroupHelper().fillGroupForm(new GroupData("grupa_2", "grupa_2", "grupa_2"));
+        GroupData currentGroup = new GroupData("grupa_2", "grupa_2", "grupa_2");
+        app.getGroupHelper().fillGroupForm(currentGroup);
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
+        
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size());
         System.out.println("number of groups at the end: " + before.size());
+
+        before.remove(modifGroup);
+        before.add(currentGroup);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
     }
 }
