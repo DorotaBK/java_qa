@@ -17,7 +17,7 @@ public class GroupModificationTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (! app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().createGroup(new GroupData("nowa6!", null, null));
+            app.getGroupHelper().createGroup(new GroupData(null, "nowa6!", null, null));
         }
 
         List<GroupData> before = app.getGroupHelper().getGroupList();
@@ -26,7 +26,7 @@ public class GroupModificationTests extends TestBase {
         int modifGroup = before.size() - 2;
         app.getGroupHelper().selectGroup(modifGroup);
         app.getGroupHelper().initGroupModification();
-        GroupData currentGroup = new GroupData("grupa_2", "grupa_2", "grupa_2");
+        GroupData currentGroup = new GroupData(before.get(modifGroup).getId(),"grupa_test", "grupa_test2", "grupa_test2");
         app.getGroupHelper().fillGroupForm(currentGroup);
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();

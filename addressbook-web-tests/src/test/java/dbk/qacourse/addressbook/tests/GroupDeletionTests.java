@@ -16,7 +16,7 @@ public class GroupDeletionTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (! app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().createGroup(new GroupData("nowa6!", null, null));
+            app.getGroupHelper().createGroup(new GroupData(null, "nowa6!", null, null));
         }
 
         List<GroupData> before = app.getGroupHelper().getGroupList();
