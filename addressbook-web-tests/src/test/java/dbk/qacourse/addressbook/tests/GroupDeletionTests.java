@@ -22,8 +22,8 @@ public class GroupDeletionTests extends TestBase {
         List<GroupData> before = app.getGroupHelper().getGroupList();
         System.out.println("number of groups before test: " + before.size());
 
-        int modifGroup = before.size() - 1; // tha element I want to delete
-        app.getGroupHelper().selectGroup(modifGroup);
+        int groupToDelete = before.size() - 1;       //the element I want to delete
+        app.getGroupHelper().selectGroup(groupToDelete);
         app.getGroupHelper().deleteSelectedGroups();
         app.getGroupHelper().returnToGroupPage();
 
@@ -31,10 +31,9 @@ public class GroupDeletionTests extends TestBase {
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
-        app.getNavigationHelper().goToHomePage();
 
         // comparing of whole collections (requires conversion of the list into a set)
-        before.remove(modifGroup);
+        before.remove(groupToDelete);
         Assert.assertEquals(after, before);
 
     }

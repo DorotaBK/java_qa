@@ -11,7 +11,6 @@ public class ContactDeletionOnEditTests extends TestBase {
     @Test
     public void testContactDeletionOnEdit() {
         app.getNavigationHelper().goToHomePage();
-
         int start = app.getContactHelper().getContactCount();
         System.out.println("number of contacts at the beginning: " + start);
 
@@ -24,12 +23,18 @@ public class ContactDeletionOnEditTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        app.getContactHelper().selectContactToEdit(before.size() - 4);
+        int contactToDelete = before.size() - 1;     //the element I want to delete
+        app.getContactHelper().selectContactToEdit(contactToDelete);
         app.getContactHelper().deleteOnEditPage();
         app.getNavigationHelper().goToHomePage();
 
+        // comparing the size of collections
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of contacts at the end: " + after.size());
+
+        // comparing of whole collections (requires conversion of the list into a set)
+        before.remove(contactToDelete);
+        Assert.assertEquals(after, before);
     }
 }
