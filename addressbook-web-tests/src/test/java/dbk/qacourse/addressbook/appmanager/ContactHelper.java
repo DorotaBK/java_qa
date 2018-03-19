@@ -103,11 +103,16 @@ public class ContactHelper extends HelperBase{
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']/td[2]"));  //(By.name("selected[]"));
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+                //(By.);
+                // (By.name("selected[]"));
+
         for (WebElement element : elements) {
-            String lastName = element.getText();
-            //System.out.println(lastName);
-            ContactData contact = new ContactData(null, lastName, null, null, null,
+            String name = element.findElement(By.xpath("//tr[@name='entry']/td[3]")).getText();
+            String lastName = element.findElement(By.xpath("//tr[@name='entry']/td[2]")).getText();
+        // DOKONCZ WYCIAGANIE ARTOSCI I SPRAWDZ CZY DOBRZE WYCIAGASZ ID
+            String id = wd.findElement(By.xpath("//.center/input")).getAttribute("id");
+            ContactData contact = new ContactData(null, name, lastName, null, null, null,
                                                     null, null);
 
             contacts.add(contact);

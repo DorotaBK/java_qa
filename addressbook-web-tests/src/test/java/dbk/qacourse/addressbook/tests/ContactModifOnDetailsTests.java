@@ -4,6 +4,7 @@ import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ContactModifOnDetailsTests extends TestBase {
@@ -16,22 +17,31 @@ public class ContactModifOnDetailsTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
+            app.getContactHelper().createContact(new ContactData(null,"Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
 
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        app.getContactHelper().selectContactToDetails(2);
+        int contactToModify = 2;    // the element that I want to modify
+        app.getContactHelper().selectContactToDetails(contactToModify);
         app.getContactHelper().initContactModifOnDetailsPage();
-        app.getContactHelper().fillContactForm(new ContactData("Iza", "Smutna", "smutna",
-                "Uczona 54a, 10-100 Opole","600111222", "smutna@wp.pl", null), false);
+        ContactData currentContact = new ContactData(before.get(contactToModify).getId(),"Iza", "Smutna", "smutna",
+                "Uczona 54a, 10-100 Opole","600111222", "smutna@wp.pl", null);
+        app.getContactHelper().fillContactForm(currentContact, false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().goToHomePage();
 
+        // comparing the size of collections
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
         System.out.println("number of contacts at the end: " + after.size());
+
+        // comparing of whole collections (requires conversion of the list into a set)
+        before.remove(contactToModify);
+        before.add(currentContact);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
     }
 }

@@ -23,10 +23,10 @@ public class GroupModificationTests extends TestBase {
         List<GroupData> before = app.getGroupHelper().getGroupList();
         System.out.println("number of groups before test: " + before.size());
 
-        int modifGroup = before.size() - 2;     // the element that I want to modify
-        app.getGroupHelper().selectGroup(modifGroup);
+        int groupToModify = before.size() - 2;     // the element that I want to modify
+        app.getGroupHelper().selectGroup(groupToModify);
         app.getGroupHelper().initGroupModification();
-        GroupData currentGroup = new GroupData(before.get(modifGroup).getId(),"grupa_testA", "grupa_testB", "grupa_testC");
+        GroupData currentGroup = new GroupData(before.get(groupToModify).getId(),"grupa_testA", "grupa_testB", "grupa_testC");
         app.getGroupHelper().fillGroupForm(currentGroup);
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
@@ -37,9 +37,8 @@ public class GroupModificationTests extends TestBase {
         System.out.println("number of groups at the end: " + before.size());
 
         // comparing of whole collections (requires conversion of the list into a set)
-        before.remove(modifGroup);
+        before.remove(groupToModify);
         before.add(currentGroup);
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
-
     }
 }

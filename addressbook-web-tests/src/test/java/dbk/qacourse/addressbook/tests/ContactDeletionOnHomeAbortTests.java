@@ -23,12 +23,18 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        app.getContactHelper().selectContactToDelete(before.size() - 2);
+        int contactToDelete = before.size() - 1;     //the element I want to delete
+        app.getContactHelper().selectContactToDelete(contactToDelete);
         app.getContactHelper().deleteOnHome();
         app.getContactHelper().isAlertPresent();
 
+        // comparing the size of collections
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() );
         System.out.println("number of contacts at the end: " + after.size());
+
+        // comparing of whole collections (requires conversion of the list into a set)
+        // before.remove(contactToDelete);
+        Assert.assertEquals(after, before);
     }
 }

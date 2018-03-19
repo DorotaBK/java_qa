@@ -24,6 +24,7 @@ public class GroupData {
         this.footer = footer;
     }
 
+    // Getter
     public int getId() {
         return id;
     }
@@ -63,6 +64,7 @@ public class GroupData {
         return Objects.hash(id, name);
     }
 
+    // Setter
     public void setId(int id) {
         this.id = id;
     }
