@@ -4,7 +4,7 @@ import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 public class ContactModifOnDetailsTests extends TestBase {
@@ -38,10 +38,13 @@ public class ContactModifOnDetailsTests extends TestBase {
         Assert.assertEquals(after.size(), before.size());
         System.out.println("number of contacts at the end: " + after.size());
 
-        // comparing of whole collections (requires conversion of the list into a set)
+        // direct comparison - only Java8 and next
         before.remove(contactToModify);
         before.add(currentContact);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super ContactData> byId = (ct1, ct2) -> (Integer.compare(ct1.getId(), ct2.getId()));
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
 
     }
 }

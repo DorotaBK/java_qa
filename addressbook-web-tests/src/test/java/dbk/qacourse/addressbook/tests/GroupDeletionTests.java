@@ -32,7 +32,7 @@ public class GroupDeletionTests extends TestBase {
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
 
-        // comparing of whole collections (requires conversion of the list into a set)
+        // comparing of whole collections
         before.remove(groupToDelete);
         Assert.assertEquals(after, before);
 

@@ -33,8 +33,7 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
         Assert.assertEquals(after.size(), before.size() );
         System.out.println("number of contacts at the end: " + after.size());
 
-        // comparing of whole collections (requires conversion of the list into a set)
-        // before.remove(contactToDelete);
+        // comparing of collections
         Assert.assertEquals(after, before);
     }
 }

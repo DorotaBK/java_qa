@@ -28,8 +28,9 @@ public class ContactData {
     // constructor for a contact with an unknown id (not downloaded from www, only created in the test)
     public ContactData(String firstname, String lastname, String nick, String address, String mobile, String email,
                        String group) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE;
         this.firstname = firstname;
+
         this.lastname = lastname;
         this.nick = nick;
         this.address = address;
@@ -72,25 +73,6 @@ public class ContactData {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return id == that.id &&
-                Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname) &&
-                Objects.equals(address, that.address) &&
-                Objects.equals(mobile, that.mobile) &&
-                Objects.equals(email, that.email);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, firstname, lastname, address, mobile, email);
-    }
-
-    @Override
     public String toString() {
         return "ContactData{" +
                 "id='" + id + '\'' +
@@ -105,5 +87,20 @@ public class ContactData {
     // Setter
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return Objects.equals(firstname, that.firstname) &&
+                Objects.equals(lastname, that.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstname, lastname);
     }
 }

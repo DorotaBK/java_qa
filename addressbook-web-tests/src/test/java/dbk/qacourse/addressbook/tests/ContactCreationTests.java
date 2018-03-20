@@ -4,7 +4,7 @@ import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
@@ -25,20 +25,11 @@ public class ContactCreationTests extends TestBase {
         Assert.assertEquals(after.size(),before.size() + 1);
         System.out.println("number of contacts after test: " + after.size());
 
-        /* searching of max id before Java8
-        int max = 0;
-        for (ContactData c : after) {
-            if (c.getId() > max) {
-                max = c.getId();
-            }
-        }*/
-
-        // Comparison of whole collections in Java8
-        // step 1: max object found with lambda expression -> get his id -> new contact has max id:
-        contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+        // direct comparison - only Java8 and next
         before.add(contact);
-        // step 2: convert list into set and comparison of old and new collections:
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super ContactData> byId = (ct1, ct2) -> (Integer.compare(ct1.getId(), ct2.getId()));
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
     }
-
 }
