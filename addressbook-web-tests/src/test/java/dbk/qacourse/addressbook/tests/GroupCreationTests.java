@@ -27,7 +27,6 @@ public class GroupCreationTests extends TestBase {
         // step 1: max object found with lambda expression -> get his id -> new group has max id:
         group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         before.add(group);
-
         // step 2: convert list into set and comparison of old and new collections:
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     }

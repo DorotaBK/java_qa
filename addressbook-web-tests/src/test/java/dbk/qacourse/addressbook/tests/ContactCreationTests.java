@@ -15,8 +15,8 @@ public class ContactCreationTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        ContactData contact = new ContactData("Anna", "Zmęczona","senna",
-                "Nocna 4, 10-100 Puck","500400200", "krycha@wp.pl","[none]");
+        ContactData contact = new ContactData("Jan", "Polski","polak",
+                "Olchowa 4, 10-100 Puck","700600500", "polak@wp.pl","[none]");
         app.getContactHelper().createContact(contact);
         app.getNavigationHelper().goToHomePage();
 
@@ -25,15 +25,19 @@ public class ContactCreationTests extends TestBase {
         Assert.assertEquals(after.size(),before.size() + 1);
         System.out.println("number of contacts after test: " + after.size());
 
-        // comparing of whole collections (requires conversion list -> into a set)
+        /* searching of max id before Java8
         int max = 0;
         for (ContactData c : after) {
             if (c.getId() > max) {
                 max = c.getId();
             }
-        }
-        contact.setId(max);
+        }*/
+
+        // Comparison of whole collections in Java8
+        // step 1: max object found with lambda expression -> get his id -> new contact has max id:
+        contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         before.add(contact);
+        // step 2: convert list into set and comparison of old and new collections:
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     }
 
