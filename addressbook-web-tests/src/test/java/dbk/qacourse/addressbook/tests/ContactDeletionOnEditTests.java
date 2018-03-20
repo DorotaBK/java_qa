@@ -16,14 +16,14 @@ public class ContactDeletionOnEditTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData(null, "Edyta", "Klocek", "klocek",
+            app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
 
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        int contactToDelete = before.size() - 2;     //the element I want to delete
+        int contactToDelete = before.size() - 1;     //the element I want to delete
         app.getContactHelper().selectContactToEdit(contactToDelete);
         app.getContactHelper().deleteOnEditPage();
         app.getNavigationHelper().goToHomePage();

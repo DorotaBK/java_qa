@@ -18,7 +18,7 @@ public class GroupCreationTests extends TestBase {
         GroupData group = new GroupData("grupa_4", "grupa_4","grupa 4");
         app.getGroupHelper().createGroup(group);
 
-        // compare the size of the List before and after
+        // comparing the size of the List before and after
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() + 1);
         System.out.println("number of groups at the end: " + after.size());

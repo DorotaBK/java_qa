@@ -17,7 +17,7 @@ public class ContactModifOnDetailsTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData(null,"Edyta", "Klocek", "klocek",
+            app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
 

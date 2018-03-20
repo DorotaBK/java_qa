@@ -8,17 +8,17 @@ public class GroupData {
     private final String header;
     private final String footer;
 
-    // constructor for a group with an unknown id (not downloaded from www, only created in the test)
-    public GroupData(String name, String header, String footer) {
-        this.id = 0;
+    // constructor for a group with a known id (taken from www)
+    public GroupData(int id, String name, String header, String footer) {
+        this.id = id;
         this.name = name;
         this.header = header;
         this.footer = footer;
     }
 
-    // constructor for a group with a known id (taken from www)
-    public GroupData(int id, String name, String header, String footer) {
-        this.id = id;
+    // constructor for a group with an unknown id (not downloaded from www, only created in the test)
+    public GroupData(String name, String header, String footer) {
+        this.id = 0;
         this.name = name;
         this.header = header;
         this.footer = footer;

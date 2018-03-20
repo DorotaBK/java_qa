@@ -17,7 +17,7 @@ public class ContactModifOnEditTests extends TestBase {
 
         //checking pre-conditions and providing them if necessary
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData(null,"Edyta", "Klocek", "klocek",
+            app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
 
@@ -26,9 +26,8 @@ public class ContactModifOnEditTests extends TestBase {
 
         int contactToModify = before.size() - 2;     // the element that I want to modify
         app.getContactHelper().selectContactToEdit(contactToModify);
-        ContactData currentContact = new ContactData(before.get(contactToModify).getId(),"Iga", "Szczęśliwa",
-                "igasz","Niema 1/2, 10-120 Palice","100200300", "halina@wp.pl",
-                null);
+        ContactData currentContact = new ContactData(before.get(contactToModify).getId(),"Iga", "Nocna",
+                "igasz","Późna 1/2, 10-120 Płock","800200300", "igaiga@wp.pl",null);
         app.getContactHelper().fillContactForm(currentContact, false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().goToHomePage();
