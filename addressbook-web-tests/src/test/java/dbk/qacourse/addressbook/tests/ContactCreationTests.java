@@ -14,7 +14,7 @@ public class ContactCreationTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        app.getContactHelper().createContact(new ContactData("Krystyna", "Balerina",
+        app.getContactHelper().createContact(new ContactData(null,"Krystyna", "Balerina",
                 "krycha","Wesoła 4, 10-100 Reda","500400200", "krycha@wp.pl",
                 "[none]"));
         app.getNavigationHelper().goToHomePage();
