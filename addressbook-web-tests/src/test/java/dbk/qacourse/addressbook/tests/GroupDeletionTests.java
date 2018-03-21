@@ -2,28 +2,28 @@ package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class GroupDeletionTests extends TestBase {
 
-    @Test
-    public void testGroupDeletion() {
+    @BeforeMethod
+    public void ensurePreconditions() {
         app.getNavigationHelper().goToGroupPage();
-        int start = app.getGroupHelper().getGroupCount();
-        System.out.println("number of groups at the beginning: " + start);
-
-        //checking pre-conditions and providing them if necessary
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupData("nowa6!", null, null));
         }
+    }
 
+    @Test
+    public void testGroupDeletion() {
         List<GroupData> before = app.getGroupHelper().getGroupList();
         System.out.println("number of groups before test: " + before.size());
 
-        int groupToDelete = before.size() - 1;       //the element I want to delete
-        app.getGroupHelper().selectGroup(groupToDelete);
+        int index = before.size() - 1;  //the element I want to delete
+        app.getGroupHelper().selectGroup(index);
         app.getGroupHelper().deleteSelectedGroups();
         app.getGroupHelper().returnToGroupPage();
 
@@ -33,8 +33,7 @@ public class GroupDeletionTests extends TestBase {
         System.out.println("number of groups at the end: " + after.size());
 
         // comparing of whole collections
-        before.remove(groupToDelete);
+        before.remove(index);
         Assert.assertEquals(after, before);
-
     }
 }

@@ -2,29 +2,29 @@ package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.ContactData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class ContactDeletionOnEditTests extends TestBase {
 
-    @Test
-    public void testContactDeletionOnEdit() {
+    @BeforeMethod
+    public void ensurePreconditions() {
         app.getNavigationHelper().goToHomePage();
-        int start = app.getContactHelper().getContactCount();
-        System.out.println("number of contacts at the beginning: " + start);
-
-        //checking pre-conditions and providing them if necessary
         if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
+    }
 
+    @Test
+    public void testContactDeletionOnEdit() {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        int contactToDelete = before.size() - 4;     //the element I want to delete
-        app.getContactHelper().selectContactToEdit(contactToDelete);
+        int index = before.size() - 4;     //the element I want to delete
+        app.getContactHelper().selectContactToEdit(index);
         app.getContactHelper().deleteOnEditPage();
         app.getNavigationHelper().goToHomePage();
 
@@ -34,7 +34,7 @@ public class ContactDeletionOnEditTests extends TestBase {
         System.out.println("number of contacts at the end: " + after.size());
 
         // comparing of whole collections
-        before.remove(contactToDelete);
+        before.remove(index);
         Assert.assertEquals(after, before);
     }
 }

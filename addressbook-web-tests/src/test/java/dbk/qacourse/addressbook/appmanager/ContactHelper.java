@@ -28,7 +28,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
 
-        // if there is element - dropdown list named "new_group" - select a value from the list
+        // if there is element - dropdown list "new_group" - select a value from the list:
         // if creation = there is an element in the drop-down list, so we are on the creation form
         // else = there is no drop-down list, so we are on the modification form
         if (creation) {
@@ -70,6 +70,19 @@ public class ContactHelper extends HelperBase{
         click(By.name("modifiy"));
     }
 
+    public void modifyContactOnDetails(int index, ContactData currentContact) {
+        selectContactToDetails(index);
+        initContactModifOnDetailsPage();
+        fillContactForm(currentContact, false);
+        submitContactModification();
+    }
+
+    public void modifyContactOnEdit(int index, ContactData currentContact) {
+        selectContactToEdit(index);
+        fillContactForm(currentContact, false);
+        submitContactModification();
+    }
+
     public void submitContactModification() {
         click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button UPDATE
         // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button UPDATE
@@ -95,10 +108,6 @@ public class ContactHelper extends HelperBase{
         initContactCreation();
         fillContactForm(contact, true);
         submitContactCreation();
-    }
-
-    public int getContactCount() {
-        return wd.findElements(By.name("selected[]")).size();
     }
 
     public List<ContactData> getContactList() {

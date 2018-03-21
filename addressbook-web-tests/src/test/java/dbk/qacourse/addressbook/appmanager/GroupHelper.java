@@ -14,12 +14,8 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
-    public void returnToGroupPage() {
-        click(By.linkText("group page"));
-    }
-
-    public void submitGroupCreation() {
-        click(By.name("submit"));
+    public void initGroupCreation() {
+        click(By.name("new"));
     }
 
     public void fillGroupForm(GroupData groupData) {
@@ -28,12 +24,12 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void initGroupCreation() {
-        click(By.name("new"));
+    public void submitGroupCreation() {
+        click(By.name("submit"));
     }
 
-    public void deleteSelectedGroups() {
-        click(By.name("delete"));
+    public void returnToGroupPage() {
+        click(By.linkText("group page"));
     }
 
     public void selectGroup(int index) {
@@ -45,6 +41,10 @@ public class GroupHelper extends HelperBase {
         if (!wd.findElement(By.name("selected[]")).isSelected()) {
             click(By.name("selected[]"));}
         */
+    }
+
+    public void deleteSelectedGroups() {
+        click(By.name("delete"));
     }
 
     public void initGroupModification() {
@@ -68,16 +68,12 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void modifyGroup(int groupToModify, GroupData currentGroup) {
-        selectGroup(groupToModify);
+    public void modifyGroup(int index, GroupData currentGroup) {
+        selectGroup(index);
         initGroupModification();
         fillGroupForm(currentGroup);
         submitGroupModification();
         returnToGroupPage();
-    }
-
-    public int getGroupCount() {
-        return wd.findElements(By.name("selected[]")).size();
     }
 
     public List<GroupData> getGroupList() {
