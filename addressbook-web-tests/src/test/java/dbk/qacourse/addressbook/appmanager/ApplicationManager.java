@@ -45,15 +45,15 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public GroupHelper getGroupHelper() {
-        return groupHelper;
-    }
-
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public GroupHelper groups() {
+        return groupHelper;
+    }
+
+    public ContactHelper contacts() {
         return contactHelper;
     }
 }

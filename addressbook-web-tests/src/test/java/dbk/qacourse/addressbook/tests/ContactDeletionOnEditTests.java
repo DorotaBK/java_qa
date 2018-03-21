@@ -11,25 +11,25 @@ public class ContactDeletionOnEditTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.getNavigationHelper().goToHomePage();
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
+        app.goTo().homePage();
+        if (app.contacts().contactList().size() == 0) {
+            app.contacts().create(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
     }
 
     @Test
     public void testContactDeletionOnEdit() {
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contacts().contactList();
         System.out.println("number of contacts before test: " + before.size());
 
         int index = before.size() - 4;     //the element I want to delete
-        app.getContactHelper().selectContactToEdit(index);
-        app.getContactHelper().deleteOnEditPage();
-        app.getNavigationHelper().goToHomePage();
+        app.contacts().selectContactToEdit(index);
+        app.contacts().deleteOnEditPage();
+        app.goTo().homePage();
 
         // comparing the size of collections
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contacts().contactList();
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of contacts at the end: " + after.size());
 

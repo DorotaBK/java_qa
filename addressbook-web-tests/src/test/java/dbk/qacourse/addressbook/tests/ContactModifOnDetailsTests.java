@@ -12,26 +12,26 @@ public class ContactModifOnDetailsTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.getNavigationHelper().goToHomePage();
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Edyta", "Klocek", "klocek",
+        app.goTo().homePage();
+        if (app.contacts().contactList().size() == 0) {
+            app.contacts().create(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
     }
 
     @Test
     public void testContactModifOnDetails() {
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contacts().contactList();
         System.out.println("number of contacts before test: " + before.size());
 
         int index = before.size() - 5;    // the element that I want to modify
         ContactData currentContact = new ContactData(before.get(index).getId(),"Kornelia", "Nowa",
                 null,"Zmęczona 100, 10-100 Gdynia","500555000", "selenium@wp.pl", null);
-        app.getContactHelper().modifyContactOnDetails(index, currentContact);
-        app.getNavigationHelper().goToHomePage();
+        app.contacts().modifyOnDetails(index, currentContact);
+        app.goTo().homePage();
 
         // comparing the size of collections
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contacts().contactList();
         Assert.assertEquals(after.size(), before.size());
         System.out.println("number of contacts at the end: " + after.size());
 

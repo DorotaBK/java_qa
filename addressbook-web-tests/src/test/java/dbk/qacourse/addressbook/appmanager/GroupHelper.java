@@ -55,20 +55,15 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    // check the existence of group on the page - precondition for group editing/modification tests
-    public boolean isThereAGroup() {
-        return isElementPresent(By.name("selected[]"));
-    }
-
     // create group if it's absent - precondition for group editing/modification tests
-    public void createGroup(GroupData group) {
+    public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
         returnToGroupPage();
     }
 
-    public void modifyGroup(int index, GroupData currentGroup) {
+    public void modify(int index, GroupData currentGroup) {
         selectGroup(index);
         initGroupModification();
         fillGroupForm(currentGroup);
@@ -76,7 +71,13 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public List<GroupData> getGroupList() {
+    public void delete(int index) {
+        selectGroup(index);
+        deleteSelectedGroups();
+        returnToGroupPage();
+    }
+
+    public List<GroupData> groupList() {
         List<GroupData> groups = new ArrayList<GroupData>();
         // fill the List with objects - find and add all items with the tag "span" and class "group"
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));

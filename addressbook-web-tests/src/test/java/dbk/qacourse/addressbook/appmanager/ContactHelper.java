@@ -70,14 +70,14 @@ public class ContactHelper extends HelperBase{
         click(By.name("modifiy"));
     }
 
-    public void modifyContactOnDetails(int index, ContactData currentContact) {
+    public void modifyOnDetails(int index, ContactData currentContact) {
         selectContactToDetails(index);
         initContactModifOnDetailsPage();
         fillContactForm(currentContact, false);
         submitContactModification();
     }
 
-    public void modifyContactOnEdit(int index, ContactData currentContact) {
+    public void modifyOnEdit(int index, ContactData currentContact) {
         selectContactToEdit(index);
         fillContactForm(currentContact, false);
         submitContactModification();
@@ -98,19 +98,14 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']/form[2]/input[2]"));
     }
 
-    // checking the existence of contact on the page - precondition for contact editing/modification tests
-    public boolean isThereAContact() {
-        return isElementPresent(By.name("selected[]"));
-    }
-
     // create contact if it's absent - precondition for contact editing/modification tests
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         initContactCreation();
         fillContactForm(contact, true);
         submitContactCreation();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> contactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
         for (WebElement element : elements) {

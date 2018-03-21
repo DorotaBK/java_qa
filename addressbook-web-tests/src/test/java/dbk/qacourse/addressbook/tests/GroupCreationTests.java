@@ -11,15 +11,15 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void testGroupCreation() {
-        app.getNavigationHelper().goToGroupPage();
-        List<GroupData> before = app.getGroupHelper().getGroupList();
+        app.goTo().groupPage();
+        List<GroupData> before = app.groups().groupList();
         System.out.println("number of groups at the beginning: " + before.size());
 
         GroupData group = new GroupData("grupa_6", "grupa_6","grupa 6");
-        app.getGroupHelper().createGroup(group);
+        app.groups().create(group);
 
         // comparison of size of the Lists (before and after)
-        List<GroupData> after = app.getGroupHelper().getGroupList();
+        List<GroupData> after = app.groups().groupList();
         Assert.assertEquals(after.size(), before.size() + 1);
         System.out.println("number of groups at the end: " + after.size());
 
