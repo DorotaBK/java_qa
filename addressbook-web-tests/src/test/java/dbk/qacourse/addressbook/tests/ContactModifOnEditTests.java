@@ -25,9 +25,9 @@ public class ContactModifOnEditTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        int contactToModify = before.size() - 2;     // the element that I want to modify
+        int contactToModify = before.size() - 6;     // the element that I want to modify
         app.getContactHelper().selectContactToEdit(contactToModify);
-        ContactData currentContact = new ContactData(before.get(contactToModify).getId(),"Iga", "Nocna",
+        ContactData currentContact = new ContactData(before.get(contactToModify).getId(),"Paula", "Kot",
                 "igasz","Późna 1/2, 10-120 Płock","800200300", "igaiga@wp.pl",null);
         app.getContactHelper().fillContactForm(currentContact, false);
         app.getContactHelper().submitContactModification();

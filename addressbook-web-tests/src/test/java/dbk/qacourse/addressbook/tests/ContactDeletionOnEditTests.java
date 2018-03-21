@@ -23,7 +23,7 @@ public class ContactDeletionOnEditTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         System.out.println("number of contacts before test: " + before.size());
 
-        int contactToDelete = before.size() - 1;     //the element I want to delete
+        int contactToDelete = before.size() - 4;     //the element I want to delete
         app.getContactHelper().selectContactToEdit(contactToDelete);
         app.getContactHelper().deleteOnEditPage();
         app.getNavigationHelper().goToHomePage();
