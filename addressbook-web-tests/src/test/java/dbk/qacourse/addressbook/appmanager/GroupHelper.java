@@ -77,7 +77,7 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public List<GroupData> groupList() {
+    public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<GroupData>();
         // fill the List with objects - find and add all items with the tag "span" and class "group"
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
@@ -87,11 +87,8 @@ public class GroupHelper extends HelperBase {
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
 
-            // create a new object with the name from page; on 'group page' the header and footer are absent!
-            GroupData group = new GroupData(id, name, null, null);
-
-            // add new element 'group' to the List 'groups'
-            groups.add(group);
+            // create a new object and add them to the List 'groups'
+            groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
     }

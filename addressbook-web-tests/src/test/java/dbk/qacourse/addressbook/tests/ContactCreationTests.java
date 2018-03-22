@@ -12,7 +12,7 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void testContactCreation() {
         app.goTo().homePage();
-        List<ContactData> before = app.contacts().contactList();
+        List<ContactData> before = app.contacts().list();
         System.out.println("number of contacts before test: " + before.size());
 
         ContactData contact = new ContactData("Jan", "Polski","polak",
@@ -21,7 +21,7 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
 
         // comparing the size of the List before and after
-        List<ContactData> after = app.contacts().contactList();
+        List<ContactData> after = app.contacts().list();
         Assert.assertEquals(after.size(),before.size() + 1);
         System.out.println("number of contacts after test: " + after.size());
 

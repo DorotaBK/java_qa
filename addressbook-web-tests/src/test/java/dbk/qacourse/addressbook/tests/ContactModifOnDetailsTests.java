@@ -13,7 +13,7 @@ public class ContactModifOnDetailsTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().homePage();
-        if (app.contacts().contactList().size() == 0) {
+        if (app.contacts().list().size() == 0) {
             app.contacts().create(new ContactData("Edyta", "Klocek", "klocek",
                     null, "601601601", "eklocek@wp.pl", "[none]"));
         }
@@ -21,7 +21,7 @@ public class ContactModifOnDetailsTests extends TestBase {
 
     @Test
     public void testContactModifOnDetails() {
-        List<ContactData> before = app.contacts().contactList();
+        List<ContactData> before = app.contacts().list();
         System.out.println("number of contacts before test: " + before.size());
 
         int index = before.size() - 5;    // the element that I want to modify
@@ -31,7 +31,7 @@ public class ContactModifOnDetailsTests extends TestBase {
         app.goTo().homePage();
 
         // comparing the size of collections
-        List<ContactData> after = app.contacts().contactList();
+        List<ContactData> after = app.contacts().list();
         Assert.assertEquals(after.size(), before.size());
         System.out.println("number of contacts at the end: " + after.size());
 

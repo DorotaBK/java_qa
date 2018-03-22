@@ -105,7 +105,7 @@ public class ContactHelper extends HelperBase{
         submitContactCreation();
     }
 
-    public List<ContactData> contactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
         for (WebElement element : elements) {

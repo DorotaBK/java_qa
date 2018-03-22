@@ -12,21 +12,21 @@ public class GroupDeletionTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().groupPage();
-        if (app.groups().groupList().size() == 0){
-            app.groups().create(new GroupData("nowa6!", null, null));
+        if (app.groups().list().size() == 0){
+            app.groups().create(new GroupData().withName("grupa_6"));
         }
     }
 
     @Test
     public void testGroupDeletion() {
-        List<GroupData> before = app.groups().groupList();
+        List<GroupData> before = app.groups().list();
         System.out.println("number of groups before test: " + before.size());
 
         int index = before.size() - 1;  //the element I want to delete
         app.groups().delete(index);
 
         // comparing the size of collections
-        List<GroupData> after = app.groups().groupList();
+        List<GroupData> after = app.groups().list();
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
 

@@ -12,14 +12,14 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void testGroupCreation() {
         app.goTo().groupPage();
-        List<GroupData> before = app.groups().groupList();
+        List<GroupData> before = app.groups().list();
         System.out.println("number of groups at the beginning: " + before.size());
 
-        GroupData group = new GroupData("grupa_6", "grupa_6","grupa 6");
+        GroupData group = new GroupData().withName("grupa_6");
         app.groups().create(group);
 
         // comparison of size of the Lists (before and after)
-        List<GroupData> after = app.groups().groupList();
+        List<GroupData> after = app.groups().list();
         Assert.assertEquals(after.size(), before.size() + 1);
         System.out.println("number of groups at the end: " + after.size());
 
