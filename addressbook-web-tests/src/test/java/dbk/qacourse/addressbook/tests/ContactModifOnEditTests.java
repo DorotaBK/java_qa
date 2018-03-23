@@ -15,8 +15,8 @@ public class ContactModifOnEditTests extends TestBase {
     public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contacts().list().size() == 0) {
-            app.contacts().create(new ContactData("Edyta", "Klocek", "klocek",
-                    null, "601601601", "eklocek@wp.pl", "[none]"));
+            app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
+                    .withAddress("Nowa 4, 10-100 Puck").withMobile("601601601").withEmail("kloc@wp.pl").withGroup("[none]"));
         }
     }
 
@@ -26,8 +26,8 @@ public class ContactModifOnEditTests extends TestBase {
         System.out.println("number of contacts before test: " + before.size());
 
         int index = before.size() - 6;     // the element that I want to modify
-        ContactData currentContact = new ContactData(before.get(index).getId(),"Paula", "Kot",
-                "igasz","Późna 1/2, 10-120 Płock","800200300", "igaiga@wp.pl",null);
+        ContactData currentContact = new ContactData().withId(before.get(index).getId()).withFirstname("Paula")
+                .withLastname("Kot").withAddress("Późna 1/2, 10-120 Płock").withMobile("800200300").withEmail("paja@wp.pl");
         app.contacts().modifyOnEdit(index, currentContact);
         app.goTo().homePage();
 
