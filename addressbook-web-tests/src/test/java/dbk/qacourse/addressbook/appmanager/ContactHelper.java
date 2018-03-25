@@ -45,28 +45,35 @@ public class ContactHelper extends HelperBase{
         //click(By.name("submit"));
     }
 
-    public void selectContactToEditById(ContactData contact) {
-        editContactById(contact.getId());
-    }
-
-    public void editContactById(int id) {
+    public void findContactToEditById(int id) {
         wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
     }
 
+    public void editContactById(ContactData contact) {
+        findContactToEditById(contact.getId());
+    }
+
     public void modifyOnEdit(ContactData currentContact) {
-        selectContactToEditById(currentContact);
+        editContactById(currentContact);
         fillContactForm(currentContact, false);
         submitContactModification();
     }
 
-    public void selectContactToDetails(int index) {
-        // click(By.cssSelector("img[alt='Details']"));                         // select the first element on the page
-        wd.findElements(By.cssSelector("img[alt='Details']")).get(index).click(); //select a specific element on the page
+    private void findContactToDetailsById(int id) {
+        wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
     }
 
-    public void selectContactToDetailsById(int index) {
-        wd.findElements(By.cssSelector("img[alt='Details']")).get(index).click(); //select a specific element on the page
+    public void contactDetailsById(ContactData contact) {
+        findContactToDetailsById(contact.getId());
     }
+
+    public void modifyOnDetails(ContactData currentContact) {
+        contactDetailsById(currentContact);
+        initContactModifOnDetailsPage();
+        fillContactForm(currentContact, false);
+        submitContactModification();
+    }
+
 
     public void selectContactToDeleteOnHome(int index) {
         /* select the first element on the page:
@@ -84,13 +91,6 @@ public class ContactHelper extends HelperBase{
         click(By.name("modifiy"));
     }
 
-    public void modifyOnDetails(ContactData currentContact) {
-        selectContactToDetails(index);
-        initContactModifOnDetailsPage();
-        fillContactForm(currentContact, false);
-        submitContactModification();
-    }
-
     public void submitContactModification() {
         click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button UPDATE
         // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button UPDATE
@@ -98,8 +98,6 @@ public class ContactHelper extends HelperBase{
 
     public void deleteOnHome() {
         click(By.name("selected[]"));
-        // click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));     // default from Selenium Builder
-        // click(By.xpath("//div/div[4]/form[2]/div[2]/input"));            // optional from -//-
     }
 
     public void deleteOnEditPage() {

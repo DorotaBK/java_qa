@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.Set;
 
 public class ContactDeletionOnEditTests extends TestBase {
@@ -26,7 +25,7 @@ public class ContactDeletionOnEditTests extends TestBase {
 
         // random selection of an element to be removed
         ContactData deletedContact = before.iterator().next();
-        app.contacts().selectContactToEditById(deletedContact);
+        app.contacts().editContactById(deletedContact);
         app.contacts().deleteOnEditPage();
         app.goTo().homePage();
 
