@@ -74,17 +74,14 @@ public class ContactHelper extends HelperBase{
         submitContactModification();
     }
 
-
-    public void selectContactToDeleteOnHome(int index) {
-        /* select the first element on the page:
-        if (!wd.findElement(By.name("selected[]")).isSelected()) {
-            click(By.name("selected[]"));
-        }*/
-
-        // select a specific element on the page
-        if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
-            wd.findElements(By.name("selected[]")).get(index).click();
+    public void findContactToDeleteOnHomeById(int id) {
+        if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
+            wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
         }
+    }
+
+    public void deleteContactOnHomeById(ContactData contact) {
+        findContactToDeleteOnHomeById(contact.getId());
     }
 
     public void initContactModifOnDetailsPage() {

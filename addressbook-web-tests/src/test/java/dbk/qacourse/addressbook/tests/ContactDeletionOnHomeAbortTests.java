@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.Set;
 
 public class ContactDeletionOnHomeAbortTests extends TestBase {
@@ -24,8 +23,9 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
         Set<ContactData> before = app.contacts().all();
         System.out.println("number of contacts before test: " + before.size());
 
-        int index = before.size() - 1;     //the element I want to delete
-        app.contacts().selectContactToDeleteOnHome(index);
+        // random selection of an element to be removed
+        ContactData deletedContact = before.iterator().next();
+        app.contacts().deleteContactOnHomeById(deletedContact);
         app.contacts().deleteOnHome();
         app.contacts().isAlertPresent();
 

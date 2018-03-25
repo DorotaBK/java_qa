@@ -5,8 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class ContactModifOnDetailsTests extends TestBase {
