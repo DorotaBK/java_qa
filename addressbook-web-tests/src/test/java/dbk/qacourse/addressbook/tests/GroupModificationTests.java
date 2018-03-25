@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
@@ -25,8 +24,8 @@ public class GroupModificationTests extends TestBase {
 
         // random selection of an element to be modified
         GroupData modifiedGroup = before.iterator().next();
-        GroupData currentGroup = new GroupData()
-                .withId(modifiedGroup.getId()).withName("grupa_test").withHeader("test").withFooter("tst");
+        GroupData currentGroup = new GroupData().withId(modifiedGroup.getId()).withName("grupa_test")
+                                .withHeader("test").withFooter("tst");
         app.groups().modify(currentGroup);
 
         // comparison of size of the Lists (before and after)

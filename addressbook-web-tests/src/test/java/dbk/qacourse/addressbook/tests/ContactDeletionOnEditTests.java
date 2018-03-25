@@ -6,13 +6,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionOnEditTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().homePage();
-        if (app.contacts().list().size() == 0) {
+        if (app.contacts().all().size() == 0) {
             app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
                     .withAddress("Nowa 4, 10-100 Puck").withMobile("601601601").withEmail("eklocek@wp.pl").withGroup("[none]"));
         }
@@ -20,21 +21,22 @@ public class ContactDeletionOnEditTests extends TestBase {
 
     @Test
     public void testContactDeletionOnEdit() {
-        List<ContactData> before = app.contacts().list();
+        Set<ContactData> before = app.contacts().all();
         System.out.println("number of contacts before test: " + before.size());
 
-        int index = before.size() - 4;     //the element I want to delete
-        app.contacts().selectContactToEdit(index);
+        // random selection of an element to be removed
+        ContactData deletedContact = before.iterator().next();
+        app.contacts().selectContactToEditById(deletedContact);
         app.contacts().deleteOnEditPage();
         app.goTo().homePage();
 
         // comparing the size of collections
-        List<ContactData> after = app.contacts().list();
+        Set<ContactData> after = app.contacts().all();
         Assert.assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of contacts at the end: " + after.size());
 
         // comparing of whole collections
-        before.remove(index);
+        before.remove(deletedContact);
         Assert.assertEquals(after, before);
     }
 }

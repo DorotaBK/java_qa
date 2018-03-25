@@ -76,15 +76,11 @@ public class GroupHelper extends HelperBase {
 
     public Set<GroupData> all() {
         Set<GroupData> groups = new HashSet<>();
-        // fill the List with objects - find and add all items with the tag "span" and class "group"
+        //list of all data rows - all items with tag "span" and class "group"
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-
         for (WebElement element : elements) {
-            // get the group name from 'group page' -> <span class="group">
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-
-            // create a new object and add them to the List 'groups'
             groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
