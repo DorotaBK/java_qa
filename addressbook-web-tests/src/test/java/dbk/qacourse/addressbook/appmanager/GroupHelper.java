@@ -1,13 +1,12 @@
 package dbk.qacourse.addressbook.appmanager;
 
 import dbk.qacourse.addressbook.model.GroupData;
+import dbk.qacourse.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
@@ -74,8 +73,8 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public Set<GroupData> all() {
-        Set<GroupData> groups = new HashSet<>();
+    public Groups all() {
+        Groups groups = new Groups();
         //list of all data rows - all items with tag "span" and class "group"
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {
