@@ -1,11 +1,13 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.GroupData;
-import org.testng.Assert;
+import dbk.qacourse.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -19,7 +21,7 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void testGroupDeletion() {
-        Set<GroupData> before = app.groups().all();
+        Groups before = app.groups().all();
         System.out.println("number of groups before test: " + before.size());
 
         // random selection of an element to be removed
@@ -27,12 +29,11 @@ public class GroupDeletionTests extends TestBase {
         app.groups().delete(deletedGroup);
 
         // comparing the size of collections
-        Set<GroupData> after = app.groups().all();
-        Assert.assertEquals(after.size(), before.size() - 1 );
+        Groups after = app.groups().all();
+        assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
 
-        // comparing of whole collections
-        before.remove(deletedGroup);
-        Assert.assertEquals(after, before);
+        // direct comparison with Hamcrest and guava
+        assertThat(after, equalTo(before.without(deletedGroup)));
     }
 }
