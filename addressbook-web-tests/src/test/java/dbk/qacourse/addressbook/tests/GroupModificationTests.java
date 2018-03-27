@@ -28,7 +28,7 @@ public class GroupModificationTests extends TestBase {
         Groups before = app.groups().all();
         System.out.println("number of groups before test: " + before.size());
 
-        GroupData modifiedGroup = before.iterator().next();     //random selection of an element to be modified
+        GroupData modifiedGroup = before.iterator().next();  //random selection of an element to be modified
         GroupData currentGroup = new GroupData().withId(modifiedGroup.getId()).withName("grupa_test")
                                 .withHeader("test").withFooter("tst");
         app.groups().modify(currentGroup);

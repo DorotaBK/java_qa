@@ -1,6 +1,7 @@
 package dbk.qacourse.addressbook.appmanager;
 
 import dbk.qacourse.addressbook.model.ContactData;
+import dbk.qacourse.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -108,8 +109,8 @@ public class ContactHelper extends HelperBase{
         submitContactCreation();
     }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.cssSelector("td.center>input")).getAttribute("id"));
