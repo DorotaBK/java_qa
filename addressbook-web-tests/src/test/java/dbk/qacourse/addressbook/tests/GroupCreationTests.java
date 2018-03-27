@@ -14,6 +14,7 @@ public class GroupCreationTests extends TestBase {
         app.goTo().groupPage();
         Groups before = app.groups().all();
         System.out.println("number of groups at the beginning: " + before.size());
+
         GroupData group = new GroupData().withName("grupa_7");
         app.groups().create(group);
 

@@ -1,11 +1,17 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.GroupData;
+import dbk.qacourse.addressbook.model.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupModificationTests extends TestBase {
 
@@ -19,23 +25,22 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     public void testGroupModification() {
-        Set<GroupData> before = app.groups().all();
+        Groups before = app.groups().all();
         System.out.println("number of groups before test: " + before.size());
 
-        // random selection of an element to be modified
-        GroupData modifiedGroup = before.iterator().next();
+        GroupData modifiedGroup = before.iterator().next();     //random selection of an element to be modified
         GroupData currentGroup = new GroupData().withId(modifiedGroup.getId()).withName("grupa_test")
                                 .withHeader("test").withFooter("tst");
         app.groups().modify(currentGroup);
 
-        // comparison of size of the Lists (before and after)
-        Set<GroupData> after = app.groups().all();
+        // comparison of size of the Lists
+        Groups after = app.groups().all();
         Assert.assertEquals(after.size(), before.size());
         System.out.println("number of groups after test: " + after.size());
 
-        // direct comparison - only Java8 and next
-        before.remove(modifiedGroup);
-        before.add(currentGroup);
-        Assert.assertEquals(before, after);
+        // direct comparison with Hamcrest and guava
+        assertThat(after, equalTo(before.without(modifiedGroup).withAdded(currentGroup)));
+
+
     }
 }

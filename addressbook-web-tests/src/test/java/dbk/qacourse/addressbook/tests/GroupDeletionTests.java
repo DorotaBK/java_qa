@@ -24,8 +24,7 @@ public class GroupDeletionTests extends TestBase {
         Groups before = app.groups().all();
         System.out.println("number of groups before test: " + before.size());
 
-        // random selection of an element to be removed
-        GroupData deletedGroup = before.iterator().next();
+        GroupData deletedGroup = before.iterator().next();  //random selection of an element to be removed
         app.groups().delete(deletedGroup);
 
         // comparing the size of collections
