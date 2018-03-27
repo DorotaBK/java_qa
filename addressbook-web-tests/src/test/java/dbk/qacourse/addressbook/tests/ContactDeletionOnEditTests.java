@@ -1,11 +1,13 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.ContactData;
-import org.testng.Assert;
+import dbk.qacourse.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionOnEditTests extends TestBase {
 
@@ -20,22 +22,18 @@ public class ContactDeletionOnEditTests extends TestBase {
 
     @Test
     public void testContactDeletionOnEdit() {
-        Set<ContactData> before = app.contacts().all();
-        System.out.println("number of contacts before test: " + before.size());
+        Contacts before = app.contacts().all();
+        System.out.println("before test: " + before.size());
 
-        // random selection of an element to be removed
-        ContactData deletedContact = before.iterator().next();
+        ContactData deletedContact = before.iterator().next();  //random selection of an element to be removed
         app.contacts().editContactById(deletedContact);
         app.contacts().deleteOnEditPage();
         app.goTo().homePage();
 
-        // comparing the size of collections
-        Set<ContactData> after = app.contacts().all();
-        Assert.assertEquals(after.size(), before.size() - 1 );
-        System.out.println("number of contacts at the end: " + after.size());
+        Contacts after = app.contacts().all();
+        assertEquals(after.size(), before.size() - 1 );
+        System.out.println("after test: " + after.size());
 
-        // comparing of whole collections
-        before.remove(deletedContact);
-        Assert.assertEquals(after, before);
+        assertThat(after, equalTo(before.without(deletedContact)));
     }
 }

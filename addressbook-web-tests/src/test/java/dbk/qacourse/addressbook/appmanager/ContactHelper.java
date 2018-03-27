@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -30,8 +28,8 @@ public class ContactHelper extends HelperBase{
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
 
-        // if there is element - dropdown list "new_group" - select a value from the list
-        // creation => there is an element in the drop-down list, so we are on the creation form
+        // if there is element - dropdown list "new_group" - select a value from it
+        // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
             // choose element from drop-down list
@@ -102,7 +100,7 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']/form[2]/input[2]"));
     }
 
-    // create contact if it's absent - precondition for contact editing/modification tests
+    // precondition for contact editing/modification tests
     public void create(ContactData contact) {
         initContactCreation();
         fillContactForm(contact, true);
