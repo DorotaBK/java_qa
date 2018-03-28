@@ -26,7 +26,7 @@ public class ContactDeletionOnEditTests extends TestBase {
         System.out.println("before test: " + before.size());
 
         ContactData deletedContact = before.iterator().next();  //random selection of an element to be removed
-        app.contacts().editContactById(deletedContact);
+        app.contacts().contactEditById(deletedContact);
         app.contacts().deleteOnEditPage();
         app.goTo().homePage();
 

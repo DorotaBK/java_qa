@@ -26,7 +26,7 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
         System.out.println("before test: " + before.size());
 
         ContactData deletedContact = before.iterator().next();  //random selection of an element to be removed
-        app.contacts().deleteContactOnHomeById(deletedContact);
+        app.contacts().contactDeleteById(deletedContact);
         app.contacts().deleteOnHome();
         app.contacts().isAlertPresent();
 

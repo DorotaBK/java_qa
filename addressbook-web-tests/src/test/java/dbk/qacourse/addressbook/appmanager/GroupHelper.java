@@ -51,11 +51,12 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    // create group if it's absent - precondition for group editing/modification tests
+    // precondition for group editing/modification tests - create group if it's absent
     public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
+        groupCache = null;
         returnToGroupPage();
     }
 
@@ -64,24 +65,32 @@ public class GroupHelper extends HelperBase {
         initGroupModification();
         fillGroupForm(currentGroup);
         submitGroupModification();
+        groupCache = null;
         returnToGroupPage();
     }
 
     public void delete(GroupData group) {
         selectGroupById(group.getId());
         deleteSelectedGroups();
+        groupCache = null;
         returnToGroupPage();
     }
 
+    private Groups groupCache = null;
+
     public Groups all() {
-        Groups groups = new Groups();
-        //list of all data rows - all items with tag "span" and class "group"
+        if (groupCache != null){
+            return new Groups(groupCache);  //copy of cache with data from www
+        }
+
+        groupCache = new Groups();
+        //list of all items with tag "span" and class "group"
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            groups.add(new GroupData().withId(id).withName(name));
+            groupCache.add(new GroupData().withId(id).withName(name));
         }
-        return groups;
+        return new Groups(groupCache);
     }
 }

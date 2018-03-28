@@ -20,6 +20,10 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("add new"));
     }
 
+    public void initContactModifOnDetailsPage() {
+        click(By.name("modifiy"));
+    }
+
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
@@ -28,7 +32,6 @@ public class ContactHelper extends HelperBase{
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
 
-        // if there is element - dropdown list "new_group" - select a value from it
         // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
@@ -44,26 +47,35 @@ public class ContactHelper extends HelperBase{
         //click(By.name("submit"));
     }
 
-    public void findContactToEditById(int id) {
-        wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
+    public void submitContactModification() {
+        click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button UPDATE
+        // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button UPDATE
     }
 
-    public void editContactById(ContactData contact) {
+    public void contactEditById(ContactData contact) {
         findContactToEditById(contact.getId());
     }
 
-    public void modifyOnEdit(ContactData currentContact) {
-        editContactById(currentContact);
-        fillContactForm(currentContact, false);
-        submitContactModification();
+    public void contactDetailsById(ContactData contact) {
+        findContactToDetailsById(contact.getId());
+    }
+
+    public void contactDeleteById(ContactData contact) {
+        findContactToDeleteById(contact.getId());
+    }
+    
+    public void findContactToEditById(int id) {
+        wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
     }
 
     private void findContactToDetailsById(int id) {
         wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
     }
 
-    public void contactDetailsById(ContactData contact) {
-        findContactToDetailsById(contact.getId());
+    public void findContactToDeleteById(int id) {
+        if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
+            wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+        }
     }
 
     public void modifyOnDetails(ContactData currentContact) {
@@ -71,33 +83,23 @@ public class ContactHelper extends HelperBase{
         initContactModifOnDetailsPage();
         fillContactForm(currentContact, false);
         submitContactModification();
+        contactCache = null;
     }
 
-    public void findContactToDeleteOnHomeById(int id) {
-        if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
-            wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
-        }
-    }
-
-    public void deleteContactOnHomeById(ContactData contact) {
-        findContactToDeleteOnHomeById(contact.getId());
-    }
-
-    public void initContactModifOnDetailsPage() {
-        click(By.name("modifiy"));
-    }
-
-    public void submitContactModification() {
-        click(By.xpath("//div[@id='content']/form[1]/input[1]"));       // top button UPDATE
-        // click(By.xpath("//div[@id='content']/form[1]/input[22]"));   // bottom button UPDATE
-    }
-
-    public void deleteOnHome() {
-        click(By.name("selected[]"));
+    public void modifyOnEditPage(ContactData currentContact) {
+        contactEditById(currentContact);
+        fillContactForm(currentContact, false);
+        submitContactModification();
+        contactCache = null;
     }
 
     public void deleteOnEditPage() {
         click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+        contactCache = null;
+    }
+
+    public void deleteOnHome() {
+        click(By.name("selected[]"));
     }
 
     // precondition for contact editing/modification tests
@@ -105,10 +107,17 @@ public class ContactHelper extends HelperBase{
         initContactCreation();
         fillContactForm(contact, true);
         submitContactCreation();
+        contactCache = null;
     }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.cssSelector("td.center>input")).getAttribute("id"));
@@ -117,9 +126,9 @@ public class ContactHelper extends HelperBase{
             String address = element.findElement(By.xpath("td[4]")).getText();
             String email = element.findElement(By.xpath("td[5]")).getText();
             String mobile = element.findElement(By.xpath("td[6]")).getText();
-            contacts.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
+            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
                     .withAddress(address).withMobile(mobile).withEmail(email));
         }
-        return contacts;
+        return contactCache;
     }
 }

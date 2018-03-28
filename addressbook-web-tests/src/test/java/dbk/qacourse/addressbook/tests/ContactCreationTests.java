@@ -15,6 +15,7 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         Contacts before = app.contacts().all();
         System.out.println("before test: " + before.size());
+
         ContactData contact = new ContactData().withFirstname("Jan").withLastname("Polski").withNick("polak")
                 .withAddress("Nowa 4, 10-100 Puck").withMobile("700600500").withEmail("polak@wp.pl").withGroup("[none]");
         app.contacts().create(contact);
