@@ -20,11 +20,9 @@ public class ContactCreationTests extends TestBase {
                 .withAddress("Nowa 4, 10-100 Puck").withMobile("700600500").withEmail("polak@wp.pl").withGroup("[none]");
         app.contacts().create(contact);
         app.goTo().homePage();
-
+        assertEquals(app.contacts().count(),before.size() + 1);
         Contacts after = app.contacts().all();
-        assertEquals(after.size(),before.size() + 1);
         System.out.println("after test: " + after.size());
-
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((ct) -> ct.getId()).max().getAsInt()))));
     }
 }

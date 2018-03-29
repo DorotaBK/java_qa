@@ -29,12 +29,9 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
         app.contacts().contactDeleteById(deletedContact);
         app.contacts().deleteOnHome();
         app.contacts().isAlertPresent();
-
-        // comparing the size of collections
+        assertEquals(app.contacts().count(),before.size()); // comparing the size of collections
         Contacts after = app.contacts().all();
-        assertEquals(after.size(), before.size());
         System.out.println("after test: " + after.size());
-
         assertThat(after, equalTo(before));
     }
 }

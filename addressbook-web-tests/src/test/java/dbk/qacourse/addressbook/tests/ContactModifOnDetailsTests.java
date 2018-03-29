@@ -30,12 +30,9 @@ public class ContactModifOnDetailsTests extends TestBase {
                 .withLastname("Nowak").withAddress("Zmęczona 1, 10-100 Gdynia").withMobile("500555000").withEmail("selen@wp.pl");
         app.contacts().modifyOnDetails(currentContact);
         app.goTo().homePage();
-
-        // comparing the size of collections
+        assertEquals(app.contacts().count(), before.size()); //comparing the size of collections
         Contacts after = app.contacts().all();
-        assertEquals(after.size(), before.size());
         System.out.println("after test: " + after.size());
-
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(currentContact)));
     }
 }

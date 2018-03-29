@@ -29,11 +29,9 @@ public class ContactDeletionOnEditTests extends TestBase {
         app.contacts().contactEditById(deletedContact);
         app.contacts().deleteOnEditPage();
         app.goTo().homePage();
-
+        assertEquals(app.contacts().count(),before.size() - 1);
         Contacts after = app.contacts().all();
-        assertEquals(after.size(), before.size() - 1 );
         System.out.println("after test: " + after.size());
-
         assertThat(after, equalTo(before.without(deletedContact)));
     }
 }
