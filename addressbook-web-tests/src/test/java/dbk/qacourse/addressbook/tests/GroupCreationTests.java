@@ -13,18 +13,25 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         app.goTo().groupPage();
         Groups before = app.groups().all();
-        System.out.println("number of groups at the beginning: " + before.size());
-
-        GroupData group = new GroupData().withName("grupa_7");
+        System.out.println("before test: " + before.size());
+        GroupData group = new GroupData().withName("grupa_A");
         app.groups().create(group);
-
-        // comparison of size of the Lists (before and after)
+        assertThat(app.groups().count(), equalTo(before.size() + 1)); //comparison of size of the Lists
         Groups after = app.groups().all();
-        assertThat(after.size(), equalTo(before.size() + 1));
-        System.out.println("number of groups at the end: " + after.size());
-
-        // direct comparison with Hamcrest and guava
+        System.out.println("after test: " + after.size());
+        //comparison all with Hamcrest and guava
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt((gr) -> gr.getId()).max().getAsInt()))));
+    }
+
+    @Test
+    public void testNegativeGroupCreation() {
+        app.goTo().groupPage();
+        Groups before = app.groups().all();
+        GroupData group = new GroupData().withName("grupa'_B");
+        app.groups().create(group);
+        assertThat(app.groups().count(), equalTo(before.size())); //comparison of size of the Lists
+        Groups after = app.groups().all();
+        assertThat(after, equalTo(before));  //comparison all with Hamcrest and guava
     }
 }

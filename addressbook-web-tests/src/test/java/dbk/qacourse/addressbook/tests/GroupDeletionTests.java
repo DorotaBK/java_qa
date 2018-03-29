@@ -23,16 +23,11 @@ public class GroupDeletionTests extends TestBase {
     public void testGroupDeletion() {
         Groups before = app.groups().all();
         System.out.println("number of groups before test: " + before.size());
-
         GroupData deletedGroup = before.iterator().next();  //random selection of an element to be removed
         app.groups().delete(deletedGroup);
-
-        // comparing the size of collections
+        assertEquals(app.groups().count(), before.size() - 1 ); //comparing the size of collections
         Groups after = app.groups().all();
-        assertEquals(after.size(), before.size() - 1 );
         System.out.println("number of groups at the end: " + after.size());
-
-        // direct comparison with Hamcrest and guava
-        assertThat(after, equalTo(before.without(deletedGroup)));
+        assertThat(after, equalTo(before.without(deletedGroup)));   // direct comparison with Hamcrest and guava
     }
 }
