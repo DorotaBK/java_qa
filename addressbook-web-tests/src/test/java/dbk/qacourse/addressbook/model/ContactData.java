@@ -8,7 +8,9 @@ public class ContactData {
     private String lastname;
     private String nick;
     private String address;
+    private String homePhone;
     private String mobile;
+    private String workPhone;
     private String email;
     private String group;
 
@@ -33,16 +35,24 @@ public class ContactData {
         return address;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public String getGroup() {
         return group;   // after "Create getter for 'group'", getting the value
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
     }
 
     // Setter
@@ -71,11 +81,6 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withMobile(String mobile) {
-        this.mobile = mobile;
-        return this;
-    }
-
     public ContactData withEmail(String email) {
         this.email = email;
         return this;
@@ -83,6 +88,21 @@ public class ContactData {
 
     public ContactData withGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withMobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
         return this;
     }
 

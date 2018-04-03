@@ -25,7 +25,7 @@ public class ContactModifOnEditTests extends TestBase {
         Contacts before = app.contacts().all();
         System.out.println("before test: " + before.size());
 
-        ContactData modifiedContact = before.iterator().next();  //random selection of an element to be removed
+        ContactData modifiedContact = before.iterator().next();         //random selection of an element to be removed
         ContactData currentContact = new ContactData().withId(modifiedContact.getId()).withFirstname("Paula")
                 .withLastname("Kot").withAddress("Późna 1/2, 10-120 Płock").withMobile("800200300").withEmail("paja@wp.pl");
         app.contacts().modifyOnEditPage(currentContact);
