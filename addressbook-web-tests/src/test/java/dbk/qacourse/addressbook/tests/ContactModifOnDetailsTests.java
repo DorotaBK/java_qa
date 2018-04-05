@@ -16,7 +16,7 @@ public class ContactModifOnDetailsTests extends TestBase {
         app.goTo().homePage();
         if (app.contacts().all().size() == 0) {
             app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
-                    .withAddress("Nowa 4, 10-100 Puck").withMobile("601601601").withEmail("kloc@wp.pl").withGroup("[none]"));
+                    .withAddress("Nowa 4, 10-100 Puck").withMobilePhone("601601601").withEmail("kloc@wp.pl").withGroup("[none]"));
         }
     }
 
@@ -27,7 +27,7 @@ public class ContactModifOnDetailsTests extends TestBase {
 
         ContactData modifiedContact = before.iterator().next(); //random selection of an element to be removed
         ContactData currentContact = new ContactData().withId(modifiedContact.getId()).withFirstname("Kornelia")
-                .withLastname("Nowak").withAddress("Zmęczona 1, 10-100 Gdynia").withMobile("500555000").withEmail("selen@wp.pl");
+                .withLastname("Nowak").withAddress("Zmęczona 1, 10-100 Gdynia").withMobilePhone("500555000").withEmail("selen@wp.pl");
         app.contacts().modifyOnDetails(currentContact);
         app.goTo().homePage();
         assertEquals(app.contacts().count(), before.size()); //comparing the size of collections

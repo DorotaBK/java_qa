@@ -29,7 +29,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("nickname"), contactData.getNick());
         type(By.name("address"), contactData.getAddress());
-        type(By.name("mobile"), contactData.getMobile());
+        type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
 
         // creation => there is drop-down list, so we are on the creation form
@@ -149,10 +149,10 @@ public class ContactHelper extends HelperBase{
             //String address = row.findElement(By.xpath("td[4]")).getText();
             String email = cells.get(4).getText();
             //String email = row.findElement(By.xpath("td[5]")).getText();
-            String mobile = cells.get(5).getText();
-            //String mobile = row.findElement(By.xpath("td[6]")).getText();
+            String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                    .withAddress(address).withMobile(mobile).withEmail(email));
+                    .withAddress(address).withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2])
+                    .withEmail(email));
         }
         return contactCache;
     }
@@ -166,7 +166,7 @@ public class ContactHelper extends HelperBase{
         String work = wd.findElement(By.name("work")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-                .withHomePhone(home).withMobile(mobile).withWorkPhone(work);
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 
 }
