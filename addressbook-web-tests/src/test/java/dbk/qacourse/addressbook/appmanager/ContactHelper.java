@@ -149,10 +149,17 @@ public class ContactHelper extends HelperBase{
             //String address = row.findElement(By.xpath("td[4]")).getText();
             String email = cells.get(4).getText();
             //String email = row.findElement(By.xpath("td[5]")).getText();
+            String allPhones = cells.get(5).getText();
+            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
+                    .withAddress(address).withAllPhones(allPhones).withEmail(email));
+
+            /* cutting of data chains (each contact must have 3 telephone numbers!):
+
             String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                    .withAddress(address).withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2])
-                    .withEmail(email));
+                            .withAddress(address).withHomePhone(phones[0]).withMobilePhone(phones[1])
+                            .withWorkPhone(phones[2]).withEmail(email));
+             */
         }
         return contactCache;
     }
