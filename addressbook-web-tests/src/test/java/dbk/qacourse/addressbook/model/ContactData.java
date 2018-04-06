@@ -13,6 +13,9 @@ public class ContactData {
     private String workPhone;
     private String allPhones;
     private String email;
+    private String email2;
+    private String email3;
+    private String allEmails;
     private String group;
 
     // Getter
@@ -40,6 +43,18 @@ public class ContactData {
         return email;
     }
 
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
     public String getGroup() {
         return group;   // after "Create getter for 'group'", getting the value
     }
@@ -52,12 +67,12 @@ public class ContactData {
         return mobilePhone;
     }
 
-    public String getAllPhones() {
-        return allPhones;
-    }
-
     public String getWorkPhone() {
         return workPhone;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
     }
 
     // Setter
@@ -91,8 +106,18 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
         return this;
     }
 
@@ -116,31 +141,26 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", address='" + address + '\'' +
+                ", homePhone='" + homePhone + '\'' +
                 ", mobilePhone='" + mobilePhone + '\'' +
+                ", workPhone='" + workPhone + '\'' +
+                ", allPhones='" + allPhones + '\'' +
                 ", email='" + email + '\'' +
+                ", email2='" + email2 + '\'' +
+                ", email3='" + email3 + '\'' +
+                ", allEmails='" + allEmails + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return id == that.id &&
-                Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, firstname, lastname);
     }
 }
