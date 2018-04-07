@@ -172,10 +172,11 @@ public class ContactHelper extends HelperBase{
         String email = wd.findElement(By.name("email")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-                .withEmail(email).withEmail2(email2).withEmail3(email3);
+                .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
     }
 
 }
