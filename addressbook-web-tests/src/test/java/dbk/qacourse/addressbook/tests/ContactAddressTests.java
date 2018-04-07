@@ -24,7 +24,7 @@ public class ContactAddressTests extends TestBase {
         app.goTo().homePage();
         ContactData contact = app.contacts().all().iterator().next(); //contact from main page
         ContactData contactInfoFromEditForm = app.contacts().infoFromEditForm(contact);
-        System.out.println(contact.getLastname());
+        //System.out.println(contact.getLastname());
         assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     }
 }

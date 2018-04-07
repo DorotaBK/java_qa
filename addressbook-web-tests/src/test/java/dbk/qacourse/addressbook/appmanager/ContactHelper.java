@@ -8,9 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
     public ContactHelper(WebDriver wd) {
         super(wd);
@@ -63,7 +66,7 @@ public class ContactHelper extends HelperBase{
     public void contactDeleteById(ContactData contact) {
         selectContactToDeleteById(contact.getId());
     }
-    
+
     public void selectContactToEditById(int id) {
         //by QA-Courses:
         WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
@@ -82,8 +85,15 @@ public class ContactHelper extends HelperBase{
         */
     }
 
-    private void selectContactToDetailsById(int id) {
+    public void selectContactToDetailsById(int id) {
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+        WebElement row = checkbox.findElement(By.xpath("./../.."));
+        List<WebElement> cells = row.findElements(By.tagName("td"));
+        cells.get(6).findElement(By.tagName("a")).click();
+
+        /* my own, first version:
         wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
+        */
     }
 
     public void selectContactToDeleteById(int id) {
@@ -138,15 +148,13 @@ public class ContactHelper extends HelperBase{
         contactCache = new Contacts();
         List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
         for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));                                        //QA code
-            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));  //QA code
-            //int id = Integer.parseInt(row.findElement(By.cssSelector("td.center>input")).getAttribute("id")); //my code
+            List<WebElement> cells = row.findElements(By.tagName("td"));                                       //QA code
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id")); //QA code
+            //int id = Integer.parseInt(row.findElement(By.cssSelector("td.center>input")).getAttribute("id"));//my code
             String lastName = cells.get(1).getText();
             //String lastName = row.findElement(By.xpath("td[2]")).getText();
             String firstName = cells.get(2).getText();
-            //...row.findElement(By.xpath("td[3]")).getText();
             String address = cells.get(3).getText();
-            //...row.findElement(By.xpath("td[4]")).getText();
             String allEmails = cells.get(4).getText();
             String allPhones = cells.get(5).getText();
             contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
@@ -173,10 +181,19 @@ public class ContactHelper extends HelperBase{
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         String address = wd.findElement(By.name("address")).getAttribute("value");
+        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-                .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
+                .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address).withAddress2(address2);
     }
 
+    public String infoFromDetailsPage(ContactData contact) {
+        selectContactToDetailsById(contact.getId());
+        String details = wd.findElement(By.id("content")).getText().replaceAll("H: ", "")
+                .replaceAll("M: ", "").replaceAll("W: ", "")
+                .replaceAll("\n", " ").replaceAll("   ", " ")
+                .replaceAll("  ", " ");
+        return details;
+    }
 }

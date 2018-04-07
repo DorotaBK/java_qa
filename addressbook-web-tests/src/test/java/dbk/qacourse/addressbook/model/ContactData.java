@@ -17,6 +17,7 @@ public class ContactData {
     private String email3;
     private String allEmails;
     private String group;
+    private String address2;
 
     // Getter
     public int getId() {
@@ -73,6 +74,10 @@ public class ContactData {
 
     public String getAllPhones() {
         return allPhones;
+    }
+
+    public String getAddress2() {
+        return address2;
     }
 
     // Setter
@@ -146,6 +151,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAddress2(String address2) {
+        this.address2 = address2;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -162,13 +172,15 @@ public class ContactData {
                 Objects.equals(email, that.email) &&
                 Objects.equals(email2, that.email2) &&
                 Objects.equals(email3, that.email3) &&
-                Objects.equals(allEmails, that.allEmails);
+                Objects.equals(allEmails, that.allEmails) &&
+                Objects.equals(address2, that.address2);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstname, lastname, address, homePhone, mobilePhone, workPhone, allPhones, email, email2, email3, allEmails);
+        return Objects.hash(id, firstname, lastname, address, homePhone, mobilePhone,
+                workPhone, allPhones, email, email2, email3, allEmails, address2);
     }
 
     @Override
@@ -186,6 +198,7 @@ public class ContactData {
                 ", email2='" + email2 + '\'' +
                 ", email3='" + email3 + '\'' +
                 ", allEmails='" + allEmails + '\'' +
+                ", address2='" + address2 + '\'' +
                 '}';
     }
 }

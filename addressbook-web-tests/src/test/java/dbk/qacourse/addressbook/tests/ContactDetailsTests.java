@@ -5,12 +5,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactEmailTests extends TestBase {
+public class ContactDetailsTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
@@ -23,17 +24,20 @@ public class ContactEmailTests extends TestBase {
     }
 
     @Test
-    public void testContactEmails() {
+    public void testContactDetails() {
         app.goTo().homePage();
         ContactData contact = app.contacts().all().iterator().next(); //contact from main page
         ContactData contactInfoFromEditForm = app.contacts().infoFromEditForm(contact);
-        //System.out.println(contact.getLastname());
-        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+        String contactInfoFromDetailsPage = app.contacts().infoFromDetailsPage(contact);
+        assertThat(mergeAllData(contactInfoFromEditForm), equalTo(contactInfoFromDetailsPage));
     }
 
-    private String mergeEmails(ContactData contact) {
-        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).stream()
+    private String mergeAllData(ContactData contact) {
+        return Arrays.asList(contact.getFirstname(), contact.getLastname(), contact.getAddress(),
+                contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
+                contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getAddress2())
+                .stream()
                 .filter((s) -> ! s.equals(""))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(" "));
     }
 }

@@ -27,7 +27,6 @@ public class ContactPhoneTests extends TestBase {
         app.goTo().homePage();
         ContactData contact = app.contacts().all().iterator().next(); //contact from main page
         ContactData contactInfoFromEditForm = app.contacts().infoFromEditForm(contact);
-        System.out.println(contact.getLastname());
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
     }
 
@@ -39,7 +38,8 @@ public class ContactPhoneTests extends TestBase {
     }
 
     public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "").replaceAll("[-()]","");
+        return phone.replaceAll("\\s", "")
+                .replaceAll("[-()]","");
     }
 
     /* test with cutting of data chains (only if each contact has 3 telephone numbers!):
