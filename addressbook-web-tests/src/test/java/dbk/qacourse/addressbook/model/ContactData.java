@@ -1,5 +1,6 @@
 package dbk.qacourse.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -18,6 +19,7 @@ public class ContactData {
     private String allEmails;
     private String group;
     private String address2;
+    private File photo;
 
     // Getter
     public int getId() {
@@ -78,6 +80,10 @@ public class ContactData {
 
     public String getAddress2() {
         return address2;
+    }
+
+    public File getPhoto() {
+        return photo;
     }
 
     // Setter
@@ -153,6 +159,11 @@ public class ContactData {
 
     public ContactData withAddress2(String address2) {
         this.address2 = address2;
+        return this;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
         return this;
     }
 

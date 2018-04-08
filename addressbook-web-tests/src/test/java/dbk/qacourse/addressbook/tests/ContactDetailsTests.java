@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
