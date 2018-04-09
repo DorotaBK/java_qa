@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test (enabled = false)
+    @Test
     public void testContactCreation() {
         app.goTo().homePage();
         Contacts before = app.contacts().all();
@@ -27,7 +27,8 @@ public class ContactCreationTests extends TestBase {
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((ct) -> ct.getId()).max().getAsInt()))));
     }
 
-    @Test
+
+    @Test (enabled = false)
     public void testCurrentDir() {
         File currentDir = new File(".");
         System.out.println(currentDir.getAbsolutePath());
