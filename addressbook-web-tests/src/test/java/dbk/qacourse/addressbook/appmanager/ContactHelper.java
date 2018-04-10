@@ -31,17 +31,15 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
-        type(By.name("photo")), contactData.getPhoto().getAbsolutePath();
+        attach(By.name("photo"), contactData.getPhoto());
 
         // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
-            if (ContactData.getGroup() != null) {
-                // choose element from drop-down list
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-            } else {
-                Assert.assertFalse(isElementPresent((By.name("new_group"))));
-            }
+            // choose element from drop-down list
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent((By.name("new_group"))));
         }
     }
 

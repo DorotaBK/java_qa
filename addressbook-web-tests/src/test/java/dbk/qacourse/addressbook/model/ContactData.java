@@ -58,8 +58,9 @@ public class ContactData {
         return allEmails;
     }
 
+    // after "Create getter for 'group'", getting the value
     public String getGroup() {
-        return group;   // after "Create getter for 'group'", getting the value
+        return group;
     }
 
     public String getHomePhone() {
