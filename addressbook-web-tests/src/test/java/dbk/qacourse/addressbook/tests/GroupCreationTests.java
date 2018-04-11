@@ -13,18 +13,16 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         app.goTo().groupPage();
         Groups before = app.groups().all();
-        System.out.println("before test: " + before.size());
-        GroupData group = new GroupData().withName("grupa_A");
+        GroupData group = new GroupData().withName("grupa_X");
         app.groups().create(group);
         assertThat(app.groups().count(), equalTo(before.size() + 1)); //comparison of size of the Lists
         Groups after = app.groups().all();
-        System.out.println("after test: " + after.size());
         //comparison all with Hamcrest and guava
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt((gr) -> gr.getId()).max().getAsInt()))));
     }
 
-    @Test
+    @Test (enabled = false)
     public void testNegativeGroupCreation() {
         app.goTo().groupPage();
         Groups before = app.groups().all();
