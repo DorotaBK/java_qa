@@ -17,7 +17,7 @@ public class GroupCreationTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validGroups() {
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add(new Object[]{new GroupData().withName("testA'").withHeader("header A").withFooter("footer A")});
+        list.add(new Object[]{new GroupData().withName("testA").withHeader("header A").withFooter("footer A")});
         list.add(new Object[]{new GroupData().withName("testB").withHeader("header B").withFooter("footer B")});
         list.add(new Object[]{new GroupData().withName("testC").withHeader("header C").withFooter("footer C")});
         return list.iterator();
@@ -28,10 +28,8 @@ public class GroupCreationTests extends TestBase {
         app.goTo().groupPage();
         Groups before = app.groups().all();
         app.groups().create(group);
-        //comparison of size of the Lists
         assertThat(app.groups().count(), equalTo(before.size() + 1));
         Groups after = app.groups().all();
-        //comparison all, with Hamcrest and guava
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt((gr) -> gr.getId()).max().getAsInt()))));
     }
