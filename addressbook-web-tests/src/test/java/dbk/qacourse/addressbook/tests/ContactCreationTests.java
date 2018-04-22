@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase {
         while (line != null){
             String[] split = line.split(";");
             list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1])
-                    .withEmail(split[2]).withMobilePhone(split[3])});
+                    .withEmail(split[2]).withMobilePhone(split[3]).withGroup("[none]")});
             line = reader.readLine();
         }
         return list.iterator();

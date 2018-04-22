@@ -146,24 +146,15 @@ public class ContactHelper extends HelperBase {
         contactCache = new Contacts();
         List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
         for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));                                       //QA code
-            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id")); //QA code
-            //int id = Integer.parseInt(row.findElement(By.cssSelector("td.center>input")).getAttribute("id"));//my code
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
             String lastName = cells.get(1).getText();
-            //String lastName = row.findElement(By.xpath("td[2]")).getText();
             String firstName = cells.get(2).getText();
             String address = cells.get(3).getText();
             String allEmails = cells.get(4).getText();
             String allPhones = cells.get(5).getText();
             contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
                     .withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones));
-
-            /* cutting of data chains (each contact must have 3 telephone numbers!):
-            String[] phones = cells.get(5).getText().split("\n");
-            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                            .withAddress(address).withHomePhone(phones[0]).withMobilePhone(phones[1])
-                            .withWorkPhone(phones[2]).withEmail(email));
-             */
         }
         return contactCache;
     }
