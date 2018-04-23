@@ -53,9 +53,10 @@ public class ContactDataGenerator {
         String[] lastnames = {"Pierwszy", "Drugi", "Trzeci", "Czwarty"};
         String[] emails = {"Pierwszy@wp.pl", "Drugi@wp.pl", "Trzeci@wp.pl", "Czwarty@wp.pl"};
         String[] mobiles = {"500500500", "500600700", "500700800", "500800900"};
+        String group = "[none]";
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData().withFirstname(firstnames[i]).withLastname(lastnames[i])
-                    .withEmail(emails[i]).withMobilePhone(mobiles[i]));
+                    .withEmail(emails[i]).withMobilePhone(mobiles[i]).withGroup(group));
         }
         return contacts;
     }
@@ -64,8 +65,8 @@ public class ContactDataGenerator {
         System.out.println(new File(".").getAbsolutePath());
         Writer writer = new FileWriter(file);
         for (ContactData contact : contacts) {
-            writer.write(String.format("%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
-                    contact.getEmail(), contact.getMobilePhone()));
+            writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
+                    contact.getEmail(), contact.getMobilePhone(), contact.getGroup()));
         }
         writer.close(); //close the file
     }
