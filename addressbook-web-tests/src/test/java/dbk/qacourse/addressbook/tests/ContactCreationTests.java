@@ -21,9 +21,6 @@ public class ContactCreationTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        /* list.add(new Object[]{new ContactData().withFirstname("Paweł").withLastname("Biały").withNick("bialy")
-                .withAddress("Jasna 41, 10-100 Puck").withMobilePhone("800800800").withEmail("bialy@wp.pl")
-                .withPhoto(new File("src/test/resources/kermit.jpg")).withGroup("[none]")});  */
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
         String line = reader.readLine();
         while (line != null){
