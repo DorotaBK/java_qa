@@ -1,0 +1,26 @@
+<list>
+  <contact>
+    <firstname>Jan</firstname>
+    <lastname>Pierwszy</lastname>
+    <mobilePhone>500500500</mobilePhone>
+    <email>Pierwszy@wp.pl</email>
+  </contact>
+  <contact>
+    <firstname>Adam</firstname>
+    <lastname>Drugi</lastname>
+    <mobilePhone>500600700</mobilePhone>
+    <email>Drugi@wp.pl</email>
+  </contact>
+  <contact>
+    <firstname>Piotr</firstname>
+    <lastname>Trzeci</lastname>
+    <mobilePhone>500700800</mobilePhone>
+    <email>Trzeci@wp.pl</email>
+  </contact>
+  <contact>
+    <firstname>Witold</firstname>
+    <lastname>Czwarty</lastname>
+    <mobilePhone>500800900</mobilePhone>
+    <email>Czwarty@wp.pl</email>
+  </contact>
+</list>
