@@ -22,7 +22,7 @@ public class ContactAddressTests extends TestBase {
     @Test
     public void testContactAddress() {
         app.goTo().homePage();
-        ContactData contact = app.contacts().all().iterator().next(); //contact from main page
+        ContactData contact = app.contacts().all().iterator().next();       //contact from main page
         ContactData contactInfoFromEditForm = app.contacts().infoFromEditForm(contact);
         //System.out.println(contact.getLastname());
         assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
