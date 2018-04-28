@@ -1,5 +1,7 @@
 package dbk.qacourse.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import dbk.qacourse.addressbook.model.ContactData;
 import dbk.qacourse.addressbook.model.Contacts;
@@ -20,9 +22,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
+    // for JSON data file:
+    @DataProvider
+    public Iterator<Object[]> validContactsFromJSON() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null){
+            json += line;
+            line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {}.getType());  //List<ContactData>.class
+        return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
+
     //for XML data file:
     @DataProvider
-    public Iterator<Object[]> validContacts() throws IOException {
+    public Iterator<Object[]> validContactsFromXML() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
         String xml = "";
         String line = reader.readLine();
@@ -36,9 +53,9 @@ public class ContactCreationTests extends TestBase {
         return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
 
-    /* for CSV data file - DON'T REMOVE!!!!!! use this as a flag, switch!
+    // for CSV data file - use as a switch!
     @DataProvider
-    public Iterator<Object[]> validContacts() throws IOException {
+    public Iterator<Object[]> validContactsFromCSV() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
         String line = reader.readLine();
@@ -50,9 +67,8 @@ public class ContactCreationTests extends TestBase {
         }
         return list.iterator();
     }
-    */
 
-    @Test(dataProvider = "validContacts")
+    @Test(dataProvider = "validContactsFromJSON")
     public void testContactCreation(ContactData contact) {
         app.goTo().homePage();
         Contacts before = app.contacts().all();

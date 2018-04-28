@@ -1,0 +1,30 @@
+[
+  {
+    "firstname": "Jan",
+    "lastname": "Pierwszy",
+    "mobilePhone": "500500500",
+    "email": "Pierwszy@wp.pl",
+    "group": "[none]"
+  },
+  {
+    "firstname": "Adam",
+    "lastname": "Drugi",
+    "mobilePhone": "500600700",
+    "email": "Drugi@wp.pl",
+    "group": "[none]"
+  },
+  {
+    "firstname": "Piotr",
+    "lastname": "Trzeci",
+    "mobilePhone": "500700800",
+    "email": "Trzeci@wp.pl",
+    "group": "[none]"
+  },
+  {
+    "firstname": "Witold",
+    "lastname": "Czwarty",
+    "mobilePhone": "500800900",
+    "email": "Czwarty@wp.pl",
+    "group": "[none]"
+  }
+]
