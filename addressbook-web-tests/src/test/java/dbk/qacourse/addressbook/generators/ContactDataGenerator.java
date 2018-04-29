@@ -8,12 +8,12 @@ import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import dbk.qacourse.addressbook.model.ContactData;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactDataGenerator {
 
@@ -58,11 +58,21 @@ public class ContactDataGenerator {
         String[] emails = {"Pierwszy@wp.pl", "Drugi@wp.pl", "Trzeci@wp.pl", "Czwarty@wp.pl"};
         String[] mobiles = {"500500500", "500600700", "500700800", "500800900"};
         String group = "[none]";
+        File[] photos = {new File("src/test/resources/bert.jpg"), new File("src/test/resources/ernie.jpg"),
+                new File("src/test/resources/minion.jpg"), new File("src/test/resources/minion.jpg")};
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData().withFirstname(firstnames[i]).withLastname(lastnames[i])
-                    .withEmail(emails[i]).withMobilePhone(mobiles[i]).withGroup(group));
+                    .withEmail(emails[i]).withMobilePhone(mobiles[i]).withGroup(group).withPhoto(photos[i]));
         }
         return contacts;
+    }
+
+    private void saveAsJSON(List<ContactData> contacts, File file) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(contacts);
+        Writer writer = new FileWriter(file);
+        writer.write(json);
+        writer.close();
     }
 
     private void saveAsCSV(List<ContactData> contacts, File file) throws IOException {
@@ -81,14 +91,6 @@ public class ContactDataGenerator {
         String xml = xstream.toXML(contacts);
         Writer writer = new FileWriter(file);
         writer.write(xml);
-        writer.close();
-    }
-
-    private void saveAsJSON(List<ContactData> contacts, File file) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-        String json = gson.toJson(contacts);
-        Writer writer = new FileWriter(file);
-        writer.write(json);
         writer.close();
     }
 }
