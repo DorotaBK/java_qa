@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dbk.qacourse.addressbook.tests.GroupDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-04-29T23:35:18" hostname="DESKTOP-GECJGH0" time="1.868">
+  <properties/>
+  <testcase name="testGroupDeletion" classname="dbk.qacourse.addressbook.tests.GroupDeletionTests" time="1.868"/>
+  <system-out><![CDATA[number of groups before test: 22
+number of groups at the end: 21
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

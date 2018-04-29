@@ -37,7 +37,6 @@ public class ContactData {
     private String group;
     @Expose
     private String address2;
-    @Expose
     private File photo;
 
     // Getter
