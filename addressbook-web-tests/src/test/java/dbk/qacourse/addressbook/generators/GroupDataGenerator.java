@@ -60,29 +60,29 @@ public class GroupDataGenerator {
         return groups;
     }
 
-    private void saveAsCSV(List<GroupData> groups, File file) throws IOException {
-        System.out.println(new File(".").getAbsolutePath());
-        Writer writer = new FileWriter(file);
-        for (GroupData group : groups){
-            writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+    private void saveAsJSON(List<GroupData> groups, File file) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(groups);
+        try(Writer writer = new FileWriter(file)) {
+            writer.write(json);
         }
-        writer.close(); //close the file!!!
     }
 
     private void saveAsXML(List<GroupData> groups, File file) throws IOException {
         XStream xstream = new XStream();
         xstream.processAnnotations(GroupData.class);
         String xml = xstream.toXML(groups);
-        Writer writer = new FileWriter(file);
-        writer.write(xml);
-        writer.close();
+        try(Writer writer = new FileWriter(file)) {
+            writer.write(xml);
+        }
     }
 
-    private void saveAsJSON(List<GroupData> groups, File file) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-        String json = gson.toJson(groups);
-        Writer writer = new FileWriter(file);
-        writer.write(json);
-        writer.close();
+    private void saveAsCSV(List<GroupData> groups, File file) throws IOException {
+        System.out.println(new File(".").getAbsolutePath());
+        try(Writer writer = new FileWriter(file)) {
+            for (GroupData group : groups) {
+                writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+            }
+        }
     }
 }
