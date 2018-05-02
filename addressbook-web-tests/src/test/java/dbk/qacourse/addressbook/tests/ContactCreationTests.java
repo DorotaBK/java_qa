@@ -25,7 +25,7 @@ public class ContactCreationTests extends TestBase {
     // for JSON data file:
     @DataProvider
     public Iterator<Object[]> validContactsFromJSON() throws IOException {
-        try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts_photo.json")))) {
             String json = "";
             String line = reader.readLine();
             while (line != null) {
@@ -71,7 +71,7 @@ public class ContactCreationTests extends TestBase {
         return list.iterator();
     }
 
-    @Test (dataProvider = "validContactsFromXML")
+    @Test (dataProvider = "validContactsFromJSON")
     public void testContactCreation(ContactData contact) {
         app.goTo().homePage();
         Contacts before = app.contacts().all();

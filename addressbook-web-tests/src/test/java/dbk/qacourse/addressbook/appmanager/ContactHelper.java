@@ -32,8 +32,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
-        //attach(By.name("photo"), new File(contactData.getPhoto()));
-        attach(By.name("photo"), contactData.getPhoto());
+        attach(By.name("photo"), new File(contactData.getPhoto()));
 
         // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form

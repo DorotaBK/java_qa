@@ -15,4 +15,20 @@
     <group>[none]</group>
     <photo>src\test\resources\minion.jpg</photo>
   </contact>
+  <contact>
+    <firstname>Piotr</firstname>
+    <lastname>Trzeci</lastname>
+    <mobilePhone>500700800</mobilePhone>
+    <email>Trzeci@wp.pl</email>
+    <group>[none]</group>
+    <photo>src\test\resources\ernie.jpg</photo>
+  </contact>
+  <contact>
+    <firstname>Witold</firstname>
+    <lastname>Czwarty</lastname>
+    <mobilePhone>500800900</mobilePhone>
+    <email>Czwarty@wp.pl</email>
+    <group>[none]</group>
+    <photo>src\test\resources\bigbird.jpg</photo>
+  </contact>
 </list>
