@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dbk.qacourse.addressbook.tests.ContactDeletionOnHomeAbortTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-04-29T23:35:47" hostname="DESKTOP-GECJGH0" time="0.394">
-  <properties/>
-  <testcase name="testContactDeletionOnHomeAbort" classname="dbk.qacourse.addressbook.tests.ContactDeletionOnHomeAbortTests" time="0.394"/>
-  <system-out><![CDATA[before test: 17
-after test: 17
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
