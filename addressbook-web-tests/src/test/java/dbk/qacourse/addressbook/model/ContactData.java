@@ -38,7 +38,7 @@ public class ContactData {
     @Expose
     private String address2;
     @Expose
-    private String photo;
+    private File photo;
 
     // Getter
     public int getId() {
@@ -102,7 +102,7 @@ public class ContactData {
         return address2;
     }
 
-    public String getPhoto() {
+    public File getPhoto() {
         return photo;
     }
 
@@ -182,7 +182,7 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withPhoto(String photo) {
+    public ContactData withPhoto(File photo) {
         this.photo = photo;
         return this;
     }

@@ -1,0 +1,18 @@
+<list>
+  <contact>
+    <firstname>Jan</firstname>
+    <lastname>Pierwszy</lastname>
+    <mobilePhone>500500500</mobilePhone>
+    <email>Pierwszy@wp.pl</email>
+    <group>[none]</group>
+    <photo>src\test\resources\bert.jpg</photo>
+  </contact>
+  <contact>
+    <firstname>Adam</firstname>
+    <lastname>Drugi</lastname>
+    <mobilePhone>500600700</mobilePhone>
+    <email>Drugi@wp.pl</email>
+    <group>[none]</group>
+    <photo>src\test\resources\minion.jpg</photo>
+  </contact>
+</list>
