@@ -43,7 +43,6 @@ public class ContactPhoneTests extends TestBase {
     }
 
     /* test with cutting of data chains (only if each contact has 3 telephone numbers!):
-
     @Test
     public void testContactPhones() {
         app.goTo().homePage();
@@ -54,6 +53,5 @@ public class ContactPhoneTests extends TestBase {
         assertThat(contact.getMobilePhone(), equalTo(cleaned(contactInfoFromEditForm.getMobilePhone())));
         assertThat(contact.getWorkPhone(), equalTo(cleaned(contactInfoFromEditForm.getWorkPhone())));
     }
-
     */
 }
