@@ -32,7 +32,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
-        //attach(By.name("photo"), new File(contactData.getPhoto()));
+        attach(By.name("photo"), new File(contactData.getPhoto()));
         // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
@@ -88,7 +88,6 @@ public class ContactHelper extends HelperBase {
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(6).findElement(By.tagName("a")).click();
-
         /* my own, first version:
         wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
         */

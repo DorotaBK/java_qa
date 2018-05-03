@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dbk.qacourse.addressbook.tests.GroupModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-05-03T23:05:38" hostname="DESKTOP-GECJGH0" time="2.627">
+  <properties/>
+  <testcase name="testGroupModification" classname="dbk.qacourse.addressbook.tests.GroupModificationTests" time="2.627"/>
+  <system-out><![CDATA[number of groups before test: 23
+number of groups after test: 23
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

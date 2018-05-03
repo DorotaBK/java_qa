@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dbk.qacourse.addressbook.tests.GroupCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-05-03T23:05:28" hostname="DESKTOP-GECJGH0" time="9.889">
+  <properties/>
+  <testcase name="testGroupCreation[0](GroupData{id=2147483647, name='test 0', header='header 0', footer='footer 0'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="4.405"/>
+  <testcase name="testGroupCreation[1](GroupData{id=2147483647, name='test 1', header='header 1', footer='footer 1'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="2.805"/>
+  <testcase name="testGroupCreation[2](GroupData{id=2147483647, name='test 2', header='header 2', footer='footer 2'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="2.678"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -5,6 +5,8 @@ import dbk.qacourse.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -16,7 +18,8 @@ public class ContactModifOnDetailsTests extends TestBase {
         app.goTo().homePage();
         if (app.contacts().all().size() == 0) {
             app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
-                    .withAddress("Nowa 4, 10-100 Puck").withMobilePhone("601601601").withEmail("kloc@wp.pl").withGroup("[none]"));
+                    .withAddress("Nowa 4, 10-100 Puck").withMobilePhone("601601601").withEmail("kloc@wp.pl")
+                    .withGroup("[none]"));
         }
     }
 
@@ -27,7 +30,8 @@ public class ContactModifOnDetailsTests extends TestBase {
 
         ContactData modifiedContact = before.iterator().next(); //random selection of an element to be removed
         ContactData currentContact = new ContactData().withId(modifiedContact.getId()).withFirstname("Kornelia")
-                .withLastname("Nowak").withAddress("Zmoczona 1, 10-100 Gdynia").withMobilePhone("500555000").withEmail("selen@wp.pl");
+                .withLastname("Nowak").withAddress("Zmoczona 1, 10-100 Gdynia").withMobilePhone("500555000")
+                .withEmail("selen@wp.pl").withPhoto("src/test/resources/JerryMouse.png");
         app.contacts().modifyOnDetails(currentContact);
         app.goTo().homePage();
         assertEquals(app.contacts().count(), before.size()); //comparing the size of collections

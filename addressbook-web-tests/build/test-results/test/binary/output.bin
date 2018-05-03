@@ -1,2 +1,12 @@
-before test: 17
-after test: 17
+"number of groups before test: 21
+!number of groups after test: 21
+"number of groups before test: 21
+!number of groups at the end: 20
+before test: 10
+after test: 10
+before test: 10
+after test: 10
+before test: 10
+after test: 10
+before test: 10
+after test: 9

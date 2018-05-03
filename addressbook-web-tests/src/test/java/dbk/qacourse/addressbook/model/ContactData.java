@@ -205,14 +205,15 @@ public class ContactData {
                 Objects.equals(email2, that.email2) &&
                 Objects.equals(email3, that.email3) &&
                 Objects.equals(allEmails, that.allEmails) &&
-                Objects.equals(address2, that.address2);
+                Objects.equals(address2, that.address2) &&
+                Objects.equals(photo, that.photo);
     }
 
     @Override
     public int hashCode() {
 
         return Objects.hash(id, firstname, lastname, nick, address, homePhone, mobilePhone, workPhone, allPhones,
-                email, email2, email3, allEmails, address2);
+                email, email2, email3, allEmails, address2, photo);
     }
 
     @Override
@@ -233,5 +234,4 @@ public class ContactData {
                 ", address2='" + address2 + '\'' +
                 '}';
     }
-
 }
