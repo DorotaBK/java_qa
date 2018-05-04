@@ -5,10 +5,6 @@ import dbk.qacourse.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.File;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 public class ContactModifOnDetailsTests extends TestBase {

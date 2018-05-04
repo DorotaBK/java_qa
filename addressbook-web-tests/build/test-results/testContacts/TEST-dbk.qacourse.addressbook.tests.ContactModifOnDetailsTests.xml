@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dbk.qacourse.addressbook.tests.ContactModifOnDetailsTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-05-03T23:16:16" hostname="DESKTOP-GECJGH0" time="4.637">
-  <properties/>
-  <testcase name="testContactModifOnDetails" classname="dbk.qacourse.addressbook.tests.ContactModifOnDetailsTests" time="4.637"/>
-  <system-out><![CDATA[before test: 14
-after test: 14
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
