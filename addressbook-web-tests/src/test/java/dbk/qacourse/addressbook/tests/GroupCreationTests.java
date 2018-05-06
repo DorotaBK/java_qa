@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import dbk.qacourse.addressbook.model.GroupData;
 import dbk.qacourse.addressbook.model.Groups;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,6 +23,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
+
+    Logger logger = LoggerFactory.getLogger(GroupCreationTests.class);
 
     // for JSON data file:
     @DataProvider
@@ -82,7 +86,7 @@ public class GroupCreationTests extends TestBase {
     }
 
     //negative test; yet without data provider
-    @Test(enabled = false)
+    @Test
     public void testNegativeGroupCreation() {
         app.goTo().groupPage();
         Groups before = app.groups().all();
