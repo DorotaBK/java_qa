@@ -5,7 +5,7 @@
     <mobilePhone>500500500</mobilePhone>
     <email>Pierwszy@wp.pl</email>
     <group>[none]</group>
-    <photo>src\test\resources\bert.jpg</photo>
+    <photo>src/test/resources/photo/bert.jpg</photo>
   </contact>
   <contact>
     <firstname>Adam</firstname>
@@ -13,7 +13,7 @@
     <mobilePhone>500600700</mobilePhone>
     <email>Drugi@wp.pl</email>
     <group>[none]</group>
-    <photo>src\test\resources\minion.jpg</photo>
+    <photo>src/test/resources/photo/ernie.jpg</photo>
   </contact>
   <contact>
     <firstname>Piotr</firstname>
@@ -21,7 +21,7 @@
     <mobilePhone>500700800</mobilePhone>
     <email>Trzeci@wp.pl</email>
     <group>[none]</group>
-    <photo>src\test\resources\ernie.jpg</photo>
+    <photo>src/test/resources/photo/minion.jpg</photo>
   </contact>
   <contact>
     <firstname>Witold</firstname>
@@ -29,6 +29,6 @@
     <mobilePhone>500800900</mobilePhone>
     <email>Czwarty@wp.pl</email>
     <group>[none]</group>
-    <photo>src\test\resources\bigbird.jpg</photo>
+    <photo>src/test/resources/photo/bigbird.jpg</photo>
   </contact>
 </list>

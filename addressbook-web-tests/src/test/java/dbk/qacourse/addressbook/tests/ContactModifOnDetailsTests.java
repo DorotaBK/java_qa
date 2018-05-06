@@ -27,7 +27,7 @@ public class ContactModifOnDetailsTests extends TestBase {
         ContactData modifiedContact = before.iterator().next(); //random selection of an element to be removed
         ContactData currentContact = new ContactData().withId(modifiedContact.getId()).withFirstname("Kornelia")
                 .withLastname("Nowak").withAddress("Zmoczona 1, 10-100 Gdynia").withMobilePhone("500555000")
-                .withEmail("selen@wp.pl").withPhoto("src/test/resources/JerryMouse.png");
+                .withEmail("selen@wp.pl").withPhoto("src/test/resources/photo/JerryMouse.png");
         app.contacts().modifyOnDetails(currentContact);
         app.goTo().homePage();
         assertEquals(app.contacts().count(), before.size()); //comparing the size of collections

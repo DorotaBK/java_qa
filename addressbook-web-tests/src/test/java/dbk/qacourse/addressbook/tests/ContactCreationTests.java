@@ -89,7 +89,7 @@ public class ContactCreationTests extends TestBase {
     public void testCurrentDir() {
         File currentDir = new File(".");
         System.out.println(currentDir.getAbsolutePath());
-        File photo = new File("src/test/resources/Elmo.jpg");
+        File photo = new File("src/test/resources/photo/Elmo.jpg");
         System.out.println(photo.getAbsolutePath());
         System.out.println(photo.exists());
     }
