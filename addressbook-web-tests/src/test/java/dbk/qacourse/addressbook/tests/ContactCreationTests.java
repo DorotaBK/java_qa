@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
-    // for JSON data file:
+    // JSON data file:
     @DataProvider
     public Iterator<Object[]> validContactsFromJSON() throws IOException {
         try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts_photo.json")))) {
@@ -39,7 +39,7 @@ public class ContactCreationTests extends TestBase {
         }
     }
 
-    //for XML data file:
+    // XML data file:
     @DataProvider
     public Iterator<Object[]> validContactsFromXML() throws IOException {
         try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts_photo.xml")))){
@@ -56,7 +56,7 @@ public class ContactCreationTests extends TestBase {
         }
     }
 
-    // for CSV data file - use as a switch!
+    // CSV data file
     @DataProvider
     public Iterator<Object[]> validContactsFromCSV() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
