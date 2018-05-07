@@ -13,15 +13,15 @@ public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-     protected static final ApplicationManager app
-             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+    protected static final ApplicationManager app
+            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
-     @BeforeSuite
+    @BeforeSuite
     public void setUp() throws Exception {
         app.init();
     }
 
-     @AfterSuite
+    @AfterSuite
     public void tearDown() {
         app.stop();
     }
@@ -35,4 +35,4 @@ public class TestBase {
     public void logTestStop(Method m) {
         logger.error("Stop test " + m.getName());
     }
- }
+}
