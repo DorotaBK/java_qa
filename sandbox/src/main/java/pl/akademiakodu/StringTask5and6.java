@@ -2,7 +2,7 @@ package pl.akademiakodu;
 
 import java.util.Scanner;
 
-public class Task5and6 {
+public class StringTask5and6 {
     public static void main(String[] args) {
         System.out.println("Podaj wyraz:");
         Scanner scanner = new Scanner(System.in);
