@@ -1,6 +1,6 @@
 package dbk.qacourse.addressbook.tests;
 
-import dbk.qacourse.addressbook.model.GroupData;
+import dbk.qacourse.addressbook.model.ContactData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class HbConnectionTestForGroups {
+public class HbConnectionTestForContacts {
 
     private SessionFactory sessionFactory;
 
@@ -32,12 +32,12 @@ public class HbConnectionTestForGroups {
     }
 
     @Test
-    public void testHbConnectionForGroups() {
+    public void testHbConnectionForContacts() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupData> result = session.createQuery( "from GroupData" ).list();
-        for (GroupData group : result) {
-            System.out.println(group);
+        List<ContactData> result = session.createQuery( "from ContactData" ).list();
+        for (ContactData contact : result) {
+            System.out.println(contact);
         }
         session.getTransaction().commit();
         session.close();
