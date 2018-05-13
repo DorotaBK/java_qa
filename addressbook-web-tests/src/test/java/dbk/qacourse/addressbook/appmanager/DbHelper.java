@@ -1,5 +1,7 @@
 package dbk.qacourse.addressbook.appmanager;
 
+import dbk.qacourse.addressbook.model.ContactData;
+import dbk.qacourse.addressbook.model.Contacts;
 import dbk.qacourse.addressbook.model.GroupData;
 import dbk.qacourse.addressbook.model.Groups;
 import org.hibernate.Session;
@@ -25,9 +27,18 @@ public class DbHelper {
     public Groups groups() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupData> result = session.createQuery( "from GroupData" ).list();
+        List<GroupData> result = session.createQuery( "from GroupData").list();
         session.getTransaction().commit();
         session.close();
         return new Groups(result);
+    }
+
+    public Contacts contacts() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
     }
 }

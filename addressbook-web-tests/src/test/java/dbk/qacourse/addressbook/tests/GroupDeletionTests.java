@@ -13,20 +13,21 @@ public class GroupDeletionTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        if (app.groups().all().size() == 0){
+        if (app.db().groups().size() == 0){
+            app.goTo().groupPage();
             app.groups().create(new GroupData().withName("grupa_6"));
         }
     }
 
     @Test
     public void testGroupDeletion() {
-        Groups before = app.groups().all();
+        Groups before = app.db().groups();
         System.out.println("number of groups before test: " + before.size());
         GroupData deletedGroup = before.iterator().next();  //random selection of an element to be removed
+        app.goTo().groupPage();
         app.groups().delete(deletedGroup);
-        assertEquals(app.groups().count(), before.size() - 1 ); //comparing the size of collections
-        Groups after = app.groups().all();
+        assertEquals(app.db().groups().size(), before.size() - 1 ); //comparing the size of collections
+        Groups after = app.db().groups();
         System.out.println("number of groups at the end: " + after.size());
         assertThat(after, equalTo(before.without(deletedGroup)));   // direct comparison with Hamcrest and guava
     }
