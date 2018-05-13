@@ -13,8 +13,8 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().homePage();
-        if (app.contacts().all().size() == 0) {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().homePage();
             app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
                     .withAddress("Nowa 4, 10-100 Puck").withMobilePhone("601601601").withEmail("eklocek@wp.pl").withGroup("[none]"));
         }
@@ -22,15 +22,15 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
 
     @Test
     public void testContactDeletionOnHomeAbort() {
-        Contacts before = app.contacts().all();
+        Contacts before = app.db().contacts();
         System.out.println("before test: " + before.size());
-
         ContactData deletedContact = before.iterator().next();  //random selection of an element to be removed
+        app.goTo().homePage();
         app.contacts().contactDeleteById(deletedContact);
         app.contacts().deleteOnHome();
         app.contacts().isAlertPresent();
-        assertEquals(app.contacts().count(),before.size()); // comparing the size of collections
-        Contacts after = app.contacts().all();
+        assertEquals(app.db().contacts().size(),before.size()); // comparing the size of collections
+        Contacts after = app.db().contacts();
         System.out.println("after test: " + after.size());
         assertThat(after, equalTo(before));
     }

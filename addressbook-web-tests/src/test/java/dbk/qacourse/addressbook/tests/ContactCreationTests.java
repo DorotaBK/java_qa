@@ -73,15 +73,15 @@ public class ContactCreationTests extends TestBase {
 
     @Test (dataProvider = "validContactsFromJSON")
     public void testContactCreation(ContactData contact) {
+        Contacts before = app.db().contacts();
         app.goTo().homePage();
-        Contacts before = app.contacts().all();
         app.contacts().create(contact);
         app.goTo().homePage();
         assertThat(app.contacts().count(), equalTo(before.size() + 1));
-        /*Contacts after = app.contacts().all();
+        /*Contacts after = app.db().contacts();
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((ct) -> ct.getId()).max().getAsInt()))));
-                */
+        */
     }
 
     // searching for the current working directory

@@ -76,24 +76,24 @@ public class GroupCreationTests extends TestBase {
 
     @Test(dataProvider = "validGroupsFromJSON")
     public void testGroupCreation(GroupData group) {
+        Groups before = app.db().groups();
         app.goTo().groupPage();
-        Groups before = app.groups().all();
         app.groups().create(group);
         assertThat(app.groups().count(), equalTo(before.size() + 1));
-        Groups after = app.groups().all();
+        Groups after = app.db().groups();
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt((gr) -> gr.getId()).max().getAsInt()))));
     }
 
     //negative test; yet without data provider
-    @Test
+    @Test (enabled = false)
     public void testNegativeGroupCreation() {
-        app.goTo().groupPage();
-        Groups before = app.groups().all();
+        Groups before = app.db().groups();
         GroupData group = new GroupData().withName("grupa'_B");
+        app.goTo().groupPage();
         app.groups().create(group);
-        assertThat(app.groups().count(), equalTo(before.size())); //comparison of size of the Lists
-        Groups after = app.groups().all();
+        assertThat(app.db().groups().size(), equalTo(before.size())); //comparison of size of the Lists
+        Groups after = app.db().groups();
         assertThat(after, equalTo(before));  //comparison all with Hamcrest and guava
     }
 }

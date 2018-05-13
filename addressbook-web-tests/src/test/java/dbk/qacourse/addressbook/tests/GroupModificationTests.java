@@ -13,25 +13,24 @@ public class GroupModificationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        if (app.groups().all().size() == 0){
+        if (app.db().groups().size() == 0){
+            app.goTo().groupPage();
             app.groups().create(new GroupData().withName("grupa_6"));
         }
     }
 
     @Test
     public void testGroupModification() {
-        Groups before = app.groups().all();
+        Groups before = app.db().groups();
         System.out.println("number of groups before test: " + before.size());
         GroupData modifiedGroup = before.iterator().next();  //random selection of an element to be modified
         GroupData currentGroup = new GroupData().withId(modifiedGroup.getId()).withName("grupa_test")
                                 .withHeader("test").withFooter("tst");
+        app.goTo().groupPage();
         app.groups().modify(currentGroup);
         Assert.assertEquals(app.groups().count(), before.size()); //comparison of size of the Lists
-        Groups after = app.groups().all();
+        Groups after = app.db().groups();
         System.out.println("number of groups after test: " + after.size());
         assertThat(after, equalTo(before.without(modifiedGroup).withAdded(currentGroup))); //comparison with Hamcrest and guava
-
-
     }
 }
