@@ -95,5 +95,6 @@ public class GroupCreationTests extends TestBase {
         assertThat(app.db().groups().size(), equalTo(before.size())); //comparison of size of the Lists
         Groups after = app.db().groups();
         assertThat(after, equalTo(before));  //comparison all with Hamcrest and guava
+        verifyGroupListInUI();
     }
 }

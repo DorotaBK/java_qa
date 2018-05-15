@@ -1,6 +1,8 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.appmanager.ApplicationManager;
+import dbk.qacourse.addressbook.model.GroupData;
+import dbk.qacourse.addressbook.model.Groups;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +10,10 @@ import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
 
@@ -26,13 +32,23 @@ public class TestBase {
         app.stop();
     }
 
-    @BeforeMethod (alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void logTestStart(Method m, Object[] p) {
         logger.info("Start test " + m.getName() + " with parameters " + Arrays.asList(p));
     }
 
-    @AfterMethod (alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void logTestStop(Method m) {
         logger.info("Stop test " + m.getName());
+    }
+
+    public void verifyGroupListInUI() {
+        if (Boolean.getBoolean("verifyUI")) {
+            Groups dbGroups = app.db().groups();
+            Groups uiGroups = app.groups().all();
+            assertThat(uiGroups, equalTo(dbGroups.stream()
+                    .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+                    .collect(Collectors.toSet())));
+        }
     }
 }

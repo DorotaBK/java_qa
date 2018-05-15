@@ -32,5 +32,6 @@ public class GroupModificationTests extends TestBase {
         Groups after = app.db().groups();
         System.out.println("number of groups after test: " + after.size());
         assertThat(after, equalTo(before.without(modifiedGroup).withAdded(currentGroup))); //comparison with Hamcrest and guava
+        verifyGroupListInUI();
     }
 }

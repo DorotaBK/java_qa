@@ -30,5 +30,6 @@ public class GroupDeletionTests extends TestBase {
         Groups after = app.db().groups();
         System.out.println("number of groups at the end: " + after.size());
         assertThat(after, equalTo(before.without(deletedGroup)));   // direct comparison with Hamcrest and guava
+        verifyGroupListInUI();
     }
 }
