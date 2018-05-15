@@ -3,6 +3,8 @@ package dbk.qacourse.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -46,23 +48,29 @@ public class ContactData {
     @Type(type = "text")
     private String workPhone;
 
-    @Transient
+    //@Transient
+    @Formula(value="CONCAT(home, '\n', mobile, '\n', work)")
+    @Type(type = "text")
     private String allPhones;
 
     @Expose
     @Column(name = "email")
     @Type(type = "text")
     private String email;
+
     @Expose
     @Column(name = "email2")
     @Type(type = "text")
     private String email2;
+
     @Expose
     @Column(name = "email3")
     @Type(type = "text")
     private String email3;
 
-    @Transient
+    //@Transient
+    @Formula(value="CONCAT(email, '\n', email2, '\n', email3)")
+    @Type(type = "text")
     private String allEmails;
 
     @Expose

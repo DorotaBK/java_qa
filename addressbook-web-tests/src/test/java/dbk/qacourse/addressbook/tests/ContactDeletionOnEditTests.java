@@ -23,15 +23,14 @@ public class ContactDeletionOnEditTests extends TestBase {
     @Test
     public void testContactDeletionOnEdit() {
         Contacts before = app.db().contacts();
-        System.out.println("before test: " + before.size());
         ContactData deletedContact = before.iterator().next();  //random selection of an element to be removed
         app.goTo().homePage();
         app.contacts().contactEditById(deletedContact);
         app.contacts().deleteOnEditPage();
         app.goTo().homePage();
-        assertEquals(app.db().contacts().size(),before.size() - 1);
         Contacts after = app.db().contacts();
-        System.out.println("after test: " + after.size());
+        assertEquals(after.size(),before.size() - 1);
         assertThat(after, equalTo(before.without(deletedContact)));
+        verifyContactListInUI();
     }
 }

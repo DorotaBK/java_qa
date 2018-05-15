@@ -1,6 +1,8 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.appmanager.ApplicationManager;
+import dbk.qacourse.addressbook.model.ContactData;
+import dbk.qacourse.addressbook.model.Contacts;
 import dbk.qacourse.addressbook.model.GroupData;
 import dbk.qacourse.addressbook.model.Groups;
 import org.openqa.selenium.remote.BrowserType;
@@ -46,8 +48,22 @@ public class TestBase {
         if (Boolean.getBoolean("verifyUI")) {
             Groups dbGroups = app.db().groups();
             Groups uiGroups = app.groups().all();
-            assertThat(uiGroups, equalTo(dbGroups.stream()
-                    .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+            assertThat(uiGroups, equalTo(dbGroups.stream().map((g) -> new GroupData().withId(g.getId())
+                    .withName(g.getName()))
+                    .collect(Collectors.toSet())));
+        }
+    }
+
+    public void verifyContactListInUI() {
+        if (Boolean.getBoolean("verifyUI")) {
+            Contacts dbContacts = app.db().contacts();
+            Contacts uiContacts = app.contacts().all();
+            assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId())
+                            .withLastname(g.getLastname())
+                            .withFirstname(g.getFirstname())
+                            .withAddress(g.getAddress())
+                            .withAllEmails(g.getAllEmails())
+                            .withAllPhones(g.getAllPhones()))
                     .collect(Collectors.toSet())));
         }
     }
