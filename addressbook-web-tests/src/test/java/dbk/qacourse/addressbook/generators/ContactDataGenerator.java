@@ -55,14 +55,20 @@ public class ContactDataGenerator {
         List<ContactData> contacts = new ArrayList<ContactData>();
         String[] firstnames = {"Jan", "Adam", "Piotr", "Witold"};
         String[] lastnames = {"Pierwszy", "Drugi", "Trzeci", "Czwarty"};
-        String[] emails = {"Pierwszy@wp.pl", "Drugi@wp.pl", "Trzeci@wp.pl", "Czwarty@wp.pl"};
+        String[] emails = {"Pierwszy_0@wp.pl", "Drugi_0@wp.pl", "Trzeci_0@wp.pl", "Czwarty_0@wp.pl"};
+        String[] emails2 = {"Pierwszy_1@wp.pl", "Drugi_1@wp.pl", "Trzeci_1@wp.pl", "Czwarty_1@wp.pl"};
+        String[] emails3 = {"Pierwszy_2@wp.pl", "Drugi_2@wp.pl", "Trzeci_2@wp.pl", "Czwarty_2@wp.pl"};
+        String[] home = {"100111111", "100222222", "100333333", "100444444"};
         String[] mobiles = {"500500500", "500600700", "500700800", "500800900"};
+        String[] work = {"300111111", "300222222", "300333333", "400333333"};
         String group = "[none]";
         String[] photos = {"src/test/resources/photo/bert.jpg", "src/test/resources/photo/ernie.jpg",
                 "src/test/resources/photo/minion.jpg", "src/test/resources/photo/bigbird.jpg"};
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData().withFirstname(firstnames[i]).withLastname(lastnames[i])
-                    .withEmail(emails[i]).withMobilePhone(mobiles[i]).withGroup(group).withPhoto(photos[i]));
+                            .withEmail(emails[i]).withEmail2(emails2[i]).withEmail3(emails3[i])
+                            .withMobilePhone(mobiles[i]).withHomePhone(home[i]).withWorkPhone(work[i])
+                            .withGroup(group).withPhoto(photos[i]));
         }
         return contacts;
     }

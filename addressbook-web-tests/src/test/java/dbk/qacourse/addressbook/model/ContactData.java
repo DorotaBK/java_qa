@@ -48,9 +48,9 @@ public class ContactData {
     @Type(type = "text")
     private String workPhone;
 
-    //@Transient
-    @Formula(value="CONCAT(home, '\n', mobile, '\n', work)")
-    @Type(type = "text")
+    @Transient
+    //@Formula(value="CONCAT(home, '\n', mobile, '\n', work)")
+    //@Type(type = "text")
     private String allPhones;
 
     @Expose
@@ -68,9 +68,9 @@ public class ContactData {
     @Type(type = "text")
     private String email3;
 
-    //@Transient
-    @Formula(value="CONCAT(email, '\n', email2, '\n', email3)")
-    @Type(type = "text")
+    @Transient
+    //@Formula(value="CONCAT(email, '\n', email2, '\n', email3)")
+    //@Type(type = "text")
     private String allEmails;
 
     @Expose
