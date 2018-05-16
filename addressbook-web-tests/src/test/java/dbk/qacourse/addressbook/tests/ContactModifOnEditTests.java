@@ -21,7 +21,6 @@ public class ContactModifOnEditTests extends TestBase {
     @Test
     public void testContactModifOnEdit(){
         Contacts before = app.db().contacts();
-        System.out.println("before test: " + before.size());
         ContactData modifiedContact = before.iterator().next();     //random selection of an element to be removed
         ContactData currentContact = new ContactData().withId(modifiedContact.getId()).withFirstname("Paula")
                 .withLastname("Kot").withAddress("Polna 1/2, 10-120 Opole").withMobilePhone("800200300")
@@ -31,7 +30,7 @@ public class ContactModifOnEditTests extends TestBase {
         app.goTo().homePage();
         assertEquals(app.contacts().count(), before.size()); //comparing the size of collections
         Contacts after = app.db().contacts();
-        System.out.println("after test: " + after.size());
         //assertThat(after, equalTo(before.without(modifiedContact).withAdded(currentContact)));
+        verifyContactListInUI();
     }
 }

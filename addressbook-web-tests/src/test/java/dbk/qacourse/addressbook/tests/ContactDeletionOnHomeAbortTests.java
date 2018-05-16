@@ -23,7 +23,6 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
     @Test
     public void testContactDeletionOnHomeAbort() {
         Contacts before = app.db().contacts();
-        System.out.println("before test: " + before.size());
         ContactData deletedContact = before.iterator().next();  //random selection of an element to be removed
         app.goTo().homePage();
         app.contacts().contactDeleteById(deletedContact);
@@ -31,7 +30,7 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
         app.contacts().isAlertPresent();
         assertEquals(app.db().contacts().size(),before.size()); // comparing the size of collections
         Contacts after = app.db().contacts();
-        System.out.println("after test: " + after.size());
         assertThat(after, equalTo(before));
+        verifyContactListInUI();
     }
 }

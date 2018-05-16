@@ -57,14 +57,32 @@ public class TestBase {
     public void verifyContactListInUI() {
         if (Boolean.getBoolean("verifyUI")) {
             Contacts dbContacts = app.db().contacts();
-            Contacts uiContacts = app.contacts().all();
+            Contacts uiContacts = app.contacts().splitData();
+
             assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId())
-                            .withLastname(g.getLastname())
-                            .withFirstname(g.getFirstname())
-                            .withAddress(g.getAddress())
-                            .withAllEmails(g.getAllEmails())
-                            .withAllPhones(g.getAllPhones()))
+                    .withLastname(g.getLastname())
+                    .withFirstname(g.getFirstname())
+                    .withAddress(g.getAddress())
+                    .withEmail(g.getEmail())
+                    .withEmail2(g.getEmail2())
+                    .withEmail3(g.getEmail3())
+                    .withHomePhone(g.getHomePhone())
+                    .withMobilePhone(g.getMobilePhone())
+                    .withWorkPhone(g.getWorkPhone()))
                     .collect(Collectors.toSet())));
+
+        /*
+            assertThat(uiContacts.getId(), equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId()))));
+            assertThat(uiContacts.getLastname(), equalTo(dbContacts.stream().map((g) -> new ContactData().withLastname(g.getLastname()))));
+            assertThat(uiContacts.getFirstname(), equalTo(dbContacts.stream().map((g) -> new ContactData().withFirstname(g.getFirstname()))));
+            assertThat(uiContacts.getAddress(), equalTo(dbContacts.stream().map((g) -> new ContactData().withAddress(g.getAddress()))));
+            assertThat(uiContacts.getHomePhone(), equalTo(dbContacts.stream().map((g) -> new ContactData().withHomePhone(g.getHomePhone()))));
+            assertThat(uiContacts.getMobilePhone(), equalTo(dbContacts.stream().map((g) -> new ContactData().withMobilePhone(g.getMobilePhone()))));
+            assertThat(uiContacts.getWorkPhone(), equalTo(dbContacts.stream().map((g) -> new ContactData().withWorkPhone(g.getWorkPhone()))));
+            assertThat(uiContacts.getEmail(), equalTo(dbContacts.stream().map((g) -> new ContactData().withEmail(g.getEmail()))));
+            assertThat(uiContacts.getEmail2(), equalTo(dbContacts.stream().map((g) -> new ContactData().withEmail2(g.getEmail2()))));
+            assertThat(uiContacts.getEmail3(), equalTo(dbContacts.stream().map((g) -> new ContactData().withEmail3(g.getEmail3()))));
+        */
         }
     }
 }

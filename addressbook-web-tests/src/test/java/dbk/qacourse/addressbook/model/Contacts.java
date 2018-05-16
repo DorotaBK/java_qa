@@ -30,8 +30,6 @@ public class Contacts extends ForwardingSet<ContactData> {
         return delegate;
     }
 
-
-
     // new objects
     public Contacts withAdded(ContactData contact) {
         Contacts contacts = new Contacts(this);   //create a copy of an existing collection
