@@ -174,7 +174,8 @@ public class ContactHelper extends HelperBase {
             String[] emails = cells.get(4).getText().split("\n");
             String[] phones = cells.get(5).getText().split("\n");
             contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                    .withAddress(address).withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2])
+                    .withAddress(address)
+                    .withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2])
                     .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
         }
         return contactCache;

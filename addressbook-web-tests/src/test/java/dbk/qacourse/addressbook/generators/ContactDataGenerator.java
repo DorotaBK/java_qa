@@ -58,9 +58,9 @@ public class ContactDataGenerator {
         String[] emails = {"Pierwszy_0@wp.pl", "Drugi_0@wp.pl", "Trzeci_0@wp.pl", "Czwarty_0@wp.pl"};
         String[] emails2 = {"Pierwszy_1@wp.pl", "Drugi_1@wp.pl", "Trzeci_1@wp.pl", "Czwarty_1@wp.pl"};
         String[] emails3 = {"Pierwszy_2@wp.pl", "Drugi_2@wp.pl", "Trzeci_2@wp.pl", "Czwarty_2@wp.pl"};
-        String[] home = {"100111111", "100222222", "100333333", "100444444"};
+        String[] home = {"100000000", "100222222", "100333333", "100444444"};
         String[] mobiles = {"500500500", "500600700", "500700800", "500800900"};
-        String[] work = {"300111111", "300222222", "300333333", "400333333"};
+        String[] work = {"300000000", "300222222", "300333333", "400333333"};
         String group = "[none]";
         String[] photos = {"src/test/resources/photo/bert.jpg", "src/test/resources/photo/ernie.jpg",
                 "src/test/resources/photo/minion.jpg", "src/test/resources/photo/bigbird.jpg"};
