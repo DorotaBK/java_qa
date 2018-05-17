@@ -9,7 +9,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactHelper extends HelperBase {
 
@@ -76,11 +81,8 @@ public class ContactHelper extends HelperBase {
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(7).findElement(By.tagName("a")).click();
 
-        /* my own, first version:
+        /* other versions:
         wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
-        */
-
-        /* other versions by QA-Courses:
         wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
         wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
         wd.findElement(By.cssSelector(String.format("a[href*='edit.php?id=%s']", id))).click();
@@ -92,7 +94,7 @@ public class ContactHelper extends HelperBase {
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(6).findElement(By.tagName("a")).click();
-        /* my own, first version:
+        /* my first version:
         wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
         */
     }
@@ -135,57 +137,6 @@ public class ContactHelper extends HelperBase {
         contactCache = null;
     }
 
-    public int count() {
-        return wd.findElements(By.name("selected[]")).size();
-    }
-
-    private Contacts contactCache = null;
-
-    public Contacts all() {
-        if (contactCache != null) {
-            return new Contacts(contactCache);
-        }
-
-        contactCache = new Contacts();
-        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
-        for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));
-            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
-            String lastName = cells.get(1).getText();
-            String firstName = cells.get(2).getText();
-            String address = cells.get(3).getText();
-            String allEmails = cells.get(4).getText();
-            String allPhones = cells.get(5).getText();
-            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                    .withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones));
-        }
-        return contactCache;
-    }
-
-   public Contacts splitData() {
-        if (contactCache != null) {
-            return new Contacts(contactCache);
-        }
-
-        contactCache = new Contacts();
-        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
-        for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));
-            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
-            String lastName = cells.get(1).getText();
-            String firstName = cells.get(2).getText();
-            String address = cells.get(3).getText();
-            String[] emails = cells.get(4).getText().split("\n");
-            String[] phones = cells.get(5).getText().split("\n");
-            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                    .withAddress(address)
-                    .withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2])
-                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
-        }
-        return contactCache;
-    }
-
-
     public ContactData infoFromEditForm(ContactData contact) {
         selectContactToEditById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
@@ -213,5 +164,53 @@ public class ContactHelper extends HelperBase {
         return details;
     }
 
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 
+    private Contacts contactCache = null;
+
+    public Contacts all() {
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+
+        contactCache = new Contacts();
+        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
+            String lastName = cells.get(1).getText();
+            String firstName = cells.get(2).getText();
+            String address = cells.get(3).getText();
+            String allEmails = cells.get(4).getText();
+            String allPhones = cells.get(5).getText();
+            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
+                    .withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones));
+        }
+        return contactCache;
+    }
+
+    public Contacts splitDataFromUI() {
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+
+        contactCache = new Contacts();
+        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));    //list of all data rows
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
+            String lastName = cells.get(1).getText();
+            String firstName = cells.get(2).getText();
+            String address = cells.get(3).getText();
+            String[] emails = cells.get(4).getText().split("\n");
+            String[] phones = cells.get(5).getText().split("\n");
+            contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
+                    .withAddress(address)
+                    .withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2])
+                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+        }
+        return contactCache;
+    }
 }
