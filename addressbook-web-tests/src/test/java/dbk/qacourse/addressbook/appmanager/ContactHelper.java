@@ -30,8 +30,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("nickname"), contactData.getNick());
         type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
         type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
         attach(By.name("photo"), new File(contactData.getPhoto()));
         // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form
@@ -158,7 +162,7 @@ public class ContactHelper extends HelperBase {
         return contactCache;
     }
 
-    public Contacts splitData() {
+   public Contacts splitData() {
         if (contactCache != null) {
             return new Contacts(contactCache);
         }
@@ -180,6 +184,7 @@ public class ContactHelper extends HelperBase {
         }
         return contactCache;
     }
+
 
     public ContactData infoFromEditForm(ContactData contact) {
         selectContactToEditById(contact.getId());

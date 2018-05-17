@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dbk.qacourse.addressbook.tests.GroupCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-05-15T19:19:27" hostname="DESKTOP-GECJGH0" time="5.814">
+<testsuite name="dbk.qacourse.addressbook.tests.GroupCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-05-17T21:38:37" hostname="DESKTOP-GECJGH0" time="5.9">
   <properties/>
-  <testcase name="testGroupCreation[0](GroupData{id=2147483647, name='test 0', header='header 0', footer='footer 0'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="2.781"/>
-  <testcase name="testGroupCreation[1](GroupData{id=2147483647, name='test 1', header='header 1', footer='footer 1'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="1.56"/>
-  <testcase name="testGroupCreation[2](GroupData{id=2147483647, name='test 2', header='header 2', footer='footer 2'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="1.468"/>
-  <system-out><![CDATA[21:19:27.674 [Test worker] INFO  d.q.addressbook.tests.TestBase - Start test testGroupCreation with parameters [GroupData{id=2147483647, name='test 0', header='header 0', footer='footer 0'}]
-21:19:27.835 [Test worker] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+  <testcase name="testGroupCreation[0](GroupData{id=2147483647, name='test 0', header='header 0', footer='footer 0'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="2.442"/>
+  <testcase name="testGroupCreation[1](GroupData{id=2147483647, name='test 1', header='header 1', footer='footer 1'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="1.865"/>
+  <testcase name="testGroupCreation[2](GroupData{id=2147483647, name='test 2', header='header 2', footer='footer 2'})" classname="dbk.qacourse.addressbook.tests.GroupCreationTests" time="1.586"/>
+  <system-out><![CDATA[23:38:37.175 [Test worker] INFO  d.q.addressbook.tests.TestBase - Start test testGroupCreation with parameters [GroupData{id=2147483647, name='test 0', header='header 0', footer='footer 0'}]
+23:38:37.363 [Test worker] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_

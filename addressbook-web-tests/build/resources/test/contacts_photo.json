@@ -2,32 +2,48 @@
   {
     "firstname": "Jan",
     "lastname": "Pierwszy",
+    "homePhone": "100000000",
     "mobilePhone": "500500500",
-    "email": "Pierwszy@wp.pl",
+    "workPhone": "300000000",
+    "email": "Pierwszy_0@wp.pl",
+    "email2": "Pierwszy_1@wp.pl",
+    "email3": "Pierwszy_2@wp.pl",
     "group": "[none]",
     "photo": "src/test/resources/photo/bert.jpg"
   },
   {
     "firstname": "Adam",
     "lastname": "Drugi",
+    "homePhone": "100222222",
     "mobilePhone": "500600700",
-    "email": "Drugi@wp.pl",
+    "workPhone": "300222222",
+    "email": "Drugi_0@wp.pl",
+    "email2": "Drugi_1@wp.pl",
+    "email3": "Drugi_2@wp.pl",
     "group": "[none]",
     "photo": "src/test/resources/photo/ernie.jpg"
   },
   {
     "firstname": "Piotr",
     "lastname": "Trzeci",
+    "homePhone": "100333333",
     "mobilePhone": "500700800",
-    "email": "Trzeci@wp.pl",
+    "workPhone": "300333333",
+    "email": "Trzeci_0@wp.pl",
+    "email2": "Trzeci_1@wp.pl",
+    "email3": "Trzeci_2@wp.pl",
     "group": "[none]",
     "photo": "src/test/resources/photo/minion.jpg"
   },
   {
     "firstname": "Witold",
     "lastname": "Czwarty",
+    "homePhone": "100444444",
     "mobilePhone": "500800900",
-    "email": "Czwarty@wp.pl",
+    "workPhone": "400333333",
+    "email": "Czwarty_0@wp.pl",
+    "email2": "Czwarty_1@wp.pl",
+    "email3": "Czwarty_2@wp.pl",
     "group": "[none]",
     "photo": "src/test/resources/photo/bigbird.jpg"
   }

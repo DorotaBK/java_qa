@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dbk.qacourse.addressbook.tests.GroupDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-05-15T19:19:35" hostname="DESKTOP-GECJGH0" time="0.931">
+<testsuite name="dbk.qacourse.addressbook.tests.GroupDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-05-17T21:38:44" hostname="DESKTOP-GECJGH0" time="0.73">
   <properties/>
-  <testcase name="testGroupDeletion" classname="dbk.qacourse.addressbook.tests.GroupDeletionTests" time="0.931"/>
-  <system-out><![CDATA[21:19:35.291 [Test worker] INFO  d.q.addressbook.tests.TestBase - Start test testGroupDeletion with parameters []
+  <testcase name="testGroupDeletion" classname="dbk.qacourse.addressbook.tests.GroupDeletionTests" time="0.73"/>
+  <system-out><![CDATA[23:38:44.793 [Test worker] INFO  d.q.addressbook.tests.TestBase - Start test testGroupDeletion with parameters []
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
-number of groups before test: 40
+number of groups before test: 42
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
 Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
-number of groups at the end: 39
+number of groups at the end: 41
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

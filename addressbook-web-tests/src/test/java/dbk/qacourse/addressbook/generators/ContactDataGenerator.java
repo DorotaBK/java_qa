@@ -67,7 +67,7 @@ public class ContactDataGenerator {
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData().withFirstname(firstnames[i]).withLastname(lastnames[i])
                             .withEmail(emails[i]).withEmail2(emails2[i]).withEmail3(emails3[i])
-                            .withMobilePhone(mobiles[i]).withHomePhone(home[i]).withWorkPhone(work[i])
+                            .withHomePhone(home[i]).withMobilePhone(mobiles[i]).withWorkPhone(work[i])
                             .withGroup(group).withPhoto(photos[i]));
         }
         return contacts;

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">12.022s</div>
+<div class="counter">16.276s</div>
 <p>duration</p>
 </div>
 </td>
@@ -63,6 +63,9 @@
 <li>
 <a href="#tab0">Tests</a>
 </li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -75,26 +78,42 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testContactCreation[0](ContactData{id=2147483647, firstname='Jan', lastname='Pierwszy', address='null', homePhone='null', mobilePhone='500500500', workPhone='null', allPhones='null', email='Pierwszy@wp.pl', email2='null', email3='null', allEmails='null', address2='null'})</td>
-<td>2.687s</td>
+<td class="success">testContactCreation[0](ContactData{id=2147483647, firstname='Jan', lastname='Pierwszy', address='null', homePhone='100000000', mobilePhone='500500500', workPhone='300000000', allPhones='null', email='Pierwszy_0@wp.pl', email2='Pierwszy_1@wp.pl', email3='Pierwszy_2@wp.pl', allEmails='null', address2='null'})</td>
+<td>5.405s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testContactCreation[1](ContactData{id=2147483647, firstname='Adam', lastname='Drugi', address='null', homePhone='null', mobilePhone='500600700', workPhone='null', allPhones='null', email='Drugi@wp.pl', email2='null', email3='null', allEmails='null', address2='null'})</td>
-<td>2.665s</td>
+<td class="success">testContactCreation[1](ContactData{id=2147483647, firstname='Adam', lastname='Drugi', address='null', homePhone='100222222', mobilePhone='500600700', workPhone='300222222', allPhones='null', email='Drugi_0@wp.pl', email2='Drugi_1@wp.pl', email3='Drugi_2@wp.pl', allEmails='null', address2='null'})</td>
+<td>3.809s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testContactCreation[2](ContactData{id=2147483647, firstname='Piotr', lastname='Trzeci', address='null', homePhone='null', mobilePhone='500700800', workPhone='null', allPhones='null', email='Trzeci@wp.pl', email2='null', email3='null', allEmails='null', address2='null'})</td>
-<td>2.999s</td>
+<td class="success">testContactCreation[2](ContactData{id=2147483647, firstname='Piotr', lastname='Trzeci', address='null', homePhone='100333333', mobilePhone='500700800', workPhone='300333333', allPhones='null', email='Trzeci_0@wp.pl', email2='Trzeci_1@wp.pl', email3='Trzeci_2@wp.pl', allEmails='null', address2='null'})</td>
+<td>3.545s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testContactCreation[3](ContactData{id=2147483647, firstname='Witold', lastname='Czwarty', address='null', homePhone='null', mobilePhone='500800900', workPhone='null', allPhones='null', email='Czwarty@wp.pl', email2='null', email3='null', allEmails='null', address2='null'})</td>
-<td>3.671s</td>
+<td class="success">testContactCreation[3](ContactData{id=2147483647, firstname='Witold', lastname='Czwarty', address='null', homePhone='100444444', mobilePhone='500800900', workPhone='400333333', allPhones='null', email='Czwarty_0@wp.pl', email2='Czwarty_1@wp.pl', email3='Czwarty_2@wp.pl', allEmails='null', address2='null'})</td>
+<td>3.517s</td>
 <td class="success">passed</td>
 </tr>
 </table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>23:19:55.744 [Test worker] INFO  d.q.addressbook.tests.TestBase - Start test testContactCreation with parameters [ContactData{id=2147483647, firstname='Jan', lastname='Pierwszy', address='null', homePhone='100000000', mobilePhone='500500500', workPhone='300000000', allPhones='null', email='Pierwszy_0@wp.pl', email2='Pierwszy_1@wp.pl', email3='Pierwszy_2@wp.pl', allEmails='null', address2='null'}]
+23:19:55.948 [Test worker] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select contactdat0_.id as id1_0_, contactdat0_.address as address2_0_, contactdat0_.address2 as address3_0_, contactdat0_.email as email4_0_, contactdat0_.email2 as email5_0_, contactdat0_.email3 as email6_0_, contactdat0_.firstname as firstnam7_0_, contactdat0_.home as home8_0_, contactdat0_.lastname as lastname9_0_, contactdat0_.mobile as mobile10_0_, contactdat0_.nickname as nicknam11_0_, contactdat0_.photo as photo12_0_, contactdat0_.work as work13_0_ from addressbook contactdat0_ where deprecated='0000-00-00'
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">
@@ -104,7 +123,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.5.1</a> at 2018-05-05 01:34:37</p>
+<a href="http://www.gradle.org">Gradle 4.5.1</a> at 2018-05-17 23:20:28</p>
 </div>
 </div>
 </body>

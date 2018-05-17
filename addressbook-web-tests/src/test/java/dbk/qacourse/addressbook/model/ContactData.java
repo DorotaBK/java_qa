@@ -22,6 +22,7 @@ public class ContactData {
     @Expose
     @Column(name = "firstname")
     private String firstname;
+
     @Expose
     @Column(name = "lastname")
     private String lastname;
@@ -39,10 +40,12 @@ public class ContactData {
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
+
     @Expose
     @Column(name = "mobile")
     @Type(type = "text")
     private String mobilePhone;
+
     @Expose
     @Column(name = "work")
     @Type(type = "text")
