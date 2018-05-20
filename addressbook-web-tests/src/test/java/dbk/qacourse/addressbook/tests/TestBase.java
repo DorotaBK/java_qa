@@ -47,8 +47,8 @@ public class TestBase {
 
     public void verifyGroupListInUI() {
         if (Boolean.getBoolean("verifyUI")) {
-            Groups dbGroups = app.db().groups();
             Groups uiGroups = app.groups().all();
+            Groups dbGroups = app.db().groups();
             assertThat(uiGroups, equalTo(dbGroups.stream().map((g) -> new GroupData().withId(g.getId())
                     .withName(g.getName()))
                     .collect(Collectors.toSet())));
@@ -57,8 +57,8 @@ public class TestBase {
 
     public void verifyContactListInUI() {
         if (Boolean.getBoolean("verifyUI")) {
-            Contacts dbContacts = app.db().contacts();
             Contacts uiContacts = app.contacts().splitDataFromUI();
+            Contacts dbContacts = app.db().contacts();
 
             assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId())
                     .withLastname(g.getLastname()).withFirstname(g.getFirstname()).withAddress(g.getAddress())
@@ -68,44 +68,17 @@ public class TestBase {
         }
     }
 
-    public void verifyContactListInUIwithMERGE(){
+    /* WRONG!!! didn't work
+    public void verifyContactListInUIwithMerge(){
         if (Boolean.getBoolean("verifyUIwithMERGE")) {
+            Contacts uiContacts = app.contacts().all();
             Contacts dbContacts = app.db().contacts();
-            Contacts dbPhones = dbContacts.mergePhones();
-            Contacts dbEmails = app.db().contacts().mergeEmailsFromDB();
-            ContactData uiContacts = app.contacts().all().iterator().next();
 
-            assertThat(uiContacts.getId(), equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId()))));
-            assertThat(uiContacts.getLastname(), equalTo(dbContacts.stream().map((g) -> new ContactData().withLastname(g.getLastname()))));
-            assertThat(uiContacts.getFirstname(), equalTo(dbContacts.stream().map((g) -> new ContactData().withFirstname(g.getFirstname()))));
-            assertThat(uiContacts.getAddress(), equalTo(dbContacts.stream().map((g) -> new ContactData().withAddress(g.getAddress()))));
-            //assertThat(uiContacts.getHomePhone(), equalTo(dbContacts.stream().map((g) -> new ContactData().withHomePhone(g.getHomePhone()))));
-            //assertThat(uiContacts.getMobilePhone(), equalTo(dbContacts.stream().map((g) -> new ContactData().withMobilePhone(g.getMobilePhone()))));
-            //assertThat(uiContacts.getWorkPhone(), equalTo(dbContacts.stream().map((g) -> new ContactData().withWorkPhone(g.getWorkPhone()))));
-            assertThat(uiContacts.getAllPhones(), equalTo(dbContacts.stream().map((g) -> new ContactData().withAllPhones(g.getAllPhones()))));
-            //assertThat(uiContacts.getEmail(), equalTo(dbContacts.stream().map((g) -> new ContactData().withEmail(g.getEmail()))));
-            //assertThat(uiContacts.getEmail2(), equalTo(dbContacts.stream().map((g) -> new ContactData().withEmail2(g.getEmail2()))));
-            //assertThat(uiContacts.getEmail3(), equalTo(dbContacts.stream().map((g) -> new ContactData().withEmail3(g.getEmail3()))));
-            assertThat(uiContacts.getAllEmails(), equalTo(dbContacts.stream().map((g) -> new ContactData().withAllEmails(g.getEmail()))));
+            assertThat(uiContacts, equalTo(dbContacts.mergePhones().mergeEmails().stream().map((g) -> new ContactData().withId(g.getId())
+                    .withLastname(g.getLastname()).withFirstname(g.getFirstname()).withAddress(g.getAddress())
+                    .withAllEmails(g.getAllEmails()).withAllPhones(g.getAllPhones()))
+                    .collect(Collectors.toSet())));
         }
     }
-
-    public String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream()
-                .filter((s) -> !s.equals(""))
-                .map(TestBase::cleaned)
-                .collect(Collectors.joining("\n"));
-    }
-
-    public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "")
-                .replaceAll("[-()]", "");
-    }
-
-    public String mergeEmailsFromDB(ContactData contact) {
-        return Arrays.asList(app.db().contacts().stream().map((g)
-                -> new ContactData().withEmail(g.getAllEmails()).withEmail2(g.getEmail2()).withEmail3(g.getEmail3())))
-                .filter((s) -> !s.equals(""))
-                .collect(Collectors.joining("\n"));
-    }
+    */
 }

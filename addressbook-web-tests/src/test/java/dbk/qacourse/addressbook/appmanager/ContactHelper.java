@@ -213,4 +213,25 @@ public class ContactHelper extends HelperBase {
         }
         return contactCache;
     }
+
+    /*
+    public String mergePhones(ContactData contact) {
+        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream()
+                .filter((s) -> !s.equals(""))
+                .map(ContactHelper::cleaned)
+                .collect(Collectors.joining("\n"));
+    }
+
+    public static String cleaned(String phone) {
+        return phone.replaceAll("\\s", "")
+                .replaceAll("[-()]", "");
+    }
+
+    public String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).stream()
+                .filter((s) -> !s.equals(""))
+                .map(ContactHelper::cleaned)
+                .collect(Collectors.joining("\n"));
+    }
+*/
 }
