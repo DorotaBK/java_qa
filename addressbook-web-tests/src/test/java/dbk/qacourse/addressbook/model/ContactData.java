@@ -8,7 +8,9 @@ import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -77,10 +79,6 @@ public class ContactData {
     private String allEmails;
 
     @Expose
-    @Transient
-    private String group;
-
-    @Expose
     @Column(name = "address2")
     @Type(type = "text")
     private String address2;
@@ -89,6 +87,11 @@ public class ContactData {
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
+
+    @ManyToMany
+    @JoinTable(name="address_in_groups",
+            joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
     // Getter
     public int getId() {
@@ -125,11 +128,6 @@ public class ContactData {
 
     public String getAllEmails() {
         return allEmails;
-    }
-
-    // after "Create getter for 'group'", getting the value
-    public String getGroup() {
-        return group;
     }
 
     public String getHomePhone() {
@@ -222,11 +220,6 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
-
     public ContactData withAddress2(String address2) {
         this.address2 = address2;
         return this;
@@ -235,6 +228,10 @@ public class ContactData {
     public ContactData withPhoto(String photo) {
         this.photo = photo;
         return this;
+    }
+
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     @Override
@@ -255,7 +252,7 @@ public class ContactData {
                 Objects.equals(email2, that.email2) &&
                 Objects.equals(email3, that.email3) &&
                 Objects.equals(allEmails, that.allEmails) &&
-                Objects.equals(group, that.group) &&
+
                 Objects.equals(address2, that.address2) &&
                 Objects.equals(photo, that.photo);
     }
@@ -264,7 +261,7 @@ public class ContactData {
     public int hashCode() {
 
         return Objects.hash(id, firstname, lastname, nick, address, homePhone, mobilePhone, workPhone, allPhones,
-                email, email2, email3, allEmails, group, address2, photo);
+                email, email2, email3, allEmails, address2, photo);
     }
 
     @Override
