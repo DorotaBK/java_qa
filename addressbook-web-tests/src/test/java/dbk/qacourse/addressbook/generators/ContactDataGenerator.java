@@ -8,12 +8,12 @@ import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import dbk.qacourse.addressbook.model.ContactData;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class ContactDataGenerator {
 
@@ -52,6 +52,7 @@ public class ContactDataGenerator {
     }
 
     private List<ContactData> generateContacts (int count) {
+
         List<ContactData> contacts = new ArrayList<ContactData>();
         String[] firstnames = {"Jan", "Adam", "Piotr", "Witold"};
         String[] lastnames = {"Pierwszy", "Drugi", "Trzeci", "Czwarty"};
@@ -61,14 +62,13 @@ public class ContactDataGenerator {
         String[] home = {"100000000", "100222222", "100333333", "100444444"};
         String[] mobiles = {"500500500", "500600700", "500700800", "500800900"};
         String[] work = {"300000000", "300222222", "300333333", "400333333"};
-        String group = "[none]";
         String[] photos = {"src/test/resources/photo/bert.jpg", "src/test/resources/photo/ernie.jpg",
                 "src/test/resources/photo/minion.jpg", "src/test/resources/photo/bigbird.jpg"};
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData().withFirstname(firstnames[i]).withLastname(lastnames[i])
                             .withEmail(emails[i]).withEmail2(emails2[i]).withEmail3(emails3[i])
                             .withHomePhone(home[i]).withMobilePhone(mobiles[i]).withWorkPhone(work[i])
-                            .withGroup(group).withPhoto(photos[i]));
+                            .withPhoto(photos[i]));
         }
         return contacts;
     }
@@ -95,7 +95,8 @@ public class ContactDataGenerator {
         try(Writer writer = new FileWriter(file)){
             for (ContactData contact : contacts) {
                 writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
-                        contact.getEmail(), contact.getMobilePhone(), contact.getGroup()));
+                        contact.getEmail(), contact.getMobilePhone()));
+                        //, contact.getGroup()
             }
         }
     }

@@ -9,12 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactHelper extends HelperBase {
 
@@ -45,8 +40,12 @@ public class ContactHelper extends HelperBase {
         // creation => there is drop-down list, so we are on the creation form
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
-            // choose element from drop-down list
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if(contactData.getGroups().size() > 0){
+                Assert.assertTrue(contactData.getGroups().size() == 1); //try to get group from drop-down list
+                // choose element from drop-down list
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator()
+                        .next().getName());
+            }
         } else {
             Assert.assertFalse(isElementPresent((By.name("new_group"))));
         }

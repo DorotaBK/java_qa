@@ -1,6 +1,7 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.ContactData;
+import dbk.qacourse.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,11 +16,12 @@ public class ContactEmailTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.db().contacts().size() == 0) {
+            Groups groups = app.db().groups();
             app.goTo().homePage();
             app.contacts().create(new ContactData().withFirstname("Agata").withLastname("Wredna").withNick("ruda")
                     .withAddress("Szara 4, 10-100 Opole").withMobilePhone("666777888").withEmail("ruda@wp.pl")
-                    .withGroup("[none]"));
-        }
+                    .inGroup(groups.iterator().next()));
+    }
     }
 
     @Test

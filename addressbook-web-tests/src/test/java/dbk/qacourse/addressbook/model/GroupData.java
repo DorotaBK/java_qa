@@ -42,10 +42,6 @@ public class GroupData {
         return id;
     }
 
-    public Contacts getContacts() {
-        return new Contacts(contacts);
-    }
-
     public String getName() {
         return name;
     }
@@ -56,6 +52,10 @@ public class GroupData {
 
     public String getFooter() {
         return footer;
+    }
+
+    public Contacts getContacts() {
+        return new Contacts(contacts);
     }
 
     // Setter
