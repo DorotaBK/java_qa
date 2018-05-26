@@ -1,6 +1,7 @@
 package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.ContactData;
+import dbk.qacourse.addressbook.model.GroupData;
 import dbk.qacourse.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,11 +17,10 @@ public class ContactDetailsTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.db().contacts().size() == 0) {
-            Groups groups = app.db().groups();
             app.goTo().homePage();
-            app.contacts().create(new ContactData().withFirstname("Agata").withLastname("Wredna").withNick("ruda")
+            app.contacts().create(new ContactData().withFirstname("Agata").withLastname("Miła").withNick("ruda")
                     .withAddress("Szara 4, 10-100 Opole").withMobilePhone("666777888").withEmail("ruda@wp.pl")
-                    .inGroup(groups.iterator().next()));
+                    .withPhoto("src/test/resources/photo/spongebob.jpg"));
         }
     }
 
@@ -34,7 +34,7 @@ public class ContactDetailsTests extends TestBase {
     }
 
     private String mergeAllData(ContactData contact) {
-        return Arrays.asList(contact.getFirstname(), contact.getLastname(), contact.getAddress(),
+        return Arrays.asList(contact.getFirstname(), contact.getLastname(), contact.getNick(), contact.getAddress(),
                 contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
                 contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getAddress2())
                 .stream()

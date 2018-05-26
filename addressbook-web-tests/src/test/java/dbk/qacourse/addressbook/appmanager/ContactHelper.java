@@ -37,12 +37,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
         attach(By.name("photo"), new File(contactData.getPhoto()));
-        // creation => there is drop-down list, so we are on the creation form
+        // creation => we are on the creation form, there is drop-down list of groups
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
             if(contactData.getGroups().size() > 0){
-                Assert.assertTrue(contactData.getGroups().size() == 1); //try to get group from drop-down list
-                // choose element from drop-down list
+                //try to get group from drop-down list - choose only one element
+                Assert.assertTrue(contactData.getGroups().size() == 1);
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator()
                         .next().getName());
             }
@@ -140,6 +140,7 @@ public class ContactHelper extends HelperBase {
         selectContactToEditById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String nick = wd.findElement(By.name("nickname")).getAttribute("value");
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
@@ -149,7 +150,7 @@ public class ContactHelper extends HelperBase {
         String address = wd.findElement(By.name("address")).getAttribute("value");
         String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         wd.navigate().back();
-        return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+        return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withNick(nick)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
                 .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address).withAddress2(address2);
     }

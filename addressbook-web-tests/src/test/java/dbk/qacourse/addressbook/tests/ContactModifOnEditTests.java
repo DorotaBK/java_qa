@@ -2,6 +2,7 @@ package dbk.qacourse.addressbook.tests;
 
 import dbk.qacourse.addressbook.model.ContactData;
 import dbk.qacourse.addressbook.model.Contacts;
+import dbk.qacourse.addressbook.model.GroupData;
 import dbk.qacourse.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,11 +14,15 @@ public class ContactModifOnEditTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.db().contacts().size() == 0) {
+            if (app.db().groups().size() == 0){
+                app.goTo().groupPage();
+                app.groups().create(new GroupData().withName("grupa_E"));
+            }
             Groups groups = app.db().groups();
             app.goTo().homePage();
-            app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
-                    .withAddress("Nowa 4, 10-100 Puck").withMobilePhone("601601601").withEmail("kloc@wp.pl")
-                    .inGroup(groups.iterator().next()));
+            app.contacts().create(new ContactData().withFirstname("Iza").withLastname("Wredna").withNick("ruda")
+                    .withAddress("Szara 4, 10-100 Opole").withMobilePhone("666777888").withEmail("ruda@wp.pl")
+                    .withPhoto("src/test/resources/photo/spongebob.jpg").inGroup(groups.iterator().next()));
         }
     }
 

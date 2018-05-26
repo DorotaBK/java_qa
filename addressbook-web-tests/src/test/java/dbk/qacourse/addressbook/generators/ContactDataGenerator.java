@@ -52,7 +52,6 @@ public class ContactDataGenerator {
     }
 
     private List<ContactData> generateContacts (int count) {
-
         List<ContactData> contacts = new ArrayList<ContactData>();
         String[] firstnames = {"Jan", "Adam", "Piotr", "Witold"};
         String[] lastnames = {"Pierwszy", "Drugi", "Trzeci", "Czwarty"};
@@ -62,6 +61,7 @@ public class ContactDataGenerator {
         String[] home = {"100000000", "100222222", "100333333", "100444444"};
         String[] mobiles = {"500500500", "500600700", "500700800", "500800900"};
         String[] work = {"300000000", "300222222", "300333333", "400333333"};
+        //String group = "[none]";
         String[] photos = {"src/test/resources/photo/bert.jpg", "src/test/resources/photo/ernie.jpg",
                 "src/test/resources/photo/minion.jpg", "src/test/resources/photo/bigbird.jpg"};
         for (int i = 0; i < count; i++) {
@@ -69,6 +69,7 @@ public class ContactDataGenerator {
                             .withEmail(emails[i]).withEmail2(emails2[i]).withEmail3(emails3[i])
                             .withHomePhone(home[i]).withMobilePhone(mobiles[i]).withWorkPhone(work[i])
                             .withPhoto(photos[i]));
+                            //.withGroup(group))
         }
         return contacts;
     }
