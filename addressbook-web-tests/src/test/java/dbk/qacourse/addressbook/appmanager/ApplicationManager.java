@@ -70,4 +70,5 @@ public class ApplicationManager {
     }
 
     public DbHelper db() {return dbHelper;}
+
 }

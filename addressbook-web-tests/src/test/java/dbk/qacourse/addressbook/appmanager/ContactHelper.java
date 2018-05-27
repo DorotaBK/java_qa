@@ -2,6 +2,7 @@ package dbk.qacourse.addressbook.appmanager;
 
 import dbk.qacourse.addressbook.model.ContactData;
 import dbk.qacourse.addressbook.model.Contacts;
+import dbk.qacourse.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,7 +81,7 @@ public class ContactHelper extends HelperBase {
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(7).findElement(By.tagName("a")).click();
 
-        /* other versions:
+        /* other:
         wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
         wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
         wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
@@ -93,7 +94,7 @@ public class ContactHelper extends HelperBase {
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(6).findElement(By.tagName("a")).click();
-        /* my first version:
+        /*
         wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
         */
     }
@@ -213,6 +214,28 @@ public class ContactHelper extends HelperBase {
         }
         return contactCache;
     }
+
+    private void homePage() {
+        click(By.linkText("home"));
+    }
+
+    public void addToGroup(ContactData contact, GroupData group) {
+        selectContactToEditById(contact.getId());
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
+        click(By.name("add"));
+        homePage();
+    }
+
+
+
+    //kod Mariusza, moja nazwa selectContactToEditById
+    public void deleteFromGroup(ContactData contact, GroupData group) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(Integer.toString(group.getId()));
+        selectContactToEditById(contact.getId());
+        click(By.name("remove"));
+        homePage();
+    }
+
 
     /*
     public String mergePhones(ContactData contact) {

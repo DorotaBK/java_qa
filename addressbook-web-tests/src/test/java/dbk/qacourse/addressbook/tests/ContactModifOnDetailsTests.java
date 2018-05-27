@@ -31,7 +31,7 @@ public class ContactModifOnDetailsTests extends TestBase {
     @Test
     public void testContactModifOnDetails() {
         Contacts before = app.db().contacts();
-        ContactData modifiedContact = before.iterator().next(); //random selection of an element to be removed
+        ContactData modifiedContact = before.iterator().next();
         ContactData currentContact = new ContactData().withId(modifiedContact.getId()).withFirstname("Kornelia")
                 .withLastname("Nowak").withAddress("Zmoczona 1, 10-100 Gdynia").withMobilePhone("500555000")
                 .withEmail("selen@wp.pl").withPhoto("src/test/resources/photo/JerryMouse.png");
