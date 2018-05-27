@@ -12,10 +12,10 @@ public class NavigationHelper extends HelperBase {
 
 // Before each transition, we check whether we really have to make this transition
     public void groupPage() {
-        if (isElementPresent(By.tagName("h1"))                                     //checking the presence of a header
-                && wd.findElement(By.tagName("h1")).getText().equals("Groups")              //checking the header text
-                && isElementPresent(By.name("new"))) {               //checking the presence of the 'New group' button
-            return;                                               //exit from the method, we don't have to do anything
+        if (isElementPresent(By.tagName("h1"))            //checking the presence of a header
+                && wd.findElement(By.tagName("h1")).getText().equals("Groups")   //checking the header text
+                && isElementPresent(By.name("new"))) {    //checking the presence of the 'New group' button
+            return;                                       //exit from the method, we don't have to do anything
         }
         click(By.linkText("groups"));
     }

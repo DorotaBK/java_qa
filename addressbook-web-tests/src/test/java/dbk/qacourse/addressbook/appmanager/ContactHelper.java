@@ -71,11 +71,10 @@ public class ContactHelper extends HelperBase {
     }
 
     public void contactDeleteById(ContactData contact) {
-        selectContactToDeleteById(contact.getId());
+        selectContactById(contact.getId());
     }
 
     public void selectContactToEditById(int id) {
-        //by QA-Courses:
         WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
@@ -99,7 +98,7 @@ public class ContactHelper extends HelperBase {
         */
     }
 
-    public void selectContactToDeleteById(int id) {
+    public void selectContactById(int id) {
         if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
             wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
         }
@@ -220,14 +219,13 @@ public class ContactHelper extends HelperBase {
     }
 
     public void addToGroup(ContactData contact, GroupData group) {
-        selectContactToEditById(contact.getId());
+        selectContactById(contact.getId());
         new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
         click(By.name("add"));
         homePage();
     }
 
-
-
+    /*
     //kod Mariusza, moja nazwa selectContactToEditById
     public void deleteFromGroup(ContactData contact, GroupData group) {
         new Select(wd.findElement(By.name("group"))).selectByValue(Integer.toString(group.getId()));
@@ -235,7 +233,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("remove"));
         homePage();
     }
-
+/*
 
     /*
     public String mergePhones(ContactData contact) {

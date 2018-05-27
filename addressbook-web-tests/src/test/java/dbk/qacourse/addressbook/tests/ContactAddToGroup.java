@@ -29,24 +29,20 @@ public class ContactAddToGroup extends TestBase {
 
     @Test
     public void testAddToGroup() {
-        Contacts before = app.db().contacts(); //all contacts in db, for assertion
-
-        GroupData selectedGroups; //variable only
-
-        app.goTo().homePage();
-        ContactData modifiedContact = before.iterator().next(); //selected contact
+        GroupData selectedGroup; //variable only
+        ContactData modifiedContact = app.db().contacts().iterator().next(); //selected contact
         Groups contactGroupsBefore = modifiedContact.getGroups(); //groups of selected contact
         if (contactGroupsBefore.size() < app.db().groups().size()) {
-            selectedGroups = app.db().groups().iterator().next(); //selecting a group from drop-down list
-            app.contacts().addToGroup(modifiedContact, selectedGroups);
-            modifiedContact = app.db().contactById(modifiedContact.getId());
-            contactGroupsBefore = modifiedContact.getGroups();
+            selectedGroup = app.db().groups().iterator().next(); //selecting a group from drop-down list
+            app.contacts().addToGroup(modifiedContact, selectedGroup);
+            //modifiedContact = app.db().contactById(modifiedContact.getId());
+            //contactGroupsBefore = modifiedContact.getGroups();
         } else {
-            selectedGroups = contactGroupsBefore.iterator().next();
+            selectedGroup = contactGroupsBefore.iterator().next();
         }
 
         modifiedContact = app.db().contactById(modifiedContact.getId());
         Groups contactGroupsAfter = modifiedContact.getGroups();
-        assertThat(contactGroupsAfter, equalTo(contactGroupsBefore.withAdded(selectedGroups)));
+        assertThat(contactGroupsAfter, equalTo(contactGroupsBefore.withAdded(selectedGroup)));
     }
 }
