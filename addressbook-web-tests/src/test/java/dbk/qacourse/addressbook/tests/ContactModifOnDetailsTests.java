@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
 public class ContactModifOnDetailsTests extends TestBase {
@@ -24,7 +23,7 @@ public class ContactModifOnDetailsTests extends TestBase {
             app.goTo().homePage();
             app.contacts().create(new ContactData().withFirstname("Agata").withLastname("Jasna").withNick("jasnaruda")
                     .withAddress("Wesoła 4, 10-100 Opole").withMobilePhone("666777888").withEmail("ruda@wp.pl")
-                    .withPhoto("src/test/resources/photo/spongebob.jpg").inGroup(groups.iterator().next()));
+                    .withPhoto("src/test/resources/photo/spongebob.jpg").addGroup(groups.iterator().next()));
         }
     }
 

@@ -28,7 +28,7 @@ public class ContactCreationTests extends TestBase {
         ContactData newContact = new ContactData().withFirstname("SpongeBob").withLastname("Testowy")
                 .withAddress("Polna").withHomePhone("666555444").withMobilePhone("200500200").withWorkPhone("586006060")
                 .withEmail("jan_testowy@wp.pl").withPhoto("src/test/resources/photo/spongebob.jpg")
-                .inGroup(groups.iterator().next());
+                .addGroup(groups.iterator().next());
         app.goTo().homePage();
         app.contacts().initContactCreation();
         app.contacts().fillContactForm(newContact, true);

@@ -97,7 +97,7 @@ public class ContactDataGenerator {
             for (ContactData contact : contacts) {
                 writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
                         contact.getEmail(), contact.getMobilePhone()));
-                        //, contact.getGroup()
+                        //, contact.getGroups()
             }
         }
     }

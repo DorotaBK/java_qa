@@ -69,18 +69,4 @@ public class TestBase {
                     .collect(Collectors.toSet())));
         }
     }
-
-    /* WRONG!!! didn't work
-    public void verifyContactListInUIwithMerge(){
-        if (Boolean.getBoolean("verifyUIwithMERGE")) {
-            Contacts uiContacts = app.contacts().all();
-            Contacts dbContacts = app.db().contacts();
-
-            assertThat(uiContacts, equalTo(dbContacts.mergePhones().mergeEmails().stream().map((g) -> new ContactData().withId(g.getId())
-                    .withLastname(g.getLastname()).withFirstname(g.getFirstname()).withAddress(g.getAddress())
-                    .withAllEmails(g.getAllEmails()).withAllPhones(g.getAllPhones()))
-                    .collect(Collectors.toSet())));
-        }
-    }
-    */
 }

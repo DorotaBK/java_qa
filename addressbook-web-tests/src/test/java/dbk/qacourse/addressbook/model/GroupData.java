@@ -34,7 +34,7 @@ public class GroupData {
     @Type(type = "text")
     private String footer;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<ContactData>();
 
     // Getter
@@ -104,5 +104,10 @@ public class GroupData {
     public int hashCode() {
 
         return Objects.hash(id, name, header, footer);
+    }
+
+    public GroupData removeContact(ContactData contact) {
+        contacts.remove(contact);
+        return this;
     }
 }

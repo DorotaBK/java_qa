@@ -38,6 +38,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
         attach(By.name("photo"), new File(contactData.getPhoto()));
+
         // creation => we are on the creation form, there is drop-down list of groups
         // else => there is no drop-down list, so we are on the modification form
         if (creation) {
@@ -79,7 +80,6 @@ public class ContactHelper extends HelperBase {
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(7).findElement(By.tagName("a")).click();
-
         /* other:
         wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
         wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
@@ -96,12 +96,6 @@ public class ContactHelper extends HelperBase {
         /*
         wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
         */
-    }
-
-    public void selectContactById(int id) {
-        if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
-            wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
-        }
     }
 
     public void modifyOnDetails(ContactData currentContact) {
@@ -214,45 +208,11 @@ public class ContactHelper extends HelperBase {
         return contactCache;
     }
 
-    private void homePage() {
-        click(By.linkText("home"));
-    }
-
     public void addToGroup(ContactData contact, GroupData group) {
+        homePage();
         selectContactById(contact.getId());
         new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
         click(By.name("add"));
         homePage();
     }
-
-    /*
-    //kod Mariusza, moja nazwa selectContactToEditById
-    public void deleteFromGroup(ContactData contact, GroupData group) {
-        new Select(wd.findElement(By.name("group"))).selectByValue(Integer.toString(group.getId()));
-        selectContactToEditById(contact.getId());
-        click(By.name("remove"));
-        homePage();
-    }
-/*
-
-    /*
-    public String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream()
-                .filter((s) -> !s.equals(""))
-                .map(ContactHelper::cleaned)
-                .collect(Collectors.joining("\n"));
-    }
-
-    public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "")
-                .replaceAll("[-()]", "");
-    }
-
-    public String mergeEmails(ContactData contact) {
-        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).stream()
-                .filter((s) -> !s.equals(""))
-                .map(ContactHelper::cleaned)
-                .collect(Collectors.joining("\n"));
-    }
-*/
 }

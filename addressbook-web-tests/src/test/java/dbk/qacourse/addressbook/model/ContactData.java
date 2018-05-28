@@ -10,9 +10,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@XStreamAlias("contact")
 @Entity
 @Table(name = "addressbook")
-@XStreamAlias("contact")
 public class ContactData {
     @XStreamOmitField
     @Id
@@ -249,7 +249,6 @@ public class ContactData {
                 Objects.equals(email2, that.email2) &&
                 Objects.equals(email3, that.email3) &&
                 Objects.equals(allEmails, that.allEmails) &&
-
                 Objects.equals(address2, that.address2) &&
                 Objects.equals(photo, that.photo);
     }
@@ -280,7 +279,7 @@ public class ContactData {
                 '}';
     }
 
-    public ContactData inGroup(GroupData group) {
+    public ContactData addGroup(GroupData group) {
         groups.add(group);
         return this;
     }

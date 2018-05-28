@@ -25,7 +25,7 @@ public class ContactPhoneTests extends TestBase {
             app.goTo().homePage();
             app.contacts().create(new ContactData().withFirstname("Marta").withLastname("Senna").withNick("sennaM")
                     .withAddress("Szara 4, 10-100 Sopot").withMobilePhone("666777888").withEmail("senna@wp.pl")
-                    .withPhoto("src/test/resources/photo/spongebob.jpg").inGroup(groups.iterator().next()));
+                    .withPhoto("src/test/resources/photo/spongebob.jpg").addGroup(groups.iterator().next()));
         }
     }
 

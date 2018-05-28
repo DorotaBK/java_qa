@@ -19,7 +19,7 @@ public class ContactDeletionOnHomeAbortTests extends TestBase {
             app.goTo().homePage();
             app.contacts().create(new ContactData().withFirstname("Edyta").withLastname("Klocek").withNick("klocek")
                     .withAddress("Nowa 4, 10-100 Puck").withMobilePhone("601601601").withEmail("eklocek@wp.pl")
-                    .inGroup(groups.iterator().next()));
+                    .addGroup(groups.iterator().next()));
         }
     }
 

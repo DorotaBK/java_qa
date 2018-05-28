@@ -55,4 +55,14 @@ public class HelperBase {
             return false;
         }
     }
+
+    protected void homePage() {
+        click(By.linkText("home"));
+    }
+
+    public void selectContactById(int id) {
+        if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
+            wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+        }
+    }
 }

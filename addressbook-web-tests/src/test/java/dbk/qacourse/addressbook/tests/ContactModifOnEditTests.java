@@ -22,7 +22,7 @@ public class ContactModifOnEditTests extends TestBase {
             app.goTo().homePage();
             app.contacts().create(new ContactData().withFirstname("Iza").withLastname("Wredna").withNick("ruda")
                     .withAddress("Szara 4, 10-100 Opole").withMobilePhone("666777888").withEmail("ruda@wp.pl")
-                    .withPhoto("src/test/resources/photo/spongebob.jpg").inGroup(groups.iterator().next()));
+                    .withPhoto("src/test/resources/photo/spongebob.jpg").addGroup(groups.iterator().next()));
         }
     }
 
