@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 
@@ -64,5 +65,16 @@ public class HelperBase {
         if (!wd.findElement(By.cssSelector("input[id='" + id + "']")).isSelected()) {
             wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
         }
+    }
+
+    public void selectGroupById(int id) {
+        // select a specific element on the page
+        if (!wd.findElement(By.cssSelector("input[value='" + id + "']")).isSelected()) {
+            wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+        }
+    }
+
+    public void selectAllGroup() {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
     }
 }

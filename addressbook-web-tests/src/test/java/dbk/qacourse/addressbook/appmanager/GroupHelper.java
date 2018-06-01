@@ -34,13 +34,6 @@ public class GroupHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
-    public void selectGroupById(int id) {
-        // select a specific element on the page
-        if (!wd.findElement(By.cssSelector("input[value='" + id + "']")).isSelected()) {
-            wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
-        }
-    }
-
     public void deleteSelectedGroups() {
         click(By.name("delete"));
     }
@@ -85,7 +78,7 @@ public class GroupHelper extends HelperBase {
     private Groups groupCache = null;
 
     public Groups all() {
-        if (groupCache != null){
+        if (groupCache != null) {
             return new Groups(groupCache);  //copy of cache with data from www
         }
 
@@ -106,5 +99,7 @@ public class GroupHelper extends HelperBase {
         selectContactById(contact.getId());
         click(By.name("remove"));
         homePage();
+        selectAllGroup();
     }
+
 }

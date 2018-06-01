@@ -3,6 +3,8 @@ package dbk.qacourse.addressbook.tests;
 import dbk.qacourse.addressbook.model.ContactData;
 import dbk.qacourse.addressbook.model.GroupData;
 import dbk.qacourse.addressbook.model.Groups;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -28,16 +30,16 @@ public class AddContactToGroupTests extends TestBase {
 
     @Test
     public void testAddContactToGroup() {
-        GroupData selectedGroup;
-        ContactData modifiedContact = app.db().contacts().iterator().next(); //selected contact
-        Groups groupsBefore = modifiedContact.getGroups(); //groups of selected contact
-        if (groupsBefore.size() < app.db().groups().size()) {
-            selectedGroup = app.db().groups().iterator().next(); //selecting a group from drop-down list
-            app.contacts().addToGroup(modifiedContact, selectedGroup);
-        } else {
-            selectedGroup = groupsBefore.iterator().next();
+        GroupData selectedGroup = app.db().groups().iterator().next();
+        ContactData modifiedContact = app.db().contacts().iterator().next();    //selected contact
+        Groups groupsBefore = modifiedContact.getGroups();                      //groups of selected contact
+        if(groupsBefore.size() == app.db().groups().size()) {
+            app.groups().removeContact(modifiedContact, selectedGroup);
+            modifiedContact = app.db().contactById(modifiedContact.getId());
+            groupsBefore = modifiedContact.getGroups();
         }
-
+        System.out.println("\n***** Groups before: *****\n" + groupsBefore + "\n");
+        app.contacts().addToGroup(modifiedContact, selectedGroup);
         modifiedContact = app.db().contactById(modifiedContact.getId());
         Groups groupsAfter = modifiedContact.getGroups();
         assertThat(groupsAfter, equalTo(groupsBefore.withAdded(selectedGroup)));
