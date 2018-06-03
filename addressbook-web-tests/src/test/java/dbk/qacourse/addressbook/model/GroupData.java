@@ -105,9 +105,4 @@ public class GroupData {
 
         return Objects.hash(id, name, header, footer);
     }
-
-    public GroupData removeContact(ContactData contact) {
-        contacts.remove(contact);
-        return this;
-    }
 }

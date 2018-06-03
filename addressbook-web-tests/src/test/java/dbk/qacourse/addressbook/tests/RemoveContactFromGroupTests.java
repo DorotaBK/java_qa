@@ -29,7 +29,7 @@ public class RemoveContactFromGroupTests extends TestBase {
     }
 
     @Test
-    public void testContactRemoveFromGroup() {
+    public void testRemoveContactFromGroup() {
         ContactData selectedContact = null;
         GroupData modifiedGroup = app.db().groups().iterator().next(); //choose some group from db
         Contacts contactsBefore = modifiedGroup.getContacts();  //list of contacts in the selected group
