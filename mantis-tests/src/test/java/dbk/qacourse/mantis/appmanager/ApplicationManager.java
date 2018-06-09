@@ -52,4 +52,8 @@ public class ApplicationManager {
     public String getProperty(String key) {
         return properties.getProperty(key);
     }
+
+    public RegistrationHelper registration() {
+        return new RegistrationHelper(this);
+    }
 }
