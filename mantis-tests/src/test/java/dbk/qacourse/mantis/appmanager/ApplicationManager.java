@@ -19,10 +19,7 @@ public class ApplicationManager {
     private WebDriver wd;
     private String browser;
     private RegistrationHelper registrationHelper;
-<<<<<<< HEAD
     private FtpHelper ftp;
-=======
->>>>>>> 5bd93347e072fccb49a529edc3f32827ee31bceb
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -69,7 +66,6 @@ public class ApplicationManager {
             registrationHelper = new RegistrationHelper(this);
         }
         return registrationHelper;
-<<<<<<< HEAD
     }
 
     public FtpHelper ftp() {
@@ -77,7 +73,5 @@ public class ApplicationManager {
             ftp = new FtpHelper(this);
         }
         return ftp;
-=======
->>>>>>> 5bd93347e072fccb49a529edc3f32827ee31bceb
     }
 }
