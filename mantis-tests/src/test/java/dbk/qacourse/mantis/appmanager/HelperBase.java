@@ -4,20 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-/*
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
- */
-import java.io.File;
 
 public class HelperBase {
 
     protected ApplicationManager app; //available to all inheriting classes
     protected WebDriver wd;
+    protected WebDriverWait wait;
 
     public HelperBase(ApplicationManager app) {
         this.app = app;
         this.wd = app.getDriver(); //lazy initialization
+        wait = new WebDriverWait(wd, 5);
     }
 
     protected void click(By locator) {
@@ -34,14 +33,6 @@ public class HelperBase {
             }
         }
     }
-
-    /*
-    protected void attach(By locator, File file) {
-        if (file != null){
-            wd.findElement(locator).sendKeys(file.getAbsolutePath());
-        }
-    }
-    */
 
     public boolean isAlertPresent() {
         try {
@@ -61,9 +52,8 @@ public class HelperBase {
         }
     }
 
-    /*
     protected void waitLocator(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-     */
+
 }

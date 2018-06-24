@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.io.IOException;
+import java.util.Objects;
 
 public class ApplicationManager {
 
@@ -21,6 +23,9 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private NavigateHelper navigateHelper;
+    private UserAccountHelper userAccount;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -33,12 +38,12 @@ public class ApplicationManager {
 
     //getter
     public WebDriver getDriver() {
-        if(wd == null){
+        if (wd == null) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-            } else if(browser.equals(BrowserType.CHROME)){
+            } else if (browser.equals(BrowserType.CHROME)) {
                 wd = new ChromeDriver();
-            } else if(browser.equals(BrowserType.IE)){
+            } else if (browser.equals(BrowserType.IE)) {
                 wd = new InternetExplorerDriver();
             }
             wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -53,7 +58,7 @@ public class ApplicationManager {
     }
 
     public void stop() {
-        if(wd != null){
+        if (wd != null) {
             wd.quit();
         }
     }
@@ -63,7 +68,7 @@ public class ApplicationManager {
     }
 
     public RegistrationHelper registration() {
-        if(registrationHelper == null){
+        if (registrationHelper == null) {
             registrationHelper = new RegistrationHelper(this);
         }
         return registrationHelper;
@@ -77,9 +82,30 @@ public class ApplicationManager {
     }
 
     public MailHelper mail() {
-        if (mailHelper ==  null) {
+        if (mailHelper == null) {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
+    }
+
+    public NavigateHelper navigate() {
+        if (navigateHelper == null) {
+            navigateHelper = new NavigateHelper(this);
+        }
+        return navigateHelper;
+    }
+
+    public UserAccountHelper userAccount() {
+        if (userAccount == null) {
+            userAccount = new UserAccountHelper(this);
+        }
+        return userAccount;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(this);
+        }
+        return dbHelper;
     }
 }
