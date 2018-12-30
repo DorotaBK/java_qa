@@ -12,8 +12,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import java.io.IOException;
-import java.util.Objects;
 
 public class ApplicationManager {
 
@@ -26,6 +24,7 @@ public class ApplicationManager {
     private NavigateHelper navigateHelper;
     private UserAccountHelper userAccount;
     private DbHelper dbHelper;
+    private JamesHelper jamesHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -107,5 +106,12 @@ public class ApplicationManager {
             dbHelper = new DbHelper(this);
         }
         return dbHelper;
+    }
+
+    public JamesHelper james() {
+        if(jamesHelper == null) {
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
     }
 }
